@@ -10,10 +10,119 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_110753) do
+ActiveRecord::Schema.define(version: 2020_02_29_143437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.bigint "post_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "city_id"
+    t.bigint "music_style_id"
+    t.string "address"
+    t.float "longitude"
+    t.float "latitude"
+    t.text "description"
+    t.integer "max_players"
+    t.integer "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_events_on_city_id"
+    t.index ["music_style_id"], name: "index_events_on_music_style_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "followers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_followers_on_user_id"
+  end
+
+  create_table "instrument_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "instrument_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_instrument_users_on_instrument_id"
+    t.index ["user_id"], name: "index_instrument_users_on_user_id"
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string "type"
+    t.string "classification"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "music_styles", force: :cascade do |t|
+    t.string "style"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "city_id"
+    t.string "last_name"
+    t.date "birth_date"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_profiles_on_city_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "participant_id"
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_ratings_on_participant_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +136,20 @@ ActiveRecord::Schema.define(version: 2020_02_29_110753) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "events"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "events", "cities"
+  add_foreign_key "events", "music_styles"
+  add_foreign_key "events", "users"
+  add_foreign_key "followers", "users"
+  add_foreign_key "instrument_users", "instruments"
+  add_foreign_key "instrument_users", "users"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "cities"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "ratings", "participants"
+  add_foreign_key "ratings", "users"
 end
