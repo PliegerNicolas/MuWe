@@ -1,4 +1,4 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  belongs_to :city
+  has_many :cities
 end
