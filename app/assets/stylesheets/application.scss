@@ -11,3 +11,48 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+:root {
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+section {
+    display: grid;
+    grid-template-areas: 'profile main';
+    grid-template-columns: 15rem 1fr;
+
+}
+
+.profile {
+    grid-area: 'profile';
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #efefef;
+
+    .logo {
+        margin-top: 50px;
+    }
+}
+
+main {
+    grid-area: 'main';
+    position: relative;
+    padding: 20px;
+
+    #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+    }
+}
