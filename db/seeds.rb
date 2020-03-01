@@ -26,15 +26,22 @@ Instrument.destroy_all
 
 puts "Creating custom development accounts"
 
-['Nuno', 'Sofia', 'Nicolas'].each do |name|
+[['Nuno', 'Martins'], ['Sofia', 'Mogas'], ['Nicolas', 'Plieger']].each do |name|
   new_user = User.create!(
-    first_name: "#{name}",
-    email: "#{name}@gmail.com",
+    first_name: "#{name[0]}",
+    email: "#{name[0]}@gmail.com",
     password: '123456'
-    )
-puts "Creating custom test account for #{new_user.first_name} (email = #{new_user.email}, password = 123456 )"
-print 'Creating random Users'
+  )
+  puts "Creating custom test account for #{new_user.first_name} (email = #{new_user.email}, password = 123456 )"
+  puts "Setting up custom test account profile"
+  new_user.profile.last_name = name[1]
+  new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
+  new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.save
 end
+
+print 'Creating random Users'
+
 print ' { '
 7.times do
   print '#'
@@ -42,7 +49,11 @@ print ' { '
     first_name: Faker::Name.first_name,
     email: Faker::Internet.email,
     password: '123456'
-    )
+  )
+  new_user.profile.last_name = Faker::Name.last_name
+  new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
+  new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.save
 end
 print ' }'
 
