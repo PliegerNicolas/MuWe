@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :comments
   has_many :cities
   has_many :music_styles
-  # belongs_to :city
-  # belongs_to :music_style
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
