@@ -54,7 +54,6 @@ puts ''
 
 print 'Creating instruments'
 print ' { '
-arr = []
 url = 'https://simple.wikipedia.org/wiki/List_of_musical_instruments'
 document = Nokogiri::HTML.parse(open(url))
 document.css('.mw-parser-output').each do |instrument_list|
