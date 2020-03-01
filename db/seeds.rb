@@ -91,7 +91,7 @@ print ' { '
     address: Faker::Address.country,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
-    status: Faker::Number.within(range: 1..3) # need what it needs
+    status: Faker::Number.within(range: 0..2)
   )
   print '#'
 end

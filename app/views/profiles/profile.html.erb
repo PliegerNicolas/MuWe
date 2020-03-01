@@ -1,6 +1,8 @@
 <h1>Public profile</h1>
-<%= @profile.user.first_name %>
-<%= @profile.last_name %>
-<%= @profile.birth_date %>
-<%= @profile.city %>
-<%= @profile.bio %>
+<ul>
+  <li><%= @profile.user.first_name %></li>
+  <li><%= @profile.last_name %></li>
+  <li><%= @profile.birth_date %></li>
+  <li><%= @profile.city %></li>
+  <li><%= @profile.bio %></li>
+</ul>

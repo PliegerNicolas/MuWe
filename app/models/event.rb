@@ -7,4 +7,6 @@ class Event < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  enum status: { planned: 0, active: 1, finished: 2 }
 end
