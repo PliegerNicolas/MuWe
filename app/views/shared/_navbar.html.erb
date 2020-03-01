@@ -11,7 +11,9 @@
   </div>
   <div class="navbar-profile">
     <% if user_signed_in? %>
-    <%= link_to "Public profile", profile_path(current_user.id) %>
+      <%= link_to profile_path(current_user.id) do %>
+        <%= image_tag("user-logo.png", height: "75", width: "75") %>
+      <% end %>
       <%= link_to "My/Edit profile", edit_user_registration_path %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
     <% else %>
