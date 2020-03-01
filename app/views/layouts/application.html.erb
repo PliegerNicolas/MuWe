@@ -11,15 +11,10 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% # render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
     <section>
-      <div class="profile">
-        <div class="logo">
-          <%= image_tag 'logo.svg' %>
-        </div>
-      </div>
+      <%= render 'shared/navbar' %>
       <main>
         <%= yield %>
       </main>

@@ -28,20 +28,6 @@ section {
 
 }
 
-.profile {
-    grid-area: 'profile';
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #efefef;
-
-    .logo {
-        margin-top: 50px;
-    }
-}
-
 main {
     grid-area: 'main';
     position: relative;

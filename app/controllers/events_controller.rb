@@ -3,6 +3,11 @@ class EventsController < ApplicationController
     @events = policy_scope(Event)
   end
 
+  def jams
+    @events = policy_scope(Event)
+    authorize @events
+  end
+
   def new
   end
 

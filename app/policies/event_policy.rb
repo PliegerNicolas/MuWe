@@ -8,4 +8,12 @@ class EventPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def jams?
+    true
+  end
+
+  def create?
+    true
+  end
 end
