@@ -9,4 +9,4 @@
         <h2>Card 3</h2>
     </div>
 </div>
-<div id="map"></div>
+<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
