@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :create_profile
+
   has_one :profile, dependent: :destroy
   has_many :instrument_users, dependent: :destroy
   has_many :events
@@ -14,4 +16,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
+
+  private
+
+  def create_profile
+    Profile.create(user_id: User.last.id)
+  end
 end

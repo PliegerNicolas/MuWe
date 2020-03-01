@@ -21,8 +21,8 @@ Post.destroy_all
 print 'Creating Users'
 10.times do
   new_user = User.create!(
+    first_name: Faker::Name.first_name
     email: Faker::Internet.email
     password: '123456'
-
     )
 end
