@@ -1,0 +1,9 @@
+<h1>Public profile</h1>
+<%= @profile.user.first_name %>
+<%= @profile.last_name %>
+<%= @profile.birth_date %>
+<%= @profile.city %>
+<%= @profile.bio %>
+<% if @profile.user == current_user %>
+  <%= link_to "My/Edit profile", edit_user_registration_path %>
+<% end %>
