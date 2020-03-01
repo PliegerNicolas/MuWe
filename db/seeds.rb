@@ -68,3 +68,26 @@ end
 print ' }'
 
 # End creating instruments
+
+puts ''
+
+# Creating Events
+
+print 'Creating events'
+print ' { '
+15.times do
+  Event.create(
+    user_id: Faker::Number.within(range: 1..10),
+    address: Faker::Address.street_address, # add a city ?
+    longitude: Faker::Address.longitude, # needs automatisation
+    latitude: Faker::Address.latitude, # needs automatisation
+    description: Faker::Lorem.sentence(word_count: 18),
+    max_players: Faker::Number.within(range: 2..8),
+    status: Faker::Number.within(range: 1..3) # need what it needs
+  )
+  print '#'
+end
+
+print ' }'
+
+#End creating events
