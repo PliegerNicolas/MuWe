@@ -6,8 +6,8 @@ let geoLocation;
 function showLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  console.log("Latitude =" + latitude)
-  console.log("Longitude =" + longitude)
+  // console.log("Latitude =" + latitude)
+  // console.log("Longitude =" + longitude)
 
   //x.innerHTML = "Latitude: " + position.coords.latitude +
   //"<br>Longitude: " + position.coords.longitude;
