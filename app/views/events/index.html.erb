@@ -1,15 +1,25 @@
 <div class="events">
   <% @events.each do |event| %>
-  <div class="card">
-    <ul>
-      <li><%= event.title %></li>
-      <li><%= event.address %></li>
-      <%#= event.description %>
-      <li><%= event.max_players %></li>
-      <li><%= event.start_date %></li>
-      <li><%= event.end_date %></li>
-  </ul>
+  <div class="small-card">
+    <%= image_tag(("logo.png"), class: "small-card-image") %>
+
+    <div class="small-card-content">
+      <div class="small-card-title-container">
+        <h2 class="small-card-title"><%= event.title %></h2>
+      </div>
+      <div class="small-card-address-container">
+        <p class="small-card-address">Address : <%= event.address %></p>
+      </div>
+      <div class="small-card-description-container">
+        <p class="small-card-description"><%= event.description %></p>
+      </div>
+      <div class="small-card-dates-container">
+        <p class="small-card-start-date"><%= event.start_date %></p>
+        <p class="small-card-end-date"><%= event.end_date %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
-<% end %>
-</div>
+
 <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
