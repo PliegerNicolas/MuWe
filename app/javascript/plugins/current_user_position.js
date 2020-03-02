@@ -23,7 +23,11 @@ function errorHandler(err) {
 
 function getLocationUpdate() {
   if(navigator.geolocation) {
-    let options = {timeout:60000};
+    let options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
     geoLocation = navigator.geolocation;
     watchID = geoLocation.watchPosition(showLocation, errorHandler, options);
   } else {
