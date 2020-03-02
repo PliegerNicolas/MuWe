@@ -1,0 +1,22 @@
+.small-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 4px 8px;
+  background-color: $rustic-white;
+  border-radius: 4px;
+  height: 600px;
+  .small-card-dates-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+  }
+}
+
+.small-card-image {
+  height: 220px;
+  margin: 4px 4px;
+  margin-bottom: 10px;
+  background-color: $strong-blue;
+  border-radius: 8px 8px 3px 3px;
+}

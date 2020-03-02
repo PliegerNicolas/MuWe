@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_161442) do
+ActiveRecord::Schema.define(version: 2020_03_01_234444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +42,12 @@ ActiveRecord::Schema.define(version: 2020_02_29_161442) do
     t.float "latitude"
     t.text "description"
     t.integer "max_players"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["city_id"], name: "index_events_on_city_id"
     t.index ["music_style_id"], name: "index_events_on_music_style_id"
     t.index ["user_id"], name: "index_events_on_user_id"
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_161442) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
