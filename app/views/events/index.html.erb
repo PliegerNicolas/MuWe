@@ -1,6 +1,6 @@
 <div class="events">
   <% @events.each do |event| %>
-  <div class="small-card">
+  <div class="small-card" data-lng="<%= event.longitude %>" data-lat="<%= event.latitude %>">
     <%= image_tag(("logo.png"), class: "small-card-image") %>
 
     <div class="small-card-content">
