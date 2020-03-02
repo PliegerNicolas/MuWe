@@ -15,12 +15,6 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cities", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"
@@ -35,8 +29,8 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "city_id"
     t.bigint "music_style_id"
+    t.string "city"
     t.string "address"
     t.float "longitude"
     t.float "latitude"
@@ -48,7 +42,6 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.index ["city_id"], name: "index_events_on_city_id"
     t.index ["music_style_id"], name: "index_events_on_music_style_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -104,13 +97,12 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
 
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "city_id"
+    t.string "city"
     t.string "last_name"
     t.date "birth_date"
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_profiles_on_city_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -141,7 +133,6 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "events", "cities"
   add_foreign_key "events", "music_styles"
   add_foreign_key "events", "users"
   add_foreign_key "followers", "users"
@@ -150,7 +141,6 @@ ActiveRecord::Schema.define(version: 2020_03_01_234444) do
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "profiles", "cities"
   add_foreign_key "profiles", "users"
   add_foreign_key "ratings", "participants"
   add_foreign_key "ratings", "users"

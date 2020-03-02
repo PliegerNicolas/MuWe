@@ -37,6 +37,7 @@ puts "Creating custom development accounts"
   new_user.profile.last_name = name[1]
   new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
   new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.city = Faker::Address.city
   new_user.profile.save
 end
 
@@ -53,6 +54,7 @@ print ' { '
   new_user.profile.last_name = Faker::Name.last_name
   new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
   new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.city = Faker::Address.city
   new_user.profile.save
 end
 print ' }'
