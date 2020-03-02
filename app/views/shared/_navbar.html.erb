@@ -1,14 +1,17 @@
 <div class="navbar">
+
   <%= link_to root_path do %>
-  <div class="navbar-logo">
-    <%= image_tag 'logo.svg' %>
-  </div>
-    <% end %>
+    <div class="navbar-logo">
+      <%= image_tag 'logo.svg' %>
+    </div>
+  <% end %>
+
   <div class="navbar-search">
     <%= link_to "Home", root_path %>
     <%= link_to "Jams", jams_path %>
     <%= link_to "Prospect", prospect_path %>
   </div>
+
   <div class="navbar-profile">
     <% if user_signed_in? %>
       <%= link_to profile_path(current_user.id) do %>
@@ -21,4 +24,28 @@
       <%= link_to "Register", new_user_registration_path %>
     <% end %>
   </div>
+
+    <div class="navbar-social">
+      <ul>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fab fa-instagram"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fab fa-twitter"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fab fa-facebook-square"></i>
+          <% end %>
+        </li>
+      </ul>
+      <div class="online-users">
+        <p>1234 online</p>
+      </div>
+    </div>
+
 </div>
