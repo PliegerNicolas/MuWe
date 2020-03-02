@@ -1,12 +1,15 @@
 <div class="events">
-    <div class="card">
-        <h2>Card 1</h2>
-    </div>
-    <div class="card">
-        <h2>Card 2</h2>
-    </div>
-    <div class="card">
-        <h2>Card 3</h2>
-    </div>
+  <% @events.each do |event| %>
+  <div class="card">
+    <ul>
+      <li><%= event.title %></li>
+      <li><%= event.address %></li>
+      <%#= event.description %>
+      <li><%= event.max_players %></li>
+      <li><%= event.start_date %></li>
+      <li><%= event.end_date %></li>
+  </ul>
+</div>
+<% end %>
 </div>
 <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>

@@ -88,10 +88,13 @@ print ' { '
 15.times do
   Event.create(
     user_id: User.order('RANDOM()').first.id,
+    title: Faker::BossaNova.song,
     address: Faker::Address.country,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
-    status: Faker::Number.within(range: 0..2)
+    status: Faker::Number.within(range: 0..2),
+    start_date: Faker::Date.between_except(from: 15.days.ago, to: Date.today, excepted: Date.today),
+    end_date: Faker::Date.between_except(from: Date.today, to: 10.days.from_now, excepted: Date.today)
   )
   print '#'
 end
