@@ -83,6 +83,28 @@ print ' }'
 
 puts ''
 
+# Creating music styles
+
+print 'Creating music styles'
+print ' { '
+url = 'https://en.wikipedia.org/wiki/List_of_popular_music_genres'
+document = Nokogiri::HTML.parse(open(url))
+arr = []
+document.css('.mw-headline').each do |content|
+  arr << content.text
+end
+arr = arr.drop(7)
+arr.pop(3)
+arr.each do |music_style|
+  MusicStyle.create(style: music_style)
+  print '#'
+end
+print ' }'
+
+# End creating music styles
+
+puts ''
+
 # Creating Events
 
 print 'Creating events'
@@ -94,6 +116,7 @@ print ' { '
     address: Faker::Address.country,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
+    music_style_id: MusicStyle.order('RANDOM()').first.id,
     status: Faker::Number.within(range: 0..2),
     start_date: Faker::Date.between_except(from: 15.days.ago, to: Date.today, excepted: Date.today),
     end_date: Faker::Date.between_except(from: Date.today, to: 10.days.from_now, excepted: Date.today)
