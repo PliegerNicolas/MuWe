@@ -16,6 +16,10 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
+    @event.user_id = current_user.id
+    #@event.address = address
+    authorize @event
   end
 
   def create
@@ -48,5 +52,10 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
     authorize @event
+  end
+
+  def address
+    [street, city, state, country].compact.join(', ')
+    @event.city = city
   end
 end

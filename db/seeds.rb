@@ -119,7 +119,8 @@ print ' { '
     music_style_id: MusicStyle.order('RANDOM()').first.id,
     status: Faker::Number.within(range: 0..2),
     start_date: Faker::Date.between_except(from: 15.days.ago, to: Date.today, excepted: Date.today),
-    end_date: Faker::Date.between_except(from: Date.today, to: 10.days.from_now, excepted: Date.today)
+    start_time: Faker::Time.between(from: Time.now - 1, to: Time.now),
+    duration: Faker::Time.between(from: Time.now, to: Time.now + 8)
   )
   print '#'
 end
