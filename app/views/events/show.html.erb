@@ -7,7 +7,7 @@
   <li><%= @event.max_players %> <%= @event.status %></li>
   <li><%= @event.start_date %>
   <%= @event.start_time %></li>
-  <li><%= @event.duration %></li>
+  <li><%= @event.end_time %></li>
 </ul>
 
 <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
