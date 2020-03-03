@@ -1,0 +1,10 @@
+.user-marker {
+    width: 40px;
+    height: 40px;
+    background: {
+        image: asset_url('user-marker.png');
+        size: contain;
+        repeat: no-repeat;
+    }
+    cursor: pointer;
+}
