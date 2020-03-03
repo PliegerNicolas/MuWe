@@ -113,7 +113,9 @@ print ' { '
   Event.create(
     user_id: User.order('RANDOM()').first.id,
     title: Faker::BossaNova.song,
-    address: Faker::Address.country,
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    address: Faker::Address.street_address,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
     music_style_id: MusicStyle.order('RANDOM()').first.id,
