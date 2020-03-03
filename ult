@@ -1,0 +1,26 @@
+=> [32m#<Geocoder::Result::Nominatim:0x00007fbd2800f9a0[0m
+ @cache_hit[32m=[0m[1;36mnil[0m,
+ @data[32m=[0m
+  {[31m[1;31m"[0m[31mplace_id[1;31m"[0m[31m[0m=>[1;34m92428327[0m,
+   [31m[1;31m"[0m[31mlicence[1;31m"[0m[31m[0m=>
+    [31m[1;31m"[0m[31mData © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mosm_type[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mway[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mosm_id[1;31m"[0m[31m[0m=>[1;34m26387331[0m,
+   [31m[1;31m"[0m[31mboundingbox[1;31m"[0m[31m[0m=>[[31m[1;31m"[0m[31m43.6233932[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31m43.6242093[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31m3.8605128[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31m3.86143[1;31m"[0m[31m[0m],
+   [31m[1;31m"[0m[31mlat[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m43.6237195[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mlon[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m3.8610305[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mdisplay_name[1;31m"[0m[31m[0m=>
+    [31m[1;31m"[0m[31mImpasse de la Voie Romaine, La Voie Romaine, Hôpitaux-Facultés, Montpellier, Hérault, Occitania, Metropolitan France, 34967, France[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mclass[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mhighway[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mtype[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mresidential[1;31m"[0m[31m[0m,
+   [31m[1;31m"[0m[31mimportance[1;31m"[0m[31m[0m=>[1;35m0.8[0m,
+   [31m[1;31m"[0m[31maddress[1;31m"[0m[31m[0m=>
+    {[31m[1;31m"[0m[31mroad[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mImpasse de la Voie Romaine[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mresidential[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mLa Voie Romaine[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31msuburb[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mHôpitaux-Facultés[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mcity[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mMontpellier[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mcounty[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mMontpellier[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mstate[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mOccitania[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mcountry[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mFrance[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mpostcode[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31m34967[1;31m"[0m[31m[0m,
+     [31m[1;31m"[0m[31mcountry_code[1;31m"[0m[31m[0m=>[31m[1;31m"[0m[31mfr[1;31m"[0m[31m[0m}}[32m>[0m

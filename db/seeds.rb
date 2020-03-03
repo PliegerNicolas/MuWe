@@ -37,6 +37,7 @@ puts "Creating custom development accounts"
   new_user.profile.last_name = name[1]
   new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
   new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.city = Faker::Address.city
   new_user.profile.save
 end
 
@@ -53,6 +54,7 @@ print ' { '
   new_user.profile.last_name = Faker::Name.last_name
   new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
   new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
+  new_user.profile.city = Faker::Address.city
   new_user.profile.save
 end
 print ' }'
@@ -81,6 +83,28 @@ print ' }'
 
 puts ''
 
+# Creating music styles
+
+print 'Creating music styles'
+print ' { '
+url = 'https://en.wikipedia.org/wiki/List_of_popular_music_genres'
+document = Nokogiri::HTML.parse(open(url))
+arr = []
+document.css('.mw-headline').each do |content|
+  arr << content.text
+end
+arr = arr.drop(7)
+arr.pop(3)
+arr.each do |music_style|
+  MusicStyle.create(style: music_style)
+  print '#'
+end
+print ' }'
+
+# End creating music styles
+
+puts ''
+
 # Creating Events
 
 print 'Creating events'
@@ -89,12 +113,16 @@ print ' { '
   Event.create(
     user_id: User.order('RANDOM()').first.id,
     title: Faker::BossaNova.song,
-    address: Faker::Address.country,
+    country: Faker::Address.country,
+    city: Faker::Address.city,
+    address: Faker::Address.street_name,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
+    music_style_id: MusicStyle.order('RANDOM()').first.id,
     status: Faker::Number.within(range: 0..2),
     start_date: Faker::Date.between_except(from: 15.days.ago, to: Date.today, excepted: Date.today),
-    end_date: Faker::Date.between_except(from: Date.today, to: 10.days.from_now, excepted: Date.today)
+    start_time: Faker::Time.between(from: Time.now - 1, to: Time.now),
+    end_time: Faker::Time.between(from: Time.now, to: Time.now + 8)
   )
   print '#'
 end

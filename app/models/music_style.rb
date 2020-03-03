@@ -1,3 +1,7 @@
 class MusicStyle < ApplicationRecord
-  belongs_to :events
+  has_many :events
+
+  def to_label
+    style
+  end
 end

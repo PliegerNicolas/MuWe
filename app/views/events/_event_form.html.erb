@@ -1,0 +1,13 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :country %>
+  <%= f.input :city %>
+  <%= f.input :address %>
+  <%= f.association :music_style, input_html: { class: "beautiful-dropdown"}, prompt: "Unknown"  %>
+  <%= f.input :max_players, collection: 2..16, selected: Date.today %>
+  <%= f.input :start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 1, discard_year: true, order: [:day, :month] %>
+  <%= f.input :start_time, as: :time, default: Time.parse('18:00')%>
+  <%= f.input :end_time, as: :time, default: Time.parse('01:00')%>
+  <%= f.submit %>
+<% end %>
