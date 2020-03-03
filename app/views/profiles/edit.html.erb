@@ -1,0 +1,27 @@
+<h2>Edit <%= @profile.user.first_name %>'s profile</h2>
+
+<%= simple_form_for @profile do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.fields_for current_user do |user_form| %>
+        <%= user_form.input :email, required: true, autofocus: true %>
+        <%= user_form.input :first_name, required: true %>
+    <% end %>
+      <%= f.input :last_name %>
+      <%= f.input :birth_date, as: :date %>
+      <%= f.input :bio %>
+      <%= f.input :profile_photo, as: :file %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(User), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

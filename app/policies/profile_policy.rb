@@ -8,4 +8,8 @@ class ProfilePolicy < ApplicationPolicy
   def profile?
     true
   end
+
+  def update?
+    user == record.user
+  end
 end

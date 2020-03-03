@@ -10,10 +10,13 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%#= f.input :last_name %>
-    <%#= f.input :birth_date %>
-    <%#= f.input :bio %>
-    <%#= f.input :profile_photo, as: :file %>
+    <%= f.fields_for :profile do |profile_form| %>
+      <%= profile_form.input :last_name %>
+      <%= profile_form.input :birth_date, as: :date %>
+      <%= profile_form.input :bio %>
+      <%= profile_form.input :profile_photo, as: :file %>
+    <% end %>
+
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
