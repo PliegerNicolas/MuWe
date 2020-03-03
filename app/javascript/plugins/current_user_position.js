@@ -1,4 +1,4 @@
-//var x = document.getElementById("something")
+import { map } from '../plugins/init_mapbox';
 
 let watchID;
 let geoLocation;
@@ -6,11 +6,20 @@ let geoLocation;
 function showLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  // console.log("Latitude =" + latitude)
-  // console.log("Longitude =" + longitude)
+  console.log(`Latitude = ${latitude}`);
+  console.log(`Longitude = ${longitude}`);
+  new mapboxgl.Marker()
+  .setLngLat([ longitude, latitude ])
+  .addTo(map);
+  map.flyTo({
+      center: [
+          longitude,
+          latitude
+      ],
+      zoom: 10,
+      speed: 1.5
+  });
 
-  //x.innerHTML = "Latitude: " + position.coords.latitude +
-  //"<br>Longitude: " + position.coords.longitude;
 }
 
 function errorHandler(err) {
@@ -24,10 +33,10 @@ function errorHandler(err) {
 function getLocationUpdate() {
   if(navigator.geolocation) {
     let options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
     geoLocation = navigator.geolocation;
     watchID = geoLocation.watchPosition(showLocation, errorHandler, options);
   } else {
