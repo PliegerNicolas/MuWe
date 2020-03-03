@@ -17,15 +17,23 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.user_id = current_user.id
-    #@event.address = address
     authorize @event
   end
 
   def create
+    @event = Event.new(event_params)
+    @event.user_id = current_user.id
+    authorize @event
+    if @event.save
+      redirect_to event_path(@event.id)
+    else
+      render :new
+    end
   end
 
   def show
+    @event = Event.find(params[:id])
+    authorize @event
   end
 
   def edit
@@ -41,11 +49,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :user_id, :city,
-      :address, :longitude, :latitude,
-      :description, :music_style,
-      :number_of_max_players,
-      :date, :status
+      :user_id, :music_style_id,
+      :country, :city, :address, :longitude, :latitude,
+      :title, :description,
+      :max_players, :status,
+      :start_date, :start_time, :duration
     )
   end
 
@@ -55,7 +63,7 @@ class EventsController < ApplicationController
   end
 
   def address
-    [street, city, state, country].compact.join(', ')
+    [address, city, country].compact.join(', ')
     @event.city = city
   end
 end
