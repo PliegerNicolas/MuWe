@@ -20,6 +20,10 @@ class User < ApplicationRecord
   private
 
   def create_profile
-    Profile.create(user_id: User.last.id)
+    file = URI.open('https://res.cloudinary.com/dhemw39dw/image/upload/v1582053392/drum.jpg')
+    profile_new = Profile.new(user_id: User.last.id)
+    profile_new.profile_photo.attach(io: file, filename: 'profile.png')
+    profile_new.save
+    # Profile.create(user_id: User.last.id)
   end
 end
