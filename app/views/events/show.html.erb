@@ -10,4 +10,6 @@
   <li><%= @event.end_time %></li>
 </ul>
 
-<%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+<% if @event.user == current_user %>
+  <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+<% end %>
