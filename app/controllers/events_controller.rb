@@ -32,8 +32,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    authorize @event
+    set_event
   end
 
   def edit
@@ -60,10 +59,5 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
     authorize @event
-  end
-
-  def address
-    [address, city, country].compact.join(', ')
-    @event.city = city
   end
 end
