@@ -115,7 +115,7 @@ print ' { '
     title: Faker::BossaNova.song,
     country: Faker::Address.country,
     city: Faker::Address.city,
-    address: Faker::Address.street_address,
+    address: Faker::Address.street_name,
     description: Faker::Lorem.sentence(word_count: 18),
     max_players: Faker::Number.within(range: 2..8),
     music_style_id: MusicStyle.order('RANDOM()').first.id,
