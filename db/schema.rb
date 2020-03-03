@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_025947) do
     t.integer "max_players"
     t.integer "status", default: 0
     t.date "start_date"
-    t.time "duration"
+    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"

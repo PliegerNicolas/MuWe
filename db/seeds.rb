@@ -122,7 +122,7 @@ print ' { '
     status: Faker::Number.within(range: 0..2),
     start_date: Faker::Date.between_except(from: 15.days.ago, to: Date.today, excepted: Date.today),
     start_time: Faker::Time.between(from: Time.now - 1, to: Time.now),
-    duration: Faker::Time.between(from: Time.now, to: Time.now + 8)
+    end_time: Faker::Time.between(from: Time.now, to: Time.now + 8)
   )
   print '#'
 end
