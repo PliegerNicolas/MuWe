@@ -1,2 +1,13 @@
 <h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<ul>
+  <li><%= @event.title %></li>
+  <li><%= @event.description %></li>
+  <li><%= @event.user.first_name %> <%= @event.user.profile.last_name %></li>
+  <li><%= @event.country %> <%= @event.city %> <%= @event.address %></li>
+  <li><%= @event.max_players %> <%= @event.status %></li>
+  <li><%= @event.start_date %>
+  <%= @event.start_time %></li>
+  <li><%= @event.duration %></li>
+</ul>
+
+<%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>

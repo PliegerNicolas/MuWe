@@ -42,6 +42,10 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.finished! # this should archive and will archive
+    authorize @event
+    redirect_to jams_path
   end
 
   private
