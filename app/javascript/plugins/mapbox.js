@@ -28,6 +28,12 @@ const initMapbox = () => {
       markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
       map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
     };
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    }));
 
     if (mapElement) {
         // [ ... ]
