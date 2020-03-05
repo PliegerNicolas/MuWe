@@ -20,6 +20,9 @@ Post.destroy_all # if Rails.env.development?
 puts "Destroying all instruments"
 Instrument.destroy_all
 
+puts "Destroying all music styles"
+MusicStyle.destroy_all
+
 #End Cleaning DB
 
 # Creating users
@@ -87,6 +90,8 @@ puts ''
 
 print 'Creating music styles'
 print ' { '
+MusicStyle.create(style: 'Unknown')
+print '#'
 url = 'https://en.wikipedia.org/wiki/List_of_popular_music_genres'
 document = Nokogiri::HTML.parse(open(url))
 arr = []

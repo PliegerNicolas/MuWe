@@ -5,7 +5,7 @@
   <%= f.input :country %>
   <%= f.input :city %>
   <%= f.input :address %>
-  <%= f.association :music_style, input_html: { class: "beautiful-dropdown"}, prompt: "Unknown"  %>
+  <%= f.association :music_style, input_html: { class: "beautiful-dropdown"}, selected: 1 %>
   <%= f.input :max_players, collection: 2..16, selected: Date.today %>
   <%= f.input :start_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 1, discard_year: true, order: [:day, :month] %>
   <%= f.input :start_time, as: :time, default: Time.parse('18:00')%>
