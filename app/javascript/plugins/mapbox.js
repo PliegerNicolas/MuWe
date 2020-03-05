@@ -38,6 +38,9 @@ const initMapbox = () => {
     });
     map.addControl(geolocate);
 
+    setTimeout(function() {
+        $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
+    });
 
     if (mapElement) {
         // [ ... ]
@@ -48,6 +51,5 @@ const initMapbox = () => {
     }
   }
 };
-
 export { initMapbox };
 
