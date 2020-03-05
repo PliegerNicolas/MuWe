@@ -21,8 +21,27 @@ class ParticipantsController < ApplicationController
     skip_authorization # Is this okay ?
     current_event = Event.find(params[:event_id])
     user_events = current_user.event_participations
-    Participant.where(user_id: current_user, event_id: current_event).destroy_all if user_events.include?(current_event)
+    if user_events.include?(current_event)
+      participants = Participant.where(user_id: current_user, event_id: current_event)
+      participants.destroy_all unless participants.first.status == 'declined'
+    end
     redirect_to event_path(current_event.id)
+  end
+
+  def accept
+    @participant = Participant.find(params[:id])
+    @participant.accepted!
+    authorize @participant
+    @participant.save
+    redirect_to event_participants_path(params[:event_id])
+  end
+
+  def decline
+    @participant = Participant.find(params[:id])
+    @participant.declined!
+    authorize @participant
+    @participant.save
+    redirect_to event_participants_path(params[:event_id])
   end
 
   private

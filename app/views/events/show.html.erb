@@ -29,6 +29,8 @@
 <% if current_user == @event.user %>
   <%= link_to 'Participants', event_participants_path(@event.id) %>
   <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+<% elsif current_user.event_participations.include?(@event) %>
+  <p>Your posulation has been declined</p>
 <% else %>
   <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
   <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>

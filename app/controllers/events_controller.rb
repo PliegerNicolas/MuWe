@@ -25,6 +25,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     authorize @event
     if @event.save
+      @event.participants.create(user_id: @event.user_id, event_id: @event.id, status: 1)
       redirect_to event_path(@event.id)
     else
       render :new
