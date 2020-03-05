@@ -1,25 +1,51 @@
-<h1>All our jams</h1>
 
-<%= link_to "Create a new event", new_event_path %>
+<div class="container-fluid">
 
-<div class="jams">
+  <h1>All our jams</h1>
+
+  <%= link_to "Create a new event", new_event_path %>
+
+
+  <div class="row">
   <% @events.each do |event| %>
-    <% unless event.finished? %>
-      <%= link_to event_path(event.id) do %>
-        <%= image_tag(("logo.png"), class: "small-card-image") %>
-      <% end %>
-        <%= link_to profile_path(event.user.profile.id) do %>
-          <p>Organised by : <%= event.user.first_name %> <%= event.user.profile.last_name %></p>
-        <% end %>
-        <%= link_to event_path(event.id) do %>
-          <p>at : <%= event.country %> <%= event.city %> <%= event.address %></p>
-          <p><%= event.title %></p>
-          <p><%= event.description %></p>
-          <p>Participants : <%= event.max_players %></p>
-          <p>Status : <%= event.status %></p>
-          <p>Date : <%= event.start_date %></p>
-          <p>At : <%= event.start_time %> until <%= event.end_time %></p>
-        <% end %>
-    <% end %>
+  <% unless event.finished? %>
+    <div class="col-sm-4 jams">
+    <%= link_to event_path(event.id) do %>
+      <div class="jam-card">
+        <div class="card-image">
+        <%= image_tag "logo.png" ,width: "100%" %>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="card-text">
+                <table class="table table-borderless">
+                  <tbody><tr></tr>
+                  <tr>
+                    <td class="jam-date"><i></i></td>
+                    <td>
+                      <%= event.start_date %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><i class="jam-title"></i></td>
+                    <td>
+                      <%= event.title %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><i class="jam-attendees"></i></td>
+                    <td>
+                      100+ people attending
+                    </td>
+                  </tr>
+                </tbody></table>
+              </div>
+            </div>
+          </div>
+      </div>
   <% end %>
+        </div>
+  <% end %>
+  <% end %>
+  </div>
 </div>
