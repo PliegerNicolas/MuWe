@@ -34,7 +34,8 @@ const initMapbox = () => {
       positionOptions: {
         enableHighAccuracy: true
       },
-      trackUserLocation: true
+      trackUserLocation: true,
+      showAccuracyCircle: false
     });
     map.addControl(geolocate);
 
