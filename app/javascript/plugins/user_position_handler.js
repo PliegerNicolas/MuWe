@@ -46,4 +46,4 @@ const errorHandler = (err) => {
   }
 }
 
-export { getUserUpdatedLocation, userPosition };
+export { getUserUpdatedLocation };
