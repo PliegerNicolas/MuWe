@@ -1,4 +1,4 @@
-import { map } from '../plugins/init_mapbox';
+import { map } from '../plugins/mapbox';
 
 const initCards = () => {
     document.querySelectorAll('.small-card').forEach(function(card) {
