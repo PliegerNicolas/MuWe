@@ -10,6 +10,17 @@
   <li><%= @event.end_time %></li>
 </ul>
 
+<p> Participating:
+<% @event.participants.each do |participant| %>
+  <%= participant.user.first_name %>
+<% end %>
+</p>
+
+
+
+<%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
+<%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
+
 <% if @event.user == current_user %>
   <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
 <% end %>
