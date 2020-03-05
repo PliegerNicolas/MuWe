@@ -12,15 +12,24 @@
 
 <p> Participating:
 <% @event.participants.each do |participant| %>
-  <%= participant.user.first_name %>
+  <% if participant.status == 'accepted' %>
+    <%= participant.user.first_name %>
+  <% end %>
 <% end %>
 </p>
 
+<p> Pending:
+<% @event.participants.each do |participant| %>
+  <% if participant.status == 'postulating' %>
+    <%= participant.user.first_name %>
+  <% end %>
+<% end %>
+</p>
 
-
-<%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
-<%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
-
-<% if @event.user == current_user %>
+<% if current_user == @event.user %>
+  <%= link_to 'Participants', event_participants_path(@event.id) %>
   <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+<% else %>
+  <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
+  <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
 <% end %>

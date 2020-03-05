@@ -1,0 +1,25 @@
+<h1>Participants acceptation page</h1>
+
+<h2>Postulating</h2>
+<% @postulating_participants.each do |postulating_participant| %>
+  <%= link_to profile_path(postulating_participant.user.id)do %>
+    <%= postulating_participant.user.first_name %>
+    <%= postulating_participant.user.profile.last_name %>
+  <% end %>
+  <%= link_to "Accept", event_accept_user_path(@event.id, postulating_participant.id), method: :post %>
+  <%= link_to "Decline", event_decline_user_path(@event.id, postulating_participant.id), method: :delete %>
+<% end %>
+
+<hr>
+
+<h2>Accepted</h2>
+<% @accepted_participants.each do |accepted_participant| %>
+<%= accepted_participant.user.first_name %>
+<% end %>
+
+<h2>Refused</h2>
+<% @declined_participants.each do |declined_participant| %>
+<%= declined_participant.user.first_name %>
+<% end %>
+
+<%= link_to "Back to your event page", event_path(@event.id) %>
