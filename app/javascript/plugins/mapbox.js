@@ -23,11 +23,13 @@ const initMapbox = () => {
       .setLngLat([ marker.lng, marker.lat ])
       .addTo(map);
     });
-      const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
+
+    const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
       map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
     };
+
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -36,13 +38,16 @@ const initMapbox = () => {
     });
     map.addControl(geolocate);
 
+
     if (mapElement) {
         // [ ... ]
         fitMapToMarkers(map, markers);
       }
+
+
     }
   }
 };
 
-export { initMapbox, map };
+export { initMapbox };
 
