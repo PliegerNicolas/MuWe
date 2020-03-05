@@ -12,4 +12,12 @@ class ParticipantPolicy < ApplicationPolicy
   def destroy?
     raise
   end
+
+  def accept?
+    true
+  end
+
+  def decline?
+    accept?
+  end
 end

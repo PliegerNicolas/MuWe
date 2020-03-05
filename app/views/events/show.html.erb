@@ -17,7 +17,7 @@
 </p>
 
 
-
+<%= link_to 'Participants (as the creator)', event_participants_path(@event.id) %>
 <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
 <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
 
