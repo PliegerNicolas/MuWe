@@ -28,10 +28,8 @@
 
 <% if current_user == @event.user %>
   <%= link_to 'Participants', event_participants_path(@event.id) %>
-<% end %>
-<%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
-<%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
-
-<% if @event.user == current_user %>
   <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+<% else %>
+  <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
+  <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
 <% end %>
