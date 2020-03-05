@@ -21,3 +21,5 @@
 <% @declined_participants.each do |declined_participant| %>
 <%= declined_participant.user.first_name %>
 <% end %>
+
+<%= link_to "Back to your event page", event_path(@event.id) %>

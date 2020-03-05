@@ -12,12 +12,23 @@
 
 <p> Participating:
 <% @event.participants.each do |participant| %>
-  <%= participant.user.first_name %>
+  <% if participant.status == 'accepted' %>
+    <%= participant.user.first_name %>
+  <% end %>
 <% end %>
 </p>
 
+<p> Pending:
+<% @event.participants.each do |participant| %>
+  <% if participant.status == 'postulating' %>
+    <%= participant.user.first_name %>
+  <% end %>
+<% end %>
+</p>
 
-<%= link_to 'Participants (as the creator)', event_participants_path(@event.id) %>
+<% if current_user == @event.user %>
+  <%= link_to 'Participants', event_participants_path(@event.id) %>
+<% end %>
 <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
 <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
 
