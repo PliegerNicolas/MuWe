@@ -13,7 +13,9 @@
 <p> Participating:
 <% @event.participants.each do |participant| %>
   <% if participant.status == 'accepted' %>
-    <%= participant.user.first_name %>
+    <%= link_to profile_path(participant.user.id) do %>
+      <%= participant.user.first_name %>
+    <% end %>
   <% end %>
 <% end %>
 </p>
@@ -21,7 +23,9 @@
 <p> Pending:
 <% @event.participants.each do |participant| %>
   <% if participant.status == 'postulating' %>
-    <%= participant.user.first_name %>
+    <%= link_to profile_path(participant.user.id) do %>
+      <%= participant.user.first_name %>
+    <% end %>
   <% end %>
 <% end %>
 </p>
