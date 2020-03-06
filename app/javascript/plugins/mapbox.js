@@ -41,13 +41,12 @@ const initMapbox = () => {
       });
       map.addControl(geolocate);
 
-      setTimeout(function() {
-          $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
+      map.on('load', () => {
+        geolocate.trigger();
       });
 
       fitMapToMarkers(map, markers);
     }
   }
 };
-export { initMapbox };
-
+export { initMapbox, map };
