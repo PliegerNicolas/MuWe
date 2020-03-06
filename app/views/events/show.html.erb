@@ -30,6 +30,10 @@
 <% end %>
 </p>
 
+<p> Declined:
+<%= @event.participants.where(status: 'declined').count %>
+</p>
+
 <!-- Logic about inscription to event -->
 <% if signed_in? %>
 <% user_events = current_user.event_participations %>
