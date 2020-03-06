@@ -2,12 +2,18 @@ import mapboxgl from 'mapbox-gl';
 
 let map;
 
+const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
+};
+
 const initMapbox = () => {
 
   let sPath = window.location.pathname;
   let sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
-  if(sPage == ""){
+  if(sPage == "") {
 
     const mapElement = document.getElementById('map');
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -17,40 +23,30 @@ const initMapbox = () => {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v10'
       });
-    const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
-      new mapboxgl.Marker()
-      .setLngLat([ marker.lng, marker.lat ])
-      .addTo(map);
-    });
 
-    const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
-      const bounds = new mapboxgl.LngLatBounds();
-      markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-      map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
-    };
-
-    const geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showAccuracyCircle: false
-    });
-    map.addControl(geolocate);
-
-    setTimeout(function() {
-        $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
-    });
-
-    if (mapElement) {
-        // [ ... ]
-        fitMapToMarkers(map, markers);
-      }
+      const markers = JSON.parse(mapElement.dataset.markers);
+      markers.forEach((marker) => {
+        new mapboxgl.Marker()
+          .setLngLat([ marker.lng, marker.lat ])
+          .addTo(map);
+      });
 
 
+      const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showAccuracyCircle: false
+      });
+      map.addControl(geolocate);
+
+      map.on('load', () => {
+        geolocate.trigger();
+      });
+
+      fitMapToMarkers(map, markers);
     }
   }
 };
-export { initMapbox };
-
+export { initMapbox, map };
