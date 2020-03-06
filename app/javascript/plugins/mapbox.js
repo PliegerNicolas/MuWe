@@ -2,6 +2,12 @@ import mapboxgl from 'mapbox-gl';
 
 let map;
 
+const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
+};
+
 const initMapbox = () => {
 
   let sPath = window.location.pathname;
@@ -24,11 +30,6 @@ const initMapbox = () => {
       .addTo(map);
     });
 
-    const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
-      const bounds = new mapboxgl.LngLatBounds();
-      markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-      map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
-    };
 
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -43,11 +44,7 @@ const initMapbox = () => {
         $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
     });
 
-    if (mapElement) {
-        // [ ... ]
-        fitMapToMarkers(map, markers);
-      }
-
+      fitMapToMarkers(map, markers);
 
     }
   }
