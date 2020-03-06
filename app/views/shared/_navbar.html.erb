@@ -15,7 +15,7 @@
   <div class="navbar-profile">
     <% if user_signed_in? %>
       <%= link_to profile_path(current_user.id) do %>
-        <% unless current_user.profile.profile_photo %>
+        <% if current_user.profile.profile_photo %>
           <%= image_tag (current_user.profile.profile_photo), height: "80", width: "80", crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
         <% else %>
           <%= image_tag (cl_image_path 'default_instrument_image'), height: "80", width: "80", crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
