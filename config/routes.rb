@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     post 'participant', to: 'participants#create', as: :add_participant
     delete 'participant', to: 'participants#destroy', as: :remove_participant
 
-    post 'participant/:id/', to: 'instrument_users#accept', as: :accept_user
-    delete 'participant/:id/', to: 'instrument_users#decline', as: :decline_user
+    post 'participant/:id/', to: 'participants#accept', as: :accept_user
+    delete 'participant/:id/', to: 'participants#decline', as: :decline_user
   end
   resources :profiles, only: [:edit]
 end
