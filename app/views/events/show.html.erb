@@ -26,12 +26,22 @@
 <% end %>
 </p>
 
+<!-- Logic about inscription to event -->
+<% user_events = current_user.event_participations %>
+
 <% if current_user == @event.user %>
   <%= link_to 'Participants', event_participants_path(@event.id) %>
   <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
-<% elsif current_user.event_participations.include?(@event) %>
-  <p>Your posulation has been declined</p>
 <% else %>
-  <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
-  <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
+  <% if user_events.include?(@event) == false %>
+    <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
+  <% else %>
+  <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
+    <% if participants.first.status == 'declined' %>
+      <p>Your participation has been declined</p>
+    <% else %>
+    <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
+    <% end %>
+  <% end %>
 <% end %>
+<!-- End logic about inscription to event -->
