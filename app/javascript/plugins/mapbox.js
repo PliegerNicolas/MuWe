@@ -13,7 +13,7 @@ const initMapbox = () => {
   let sPath = window.location.pathname;
   let sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
-  if(sPage == ""){
+  if(sPage == "") {
 
     const mapElement = document.getElementById('map');
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -23,29 +23,29 @@ const initMapbox = () => {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v10'
       });
-    const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
-      new mapboxgl.Marker()
-      .setLngLat([ marker.lng, marker.lat ])
-      .addTo(map);
-    });
+
+      const markers = JSON.parse(mapElement.dataset.markers);
+      markers.forEach((marker) => {
+        new mapboxgl.Marker()
+          .setLngLat([ marker.lng, marker.lat ])
+          .addTo(map);
+      });
 
 
-    const geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showAccuracyCircle: false
-    });
-    map.addControl(geolocate);
+      const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showAccuracyCircle: false
+      });
+      map.addControl(geolocate);
 
-    setTimeout(function() {
-        $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
-    });
+      setTimeout(function() {
+          $(".mapboxgl-ctrl-geolocate").click(); // I don't think this is clean
+      });
 
       fitMapToMarkers(map, markers);
-
     }
   }
 };
