@@ -12,24 +12,23 @@
     <div class="col-sm-4 jams">
     <%= link_to event_path(event.id) do %>
       <div class="jam-card">
-        <div class="card-image">
-        <%= image_tag "logo.png" ,width: "100%" %>
+        <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path event.location_photo %> );" >
+
         </div>
-        <div class="panel-group">
-            <div class="panel panel-default">
-              <div class="card-text">
+
+            <div class="card-body">
                 <table class="table table-borderless">
                   <tbody><tr></tr>
                   <tr>
                     <td class="jam-date"><i></i></td>
                     <td>
-                      <%= event.start_date %>
+                      <%= event.start_date.strftime("%^a, %d %b AT ") %><%= event.start_time.strftime("%H:%M") %>
                     </td>
                   </tr>
                   <tr>
                     <td><i class="jam-title"></i></td>
                     <td>
-                      <%= event.title %>
+                      <strong><%= event.title %></strong>
                     </td>
                   </tr>
                   <tr>
@@ -39,9 +38,8 @@
                     </td>
                   </tr>
                 </tbody></table>
-              </div>
             </div>
-          </div>
+
       </div>
   <% end %>
         </div>
