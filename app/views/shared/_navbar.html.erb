@@ -48,7 +48,7 @@
         </li>
       </ul>
       <div class="online-users">
-        <p>1234 online</p>
+        <p><%= User.where(["last_user_activity >= ?", DateTime.now - 5.minutes]).count %> online</p>
       </div>
     </div>
 
