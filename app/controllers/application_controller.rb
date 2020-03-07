@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, except: [:index, :jams, :prospect, :show]
+  before_action :user_last_activity_timer
   include Pundit
 
   # Pundit: white-list approach.
@@ -26,5 +27,10 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     # devise_parameter_sanitizer.permit(:account_update, keys: [:first_name])
+  end
+
+  def user_last_activity_timer
+    current_user.last_user_activity = DateTime.now unless current_user.nil?
+    current_user.save
   end
 end
