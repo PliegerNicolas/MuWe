@@ -30,7 +30,9 @@ class ApplicationController < ActionController::Base
   end
 
   def user_last_activity_timer
-    current_user.last_user_activity = DateTime.now unless current_user.nil?
-    current_user.save
+    unless current_user.nil?
+      current_user.last_user_activity = DateTime.now unless current_user.nil?
+      current_user.save
+    end
   end
 end
