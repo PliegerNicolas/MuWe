@@ -26,17 +26,25 @@
           <% end %>
           <div class="jam-attendees">
             <% if event.participants.count > 0 %>
-            <div class="jam-attendee-item">
+                <div class="total-attendees">
+                <%= event.participants.count %> participants
+                </div>
+              <div class="jam-attendee-item">
+                  <% event.participants.limit(5).each do |participant| %>
+                  <% if participant.status == 'accepted' && participant.user.profile.profile_photo.attachment  %>
+                  <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                  <% else %>
+                  <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                 <% end %>
+                  <% end %>
+              </div>
               <% event.participants.limit(5).each do |participant| %>
-              <% if participant.status == 'accepted' && participant.user.profile.profile_photo.attachment  %>
-              <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
-              <% else %>
-              <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                <div class="jam-attendee-item">
+                  <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                </div>
               <% end %>
-              <% end %>
-            </div>
             <% else %>
-            <p> Be the first to join! </p>
+              <p> Be the first to join! </p>
             <% end %>
           </div>
         </div>
