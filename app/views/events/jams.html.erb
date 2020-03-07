@@ -7,43 +7,44 @@
 
 
   <div class="row">
-  <% @events.each do |event| %>
-  <% unless event.finished? %>
+    <% @events.each do |event| %>
+    <% unless event.finished? %>
     <div class="col-sm-4 jams">
-    <%= link_to event_path(event.id) do %>
       <div class="jam-card">
+        <%= link_to event_path(event.id) do %>
         <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path event.location_photo %> );" >
-
         </div>
+        <% end %>
 
-            <div class="card-body">
-                <table class="table table-borderless">
-                  <tbody><tr></tr>
-                  <tr>
-                    <td class="jam-date"><i></i></td>
-                    <td>
-                      <%= event.start_date.strftime("%^a, %d %b AT ") %><%= event.start_time.strftime("%H:%M") %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><i class="jam-title"></i></td>
-                    <td>
-                      <strong><%= event.title %></strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><i class="jam-attendees"></i></td>
-                    <td>
-                      100+ people attending
-                    </td>
-                  </tr>
-                </tbody></table>
+        <div class="card-body">
+          <div class="jam-date">
+            <%= event.start_date.strftime("%^a, %d %b AT ") %><%= event.start_time.strftime("%H:%M") %>
+          </div>
+            <%= link_to event_path(event.id) do %>
+          <div class="jam-title">
+            <strong><%= event.title %></strong>
+          </div>
+          <% end %>
+          <div class="jam-attendees">
+            <% if event.participants.count > 1 %>
+            <div class="jam-attendee-item">
+              <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
             </div>
+            <% else %>
+            <p> Be the first to join! </p>
+            <% end %>
+            <% event.participants.limit(5).each do |participant| %>
+            <div class="jam-attendee-item">
+              <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
 
       </div>
-  <% end %>
-        </div>
-  <% end %>
-  <% end %>
+    </div>
+    <% end %>
+    <% end %>
   </div>
 </div>
