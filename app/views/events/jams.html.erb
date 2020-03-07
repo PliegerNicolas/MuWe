@@ -15,23 +15,28 @@
         <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path event.location_photo %> );" >
         </div>
         <% end %>
-
         <div class="card-body">
           <div class="jam-date">
             <%= event.start_date.strftime("%^a, %d %b AT ") %><%= event.start_time.strftime("%H:%M") %>
           </div>
-            <%= link_to event_path(event.id) do %>
+          <%= link_to event_path(event.id) do %>
           <div class="jam-title">
             <strong><%= event.title %></strong>
           </div>
           <% end %>
           <div class="jam-attendees">
             <% if event.participants.count > 0 %>
-              <div class="total-attendees">
+                <div class="total-attendees">
                 <%= event.participants.count %> participants
-              </div>
+                </div>
               <div class="jam-attendee-item">
-                <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                  <% event.participants.limit(5).each do |participant| %>
+                  <% if participant.status == 'accepted' && participant.user.profile.profile_photo.attachment  %>
+                  <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                  <% else %>
+                  <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                 <% end %>
+                  <% end %>
               </div>
               <% event.participants.limit(5).each do |participant| %>
                 <div class="jam-attendee-item">
@@ -43,7 +48,6 @@
             <% end %>
           </div>
         </div>
-
       </div>
     </div>
     <% end %>
