@@ -34,7 +34,9 @@
                   <tr>
                     <td><i class="jam-attendees"></i></td>
                     <td>
-                      100+ people attending
+                    <% event.participants.each do |participant| %>
+                      <%= image_tag (participant.user.profile.profile_photo), crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                    <% end %>
                     </td>
                   </tr>
                 </tbody></table>
