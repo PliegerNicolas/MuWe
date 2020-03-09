@@ -1,5 +1,5 @@
 .navbar {
-  display: flex;
+  @include flex-column;
   justify-content: center;
   height: 100vh;
   padding: 0;
@@ -7,10 +7,32 @@
   border-right: 3px solid #FFF7F2;
   box-shadow: inset 1px 0 15px 0 rgba(255,247,242,0.15);
   background-color: $muwe-black;
+
+  a {
+    color: $muwe-white;
+  }
+
+  p {
+    color: $muwe-white;
+  }
 }
 
 .navbar-content {
+  @include flex-column;
+  height: 100vh;
+}
+
+.navbar-menu-buttons {
+  @include flex-column;
+}
+
+.navbar-profile-section {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  align-items: center;
 }

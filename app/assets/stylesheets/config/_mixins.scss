@@ -1,2 +1,6 @@
 // @mixin mixinname {} => include mixinname;
 // Mixins can get arguments
+ @mixin flex-column {
+  display: flex;
+  flex-direction: column;
+ }

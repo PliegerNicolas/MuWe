@@ -1,9 +1,18 @@
-.avatar {
+.profile-photo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: $muwe-white;
+
+  .avatar {
   width: 40px;
   border-radius: 50%;
 }
 .muwe-avatar-large {
-  width: 80px;
+  width: 72px;
   border-radius: 50%;
 }
 .muwe-avatar-bordered {
@@ -17,4 +26,5 @@
   border-radius: 0px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
+}
 }

@@ -1,22 +1,49 @@
 <div class="navbar">
   <div class="navbar-content">
 
-    <div class="navbar-logo">
+    <div class="navbar-logo section">
       <%= link_to root_path do %>
       <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
       <% end %>
     </div>
 
-    <div class="navbar-logo">
-      <%= link_to root_path do %>
-      <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
+    <div class="navbar-menu-buttons section">
+      <%= link_to root_path, class: 'navbar-menu-button' do %>
+      <%= image_tag 'index-icon.png', height: '45px', width: '45px' %>
+      <% end %>
+      <%= link_to jams_path, class: 'navbar-menu-button' do %>
+      <%= image_tag 'jams-icon.png', height: '45px', width: '45px' %>
+      <% end %>
+      <%= link_to prospect_path, class: 'navbar-menu-button' do %>
+      <%= image_tag 'prospect-icon.png', height: '45px', width: '45px' %>
       <% end %>
     </div>
 
-    <div class="navbar-logo">
-      <%= link_to root_path do %>
-      <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
+    <div class="navbar-profile-section section">
+    <% if user_signed_in? %>
+      <%= link_to profile_path(current_user.id) do %>
+        <% if current_user.profile.profile_photo.attachment %>
+          <div class="profile-photo-container">
+            <%= image_tag (current_user.profile.profile_photo), height: '72px', width: '72px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
+          </div>
+        <% else %>
+          <div class="profile-photo-container">
+            <%= image_tag (cl_image_path 'default_instrument_image'), height: '72px', width: '72px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
+          </div>
+        <% end %>
       <% end %>
-    </div>
-  </div>
+      <%= link_to "My profile", edit_profile_path %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <div class="profile-photo-container">
+        <%= link_to new_user_session_path do %>
+          <%= image_tag (cl_image_path 'default_instrument_image'), height: '72px', width: '72px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
+        <% end %>
+      </div>
+      <%= link_to "Login", new_user_session_path %>
+      <%= link_to "Register", new_user_registration_path %>
+    <% end %>
+   </div>
+
+ </div>
 </div>
