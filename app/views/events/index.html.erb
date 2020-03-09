@@ -2,7 +2,7 @@
   <% @events.each do |event| %>
     <% unless event.finished? %>
       <div class="small-card" data-lng="<%= event.longitude %>" data-lat="<%= event.latitude %>">
-        <%= image_tag(("logo.png"), class: "small-card-image") %>
+        <%= image_tag(("muwe-logo.svg"), class: "small-card-image") %>
 
         <div class="small-card-content">
           <div class="small-card-title-container">

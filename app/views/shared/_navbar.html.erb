@@ -1,55 +1,22 @@
 <div class="navbar">
+  <div class="navbar-content">
 
-  <%= link_to root_path do %>
     <div class="navbar-logo">
-      <%= image_tag 'logo.svg' %>
-    </div>
-  <% end %>
-
-  <div class="navbar-search">
-    <%= link_to "Home", root_path %>
-    <%= link_to "Jams", jams_path %>
-    <%= link_to "Prospect", prospect_path %>
-  </div>
-
-  <div class="navbar-profile">
-    <% if user_signed_in? %>
-      <%= link_to profile_path(current_user.id) do %>
-        <% if current_user.profile.profile_photo.attachment %>
-          <%= image_tag (current_user.profile.profile_photo), height: "80", width: "80", crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
-        <% else %>
-          <%= image_tag (cl_image_path 'default_instrument_image'), height: "80", width: "80", crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
-        <% end %>
+      <%= link_to root_path do %>
+      <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
       <% end %>
-      <%= link_to "My/Edit profile", edit_profile_path %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Login", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
-    <% end %>
-  </div>
-
-    <div class="navbar-social">
-      <ul>
-        <li>
-          <%= link_to 'https://www.instagram.com/' do %>
-            <i class="fab fa-instagram"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to 'https://twitter.com/' do %>
-            <i class="fab fa-twitter"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to 'https://www.facebook.com/' do %>
-            <i class="fab fa-facebook-square"></i>
-          <% end %>
-        </li>
-      </ul>
-      <div class="online-users">
-        <p><%= User.where(["last_user_activity >= ?", DateTime.now - 5.minutes]).count %> online</p>
-      </div>
     </div>
 
+    <div class="navbar-logo">
+      <%= link_to root_path do %>
+      <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
+      <% end %>
+    </div>
+
+    <div class="navbar-logo">
+      <%= link_to root_path do %>
+      <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
+      <% end %>
+    </div>
+  </div>
 </div>
