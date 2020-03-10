@@ -1,10 +1,44 @@
 #map {
   height: 52vh;
+  background-color: #A9AAFF;
+  border-radius: 0 0 15px 15px;
+
+  .organize-jam-button {
+    text-decoration: none;
+    color: $muwe-white;
+    background-color: $muwe-green;
+    padding: 6px 45px;
+    border-radius: 5px;
+    margin-bottom: 1.5vh;
+    transition: 0.5s;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $muwe-dark-green;
+      transition: 0.4s;
+    }
+  }
 }
 
-.index-page-content {
-  height: 48.5vh;
-  margin-top: -.5vh;
-  background-color: $muwe-gray;
-  border-radius: 5px 5px 0 0;
+.index-event-filter {
+  display: flex;
+  flex-direction: column;
+  height: 7vh;
+  min-height: 65px;
+  border-bottom: 2px solid $muwe-dark-gray;
+  margin-top: -1.5vh;
+  box-shadow: 0px 1px 8px 1px rgba(0,0,0,0.15);
+  background-color: $muwe-white;
+
+  .spacer {
+    height: 30%;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 60%;
+  }
 }

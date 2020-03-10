@@ -1,5 +1,17 @@
 
 <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+<div class="index-event-filter">
+  <div class="spacer"></div>
+  <div class="filters">
+    <p>All</p>
+    <p>Time</p>
+    <p>City</p>
+    <p>Status</p>
+    <p>Trust</p>
+  </div>
+</div>
+
 <div class="index-page-content">
 </div>
 
