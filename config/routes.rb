@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'events#index'
+
   get 'jams', to: 'events#jams' # Main jams page similar to index
   get 'prospect', to: 'posts#prospect' # Main prospect page
+
+  get 'nearby', to: 'events#nearby' # find events nearby based on geolocation
 
   get 'profile/edit', to: 'profiles#edit', as: :edit_profile
   patch 'profile/:id', to: 'profiles#update', as: :update_profile
