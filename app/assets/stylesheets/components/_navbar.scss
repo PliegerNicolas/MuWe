@@ -33,11 +33,6 @@ svg { // Menu buttons
   }
 }
 
-
-
-
-
-
 .navbar-content {
   @include flex-column;
   justify-content: space-between;
@@ -49,10 +44,6 @@ svg { // Menu buttons
   align-items: center;
   flex-direction: column;
 }
-
-
-
-
 
 .navbar-menu-section {
   @include flex-column;
@@ -73,8 +64,6 @@ svg { // Menu buttons
     margin: 0 10%;
   }
 }
-
-
 
 .navbar-logo {
   margin-top: 12px;
