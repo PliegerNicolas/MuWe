@@ -19,10 +19,14 @@
 
         <div class="i-event">
           <% if event.location_photo.attachment %>
-            <%= image_tag event.location_photo, height: '550px', width: '900px', class: 'event-image' %>
+            <div class="i-event-image" style="background-image: url(<%= event.location_photo %>)">
           <% else %>
-            <%= image_tag 'park.jpeg', height: '550px', width: '900px', class: 'event-image' %>
+            <div class="i-event-image" style="background-image: url(<%= asset_url('park.jpeg') %>)">
           <% end %>
+          <p class="i-event-image-city"><%= event.city %></p>
+          <p class="i-event-image-address"><%= event.address %></p>
+        </div>
+
         </div>
 
       <% end %>
