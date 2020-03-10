@@ -18,7 +18,11 @@
       <% unless event.finished? %>
 
         <div class="i-event">
-          zazazaz
+          <% if event.location_photo.attachment %>
+            <%= image_tag event.location_photo, height: '550px', width: '900px', class: 'event-image' %>
+          <% else %>
+            <%= image_tag 'park.jpeg', height: '550px', width: '900px', class: 'event-image' %>
+          <% end %>
         </div>
 
       <% end %>
