@@ -18,15 +18,38 @@
       <% unless event.finished? %>
 
         <div class="i-event">
+
+          <div class="i-event-image-holder">
           <% if event.location_photo.attachment %>
             <div class="i-event-image" style="background-image: url(<%= event.location_photo %>)">
           <% else %>
             <div class="i-event-image" style="background-image: url(<%= asset_url('park.jpeg') %>)">
           <% end %>
-          <p class="i-event-image-city"><%= event.city %></p>
-          <p class="i-event-image-address"><%= event.address %></p>
-        </div>
+            <p class="i-event-image-city"><%= event.city %></p>
+            <p class="i-event-image-address"><%= event.address %></p>
+            </div>
+          </div>
 
+          <div class="i-event-content-holder">
+
+            <p class="i-event-title"><%= event.title %></p>
+
+            <div class="i-event-content">
+              <div class="i-event-container">
+                <p><%= event.status.capitalize %></p>
+                <p><%= event.participants.count %>/<%= event.max_players %></p>
+                <p><%= event.start_time.time %> => <%= event.end_time.time %></p>
+                <p>Style : <%= event.music_style.style %></p>
+              </div>
+
+              <div class="i-event-content-spacer"></div>
+
+              <div class="i-event-container">
+                <p class="i-event-description"><%= event.description %></p>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       <% end %>

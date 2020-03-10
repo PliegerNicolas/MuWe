@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  white-space: nowrap;
   overflow-x: scroll;
   height: 42.5vh;
 }
@@ -10,7 +9,9 @@
 .i-event {
   flex: 0 0 450px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   height: 30vh;
   background-color: $muwe-brownish-white;
   border-radius: 6px;
@@ -18,16 +19,21 @@
   box-shadow: 0.5px 2px 5px 2px rgba(0,0,0,0.15);
 }
 
-.i-event-image {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  background-size: cover;
+.i-event-image-holder {
   width: 96%;
   height: 46%;
   margin-top: 2%;
   border-radius: 4px 4px 2px 2px;
   border: 2px solid $muwe-dark-gray;
+
+  .i-event-image {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+  }
 
   p {
     color: $muwe-white;
@@ -45,5 +51,48 @@
     font-weight: 600;
     margin-left: 2%;
     margin-bottom: 1%;
+  }
+}
+
+.i-event-content-holder {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  color: $muwe-black;
+  height: 48%;
+  width: 96%;
+  margin-bottom: 1%;
+
+  .i-event-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+  }
+
+  .i-event-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 1%;
+  }
+
+  .i-event-content-spacer {
+    background-color: $muwe-white;
+    height: 85%;
+    margin-top: 1%;
+    border-radius: 4px;
+    width: 2%;
+  }
+
+  .i-event-container {
+    display: flex;
+    justify-content: center;
+    width: 45%;
+    margin: 3%;
+
+    .i-event-description {
+      font-size: 12px;
+    }
   }
 }
