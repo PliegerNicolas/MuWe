@@ -1,0 +1,17 @@
+.i-events {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  white-space: nowrap;
+  overflow-x: scroll;
+  height: 42.5vh;
+}
+
+.i-event {
+  flex: 0 0 450px;
+  height: 28vh;
+  background-color: $muwe-white;
+  border-radius: 5px;
+  margin: 0 calc(1.3vw + 5px);
+  box-shadow: 0.5px 2px 5px 2px rgba(0,0,0,0.15);
+}

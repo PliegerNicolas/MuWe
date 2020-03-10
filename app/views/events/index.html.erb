@@ -13,6 +13,17 @@
 </div>
 
 <div class="index-page-content">
+  <div class="i-events">
+    <% @events.each do |event| %>
+      <% unless event.finished? %>
+
+        <div class="i-event">
+          zazazaz
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 

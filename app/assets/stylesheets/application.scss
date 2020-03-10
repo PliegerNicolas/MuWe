@@ -30,7 +30,7 @@ body {
 }
 
 main {
-  grid-area: 'content';
+  overflow: hidden;
   grid-column-start: 2;
 }
 
