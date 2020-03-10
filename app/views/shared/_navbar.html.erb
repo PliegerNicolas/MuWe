@@ -3,23 +3,28 @@
 
     <div class="navbar-logo section">
       <%= link_to root_path do %>
-        <%= image_tag 'muwe-logo.svg', height: '95px', width: '95px' %>
+        <%= image_tag 'muwe-logo.svg', height: '85px', width: '85px' %>
       <% end %>
     </div>
 
-    <div class="navbar-menu-buttons section">
+    <div class="navbar-menu-section section">
       <%= link_to root_path, class: 'navbar-menu-button' do %>
-        <%= image_tag 'index-icon.svg', height: '45px', width: '45px' %>
+        <%= inline_svg 'index-icon.svg' %>
       <% end %>
       <%= link_to jams_path, class: 'navbar-menu-button' do %>
-        <%= image_tag 'jams-icon.svg', height: '45px', width: '45px' %>
+        <%= inline_svg 'jams-icon.svg' %>
       <% end %>
       <%= link_to prospect_path, class: 'navbar-menu-button' do %>
-        <%= image_tag 'prospect-icon.svg', height: '45px', width: '45px' %>
+        <%= inline_svg 'prospect-icon.svg' %>
       <% end %>
     </div>
 
     <div class="navbar-profile-section section">
+
+      <div class="location-and-users-count">
+        <p>154 Users signed in around Lisboa</p>
+      </div>
+
     <% if user_signed_in? %>
       <%= link_to profile_path(current_user.id) do %>
         <% if current_user.profile.profile_photo.attachment %>
@@ -32,16 +37,22 @@
           </div>
         <% end %>
       <% end %>
-      <%= link_to "My profile", edit_profile_path %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+
+      <div class="user-profile-action-buttons">
+        <%= link_to "My profile", edit_profile_path %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      </div>
+
     <% else %>
       <div class="profile-photo-container">
         <%= link_to new_user_session_path do %>
           <%= image_tag (cl_image_path 'default_instrument_image'), height: '71px', width: '71px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
         <% end %>
       </div>
-      <%= link_to "Login", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
+      <div class="user-profile-action-buttons">
+        <%= link_to "Login", new_user_session_path %>
+        <%= link_to "Register", new_user_registration_path %>
+      </div>
     <% end %>
    </div>
 
