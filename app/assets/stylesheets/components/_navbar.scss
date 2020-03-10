@@ -10,6 +10,13 @@
 
   a {
     color: $muwe-white;
+    text-decoration: none;
+    transition: 0.5s;
+    &:hover {
+      transition: 0.4s;
+      color: $muwe-green;
+      opacity: 0.8;
+    }
   }
 
   p {
@@ -35,4 +42,12 @@
 .section {
   display: flex;
   align-items: center;
+}
+
+.navbar-menu-button {
+  border-radius: 15%;
+  &:hover{
+    background: $muwe-green;
+    border-radius: 50%;
+  }
 }
