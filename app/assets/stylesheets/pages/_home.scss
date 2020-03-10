@@ -40,5 +40,27 @@
     justify-content: space-around;
     align-items: center;
     height: 60%;
+
+    .filter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      border: 2px solid $muwe-dark-gray;
+      height: 75%;
+      width: 6%;
+      min-width: 40px;
+      color: $muwe-dark-gray;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: inset 0 0 3px rgba(0,0,0,0.15);
+      transition: 0.5s;
+
+      &:hover {
+        color: $muwe-green;
+        box-shadow: inset 0 0 4px $muwe-dark-green;
+        transition: 0.4s;
+      }
+    }
   }
 }
