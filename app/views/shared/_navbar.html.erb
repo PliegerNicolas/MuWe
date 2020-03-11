@@ -22,7 +22,7 @@
     <div class="navbar-profile-section section">
 
       <div class="location-and-users-count">
-        <p>154 Users signed in around Lisboa</p>
+        <p><%= connected_users = User.where(["last_user_activity >= ?", DateTime.now - 5.minutes]).count %> User<%= 's' if connected_users > 1 %> signed in around Lisboa</p>
       </div>
 
     <% if user_signed_in? %>
