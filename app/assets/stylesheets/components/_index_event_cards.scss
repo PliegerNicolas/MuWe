@@ -101,13 +101,23 @@
     }
 
     .i-event-description {
-      font-size: 12px;
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .i-event-status {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+    }
+
+    .i-event-time {
+      background-color: $muwe-white;
+      border-radius: 12px;
+      border: 2px solid $muwe-gray;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.15);
+      margin: 3% 8%;
     }
   }
 }

@@ -39,16 +39,16 @@
                 <div class="i-event-status">
                   <p>
                     <% if event.ongoing? %>
-                      <i class="fas fa-circle" style="color: green"></i>
+                      <i class="fas fa-circle" style="color: #6BB382"></i>
                     <% else %>
-                      <i class="fas fa-circle" style="color: lightblue"></i>
+                      <i class="fas fa-circle" style="color: #44AEE6"></i>
                     <% end %>
                     <%= event.status.capitalize %>
                   </p>
                   <p><%= event.participants.count %>/<%= event.max_players %></p>
                 </div>
                 <div class="i-event-time">
-                  <p><%= event.start_time %> => <%= event.end_time %></p>
+                  <p><%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %></p>
                 </div>
                 <div class="i-event-style">
                   <p>Style : <%= event.music_style.style %></p>
