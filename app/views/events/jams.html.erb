@@ -12,7 +12,12 @@
     <div class="col-sm-4 jams">
       <div class="jam-card">
         <%= link_to event_path(event.id) do %>
-        <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path event.location_photo %> );" >
+        <div class="card-img-top" >
+          <% if event.location_photo.attachment %>
+            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "card-img-top" %>
+          <% else %>
+            <%= image_tag ('park.jpeg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "card-img-top" %>
+          <% end %>
         </div>
         <% end %>
         <div class="card-body">
