@@ -1,4 +1,3 @@
-
 <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <div class="index-event-filter">
@@ -28,6 +27,7 @@
             <p class="i-event-image-city"><%= event.city %></p>
             <p class="i-event-image-address"><%= event.address %></p>
             </div>
+
           </div>
 
           <div class="i-event-content-holder">
@@ -61,11 +61,10 @@
                 <p class="i-event-description"><%= event.description %></p>
               </div>
             </div>
-
           </div>
         </div>
-
       <% end %>
     <% end %>
   </div>
 </div>
+

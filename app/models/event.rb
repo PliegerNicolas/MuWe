@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   has_one_attached :location_photo
 
   geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
   after_validation :geocode, if: :will_save_change_to_address?
 
   enum status: { planned: 0, ongoing: 1, finished: 2 }

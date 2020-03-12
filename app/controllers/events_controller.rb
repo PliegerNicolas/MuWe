@@ -49,6 +49,13 @@ class EventsController < ApplicationController
     redirect_to jams_path
   end
 
+  def nearby
+    @event = Event.new
+    authorize @event
+    events = Event.near([params[:latitude], params[:longitude]])
+    render json: { events: events }
+  end
+
   private
 
   def event_params

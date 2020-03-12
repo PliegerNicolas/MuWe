@@ -1,12 +1,50 @@
+import { debounce } from 'lodash';
+import axios from 'axios'
 import mapboxgl from 'mapbox-gl';
 
 let map;
+let position = null;
+let events;
+
+const fitBound = () => {
+  let latitudes = events.filter(event => {
+    // console.log(event.longitude);
+    // console.log(event.latitude);
+    return event.latitude
+  });
+  let longitudes = events.filter(event => event.longitude);
+  console.log(latitudes);
+  console.log(longitudes);
+};
 
 const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
 };
+
+const fetchMarkers =  async () => {
+  const pos = map.getCenter();
+  const res = await axios.get('/search', {
+    params: {
+      latitude: pos.lat,
+      longitude: pos.lng
+    }
+  });
+  return res.data.events;
+}
+
+const bouncedMarkers = debounce(() => {
+  fetchMarkers()
+    .then((response) => {
+      response.forEach((marker) => {
+        console.log(marker);
+        new mapboxgl.Marker()
+          .setLngLat([ marker.longitude, marker.latitude ])
+          .addTo(map);
+      });
+    });
+}, 1000);
 
 const initMapbox = () => {
 
@@ -21,15 +59,17 @@ const initMapbox = () => {
     if (mapElement) { // only build a map if there's a div#map to inject into
       map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10'
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9 // starting zoom
       });
 
-      const markers = JSON.parse(mapElement.dataset.markers);
-      markers.forEach((marker) => {
-        new mapboxgl.Marker()
-          .setLngLat([ marker.lng, marker.lat ])
-          .addTo(map);
-      });
+      // const markers = JSON.parse(mapElement.dataset.markers);
+      // markers.forEach((marker) => {
+      //   new mapboxgl.Marker()
+      //     .setLngLat([ marker.lng, marker.lat ])
+      //     .addTo(map);
+      // });
 
 
       const geolocate = new mapboxgl.GeolocateControl({
@@ -42,11 +82,27 @@ const initMapbox = () => {
       map.addControl(geolocate);
 
       map.on('load', () => {
+
+        // const events = getEventsNear(geolocate).then((res) => {
+        //   console.log(res);
+        // });
         geolocate.trigger();
+
+        geolocate.on('geolocate', (pos) => {
+          console.log(pos.coords.latitude);
+          console.log(pos.coords.longitude);
+          position = pos.coords;
+        });
       });
 
-      fitMapToMarkers(map, markers);
+
+      map.on('render', () => {
+        bouncedMarkers();
+      });
+
+      // fitMapToMarkers(map, markers);
     }
   }
 };
+
 export { initMapbox, map };

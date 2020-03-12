@@ -24,4 +24,8 @@ class EventPolicy < ApplicationPolicy
   def destroy?
     user == record.user
   end
+
+  def nearby?
+    true
+  end
 end
