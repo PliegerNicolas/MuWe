@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     delete 'participant/:id/', to: 'participants#decline', as: :decline_user
   end
   resources :profiles, only: [:edit]
+
+  get 'search', to: 'search#index'
 end

@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import axios from 'axios'
 import mapboxgl from 'mapbox-gl';
 
@@ -16,33 +17,34 @@ const fitBound = () => {
   console.log(longitudes);
 };
 
-const callPosition = () => {
-  setTimeout(() => {
-    // console.log(position)
-    axios.get('/nearby', {
-      params: {
-        latitude: position.latitude,
-        longitude: position.longitude
-      }
-    }).then((res) => {
-      events = res.data.events;
-      console.log('nuno');
-    }).then(() => {
-      console.log('martins');
-      // fitBound();
-    });
-  }, 15000);
-}
-
 const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
 };
 
-const fetchMarkers = () => {
-  console.log('getting new markers');
+const fetchMarkers =  async () => {
+  const pos = map.getCenter();
+  const res = await axios.get('/search', {
+    params: {
+      latitude: pos.lat,
+      longitude: pos.lng
+    }
+  });
+  return res.data.events;
 }
+
+const bouncedMarkers = debounce(() => {
+  fetchMarkers()
+    .then((response) => {
+      response.forEach((marker) => {
+        console.log(marker);
+        new mapboxgl.Marker()
+          .setLngLat([ marker.longitude, marker.latitude ])
+          .addTo(map);
+      });
+    });
+}, 1000);
 
 const initMapbox = () => {
 
@@ -57,7 +59,9 @@ const initMapbox = () => {
     if (mapElement) { // only build a map if there's a div#map to inject into
       map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10'
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9 // starting zoom
       });
 
       // const markers = JSON.parse(mapElement.dataset.markers);
@@ -82,29 +86,23 @@ const initMapbox = () => {
         // const events = getEventsNear(geolocate).then((res) => {
         //   console.log(res);
         // });
-
-
         geolocate.trigger();
 
         geolocate.on('geolocate', (pos) => {
           console.log(pos.coords.latitude);
           console.log(pos.coords.longitude);
           position = pos.coords;
-          callPosition();
         });
-
-
       });
 
+
       map.on('render', () => {
-        fetchMarkers();
+        bouncedMarkers();
       });
 
       // fitMapToMarkers(map, markers);
     }
   }
 };
-
-
 
 export { initMapbox, map };
