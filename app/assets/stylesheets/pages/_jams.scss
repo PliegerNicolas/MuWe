@@ -2,8 +2,6 @@
 .jam-card {
     margin-bottom: 35px;
     border-radius: 10px;
-    -webkit-box-shadow: 3px 3px 20px -12px rgba(0,0,0,0.61);
-    -moz-box-shadow: 3px 3px 20px -12px rgba(0,0,0,0.61);
     box-shadow: 3px 3px 20px -12px rgba(0,0,0,0.61);
     width: 350px;
     background-color: #fff;
@@ -11,6 +9,7 @@
 
 .jam-card .card-img-top {
   background-size: cover;
+  object-fit: cover;
   background-position: center;
   height: 160px;
   border-radius: 10px 10px 0px 0px;
