@@ -39,8 +39,16 @@ const bouncedMarkers = debounce(() => {
     .then((response) => {
       response.forEach((marker) => {
         console.log(marker);
+        let popup = new mapboxgl.Popup({ offset: 25, maxWidth: '320px' }).setHTML(
+          `<div class="popup-marker">
+            <h3>${marker.title}</h3>
+            <p>${marker.description}</p>
+            <p>Players: ${marker.max_players} | Status: ${marker.status}</p>
+          </div>`
+        );
         new mapboxgl.Marker()
           .setLngLat([ marker.longitude, marker.latitude ])
+          .setPopup(popup)
           .addTo(map);
       });
     });
