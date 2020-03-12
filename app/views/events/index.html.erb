@@ -1,32 +1,70 @@
-<div class="events">
+<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-
-  <!--
-  <% @events.each do |event| %>
-    <% unless event.finished? %>
-      <div class="small-card" data-lng="<%= event.longitude %>" data-lat="<%= event.latitude %>">
-        <%= image_tag(("logo.png"), class: "small-card-image") %>
-
-        <div class="small-card-content">
-          <div class="small-card-title-container">
-            <h2 class="small-card-title"><%= event.title %></h2>
-          </div>
-          <div class="small-card-address-container">
-            <p class="small-card-address">Address : <%= event.address %></p>
-          </div>
-          <div class="small-card-description-container">
-            <p class="small-card-description"><%= event.description %></p>
-          </div>
-          <div class="small-card-dates-container">
-            <p class="small-card-start-date"><%= event.start_date %></p>
-            <p class="small-card-end-date"></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-  -->
+<div class="index-event-filter">
+  <div class="spacer"></div>
+  <div class="filters">
+    <button class="filter">All</button>
+    <button class="filter">Time</button>
+    <button class="filter">City</button>
+    <button class="filter">Status</button>
+    <button class="filter">Trust</button>
+  </div>
 </div>
 
-<!--<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>-->
-<div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<div class="index-page-content">
+  <div class="i-events">
+    <% @events.each do |event| %>
+      <% unless event.finished? %>
+
+        <div class="i-event">
+
+          <div class="i-event-image-holder">
+          <% if event.location_photo.attachment %>
+            <div class="i-event-image" style="background-image: url(<%= event.location_photo %>)">
+          <% else %>
+            <div class="i-event-image" style="background-image: url(<%= asset_url('park.jpeg') %>)">
+          <% end %>
+            <p class="i-event-image-city"><%= event.city %></p>
+            <p class="i-event-image-address"><%= event.address %></p>
+            </div>
+
+          </div>
+
+          <div class="i-event-content-holder">
+
+            <p class="i-event-title"><%= event.title %></p>
+
+            <div class="i-event-content">
+              <div class="left-i-event-section i-event-container">
+                <div class="i-event-status">
+                  <p>
+                    <% if event.ongoing? %>
+                      <i class="fas fa-circle" style="color: #6BB382"></i>
+                    <% else %>
+                      <i class="fas fa-circle" style="color: #44AEE6"></i>
+                    <% end %>
+                    <%= event.status.capitalize %>
+                  </p>
+                  <p><%= event.participants.count %>/<%= event.max_players %></p>
+                </div>
+                <div class="i-event-time">
+                  <p><%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %></p>
+                </div>
+                <div class="i-event-style">
+                  <p>Style : <%= event.music_style.style %></p>
+                </div>
+              </div>
+
+              <div class="i-event-content-spacer"></div>
+
+              <div class="right-i-event-section i-event-container">
+                <p class="i-event-description"><%= event.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

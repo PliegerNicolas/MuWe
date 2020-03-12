@@ -1,58 +1,70 @@
 .navbar {
-  grid-area: 'profile';
-  position: relative;
+  @include flex-column;
+  height: 100vh;
+  padding: 0;
+  border-left: 1.5px solid #FFF7F2;
+  border-right: 3px solid #FFF7F2;
+  box-shadow: inset 1px 0 15px 0 rgba(255,247,242,0.15);
+  background-color: $muwe-black;
+
+  a {
+    color: $muwe-white;
+    text-decoration: none;
+    transition: 0.5s;
+    &:hover {
+      transition: 0.4s;
+      color: $muwe-green;
+      opacity: 0.8;
+    }
+  }
+
+  p {
+    color: $muwe-white;
+  }
+}
+
+svg { // Menu buttons
+  width: 38px;
+  height: 38px;
+  fill: $muwe-white;
+  &:hover {
+    fill: $muwe-green;
+    transition: 0.4s;
+  }
+}
+
+.navbar-content {
+  @include flex-column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.section {
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: #efefef;
-  background-color: $light-gray;
+}
+
+.navbar-menu-section {
+  @include flex-column;
+  justify-content: space-between;
+  height: 32vh;
+}
+
+.navbar-profile-section {
+  text-align: center;
+  height: 26vh;
+
+  .profile-photo-container {
+    margin: 25px 0;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 0 9%;
+  }
 }
 
 .navbar-logo {
-  margin-top: 2rem;
-}
-
-.navbar-search, .navbar-profile {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  font-family: 'Nunito';
-
-  a {
-    margin: 6px 0;
-    color: $strong-purple;
-  }
-}
-
-.navbar-social {
-  margin-bottom: 2rem;
-  width: 50%;
-
-  ul {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    list-style: none inside none;
-
-    li {
-      font-size: 1.2rem;
-
-      a i {
-        color: $strong-purple;
-      }
-    }
-  }
-}
-
-.online-users {
-  margin-top: 10px;
-
-  p {
-    margin: 0;
-    font-size: 0.9rem;
-    font-family: 'Nunito';
-    text-align: center;
-  }
+  margin-top: 12px;
 }

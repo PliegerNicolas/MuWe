@@ -64,7 +64,8 @@ class EventsController < ApplicationController
       :country, :city, :address, :longitude, :latitude,
       :title, :description,
       :max_players, :status,
-      :start_date, :start_time, :duration
+      :start_date, :start_time, :end_time,
+      :location_photo
     )
   end
 

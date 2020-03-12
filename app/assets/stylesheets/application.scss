@@ -2,6 +2,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/mixins";
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
@@ -13,32 +14,27 @@
 @import "pages/index";
 
 :root {
-    font-size: 16px;
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
 }
 
 body {
-    min-height: 100vh;
-    background-color: #f9f9f9;
-}
-
-section {
-    display: grid;
-    grid-template-areas: 'profile main';
-    grid-template-columns: 15rem 1fr;
-
+  min-height: 100vh;
+  background-color: $muwe-gray;
+  display: grid;
+  grid-template-areas: 'navbar content';
+  grid-template-columns: 110px auto;
 }
 
 main {
-    grid-area: 'main';
-    position: relative;
-    padding: 20px;
+  overflow: hidden;
+  grid-column-start: 2;
+}
 
-    #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: black;
-    }
+section {
+  position: fixed;
+  width: 110px;
 }
