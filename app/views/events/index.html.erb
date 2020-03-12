@@ -1,4 +1,7 @@
 <div class="events">
+
+
+  <!--
   <% @events.each do |event| %>
     <% unless event.finished? %>
       <div class="small-card" data-lng="<%= event.longitude %>" data-lat="<%= event.latitude %>">
@@ -22,6 +25,8 @@
       </div>
     <% end %>
   <% end %>
+  -->
 </div>
 
-<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<!--<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>-->
+<div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
