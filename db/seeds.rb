@@ -115,7 +115,7 @@ puts ''
 print 'Creating events'
 print ' { '
 15.times do
-  Event.create(
+  new_event = Event.create(
     user_id: User.order('RANDOM()').first.id,
     title: Faker::BossaNova.song,
     country: Faker::Address.country,
@@ -129,6 +129,7 @@ print ' { '
     start_time: Faker::Time.between(from: Time.now - 1, to: Time.now),
     end_time: Faker::Time.between(from: Time.now, to: Time.now + 8)
   )
+  new_event.participants.create(user_id: new_event.user_id, status: 1)
   print '#'
 end
 
