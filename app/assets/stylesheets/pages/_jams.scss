@@ -1,11 +1,14 @@
+.container-fluid {
+  padding: 40px;
+}
 
 .jam-card {
-    position: relative;
-    margin-bottom: 60px;
-    border-radius: 3px;
-    width: 100%;
-    background: none;
-    transition: all .5s;
+  position: relative;
+  margin-bottom: 60px;
+  border-radius: 3px;
+  width: 100%;
+  background: none;
+  transition: all .5s;
 }
 
 .jam-card .card-img-top {
