@@ -1,7 +1,25 @@
 
 <div class="container-fluid">
 
-  <h1 class="mb-4">All our jams</h1>
+  <div class="jams-header">
+    <h1>All our jams</h1>
+    <%= link_to new_event_path, class: 'btn' do %>
+      <i class="fas fa-plus-circle"></i>
+      create jam
+    <% end %>
+  </div>
+
+  <div class="jams-options">
+    <div class="jams-filters">
+      <a href="#" class="btn btn-outline-secondary">Select all</a>
+      <a href="#" class="btn btn-outline-secondary">Featured</a>
+      <a href="#" class="btn btn-outline-secondary">most comments</a>
+      <a href="#" class="btn btn-outline-secondary">up coming</a>
+    </div>
+    <div class="jams-sorting">
+      <a href="#">Sort by</a>
+    </div>
+  </div>
 
   <div class="row">
     <% @events.each do |event| %>

@@ -1,3 +1,45 @@
+.jams-header {
+  display: flex;
+  margin-bottom: 40px;
+  align-items: center;
+  justify-content: space-between;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 18px;
+    color: $white;
+    font-family: $oswald;
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: $muwe-green;
+    border-radius: 20px;
+
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+.jams-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  .jams-filters {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .jams-sorting {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    flex: 2;
+  }
+}
 
 .jam-card {
     position: relative;
