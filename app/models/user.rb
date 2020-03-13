@@ -17,6 +17,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+  def full_name
+    "#{self.first_name} #{self.profile.last_name}"
+  end
+
   private
 
   def create_profile

@@ -6,7 +6,7 @@
   <div class="row">
     <% @events.each do |event| %>
     <% unless event.finished? %>
-    <div class="col-sm-4 jams">
+    <div class="col-sm-4 col-xl-3 jams">
       <div class="jam-card">
         <%= link_to event_path(event.id) do %>
         <div class="card-img-top" >
@@ -18,17 +18,29 @@
         </div>
         <% end %>
         <div class="card-body">
-          <div class="jam-date">
-            <%= event.start_date.strftime("%^a, %d %b AT ") %><%= event.start_time.strftime("%H:%M") %>
-          </div>
-            <%= link_to event_path(event.id) do %>
           <div class="jam-title">
             <strong><%= event.title %></strong>
           </div>
+          <div class="jam-date">
+            <%= event.start_date.strftime("%A, %d %B") %>
+            <%#= event.start_time.strftime("%H:%M") %>
+          </div>
+          <div class="jam-address">
+            <i class="fas fa-map-marker-alt"></i>
+            <%= "#{event.address}, #{event.city}" %>
+          </div>
+          <div class="jam-owner">
+            <i class="fas fa-user"></i>
+            <label>created by</label>
+            <span>
+              <%= event.user.full_name %>
+            </span>
+          </div>
+            <%= link_to event_path(event.id) do %>
           <% end %>
             <% if event.accepted_participants.count > 0 %>
               <div class="jam-attendees">
-                <span class="total-attendees"> <%= event.accepted_participants.count %> participants</span>
+                <span class="total-attendees"><%= pluralize(event.accepted_participants.count, 'participant') %></span>
                 <% if event.accepted_participants.count > 5 %>
                   <div class="jam-attendee-item">
                     <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
