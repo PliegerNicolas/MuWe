@@ -30,9 +30,11 @@
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    object-fit: cover;
     background-size: cover;
     height: 100%;
     width: 100%;
+    margin-bottom: -4.5vh;
   }
 
   p {

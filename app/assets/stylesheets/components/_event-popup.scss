@@ -1,0 +1,19 @@
+.popup-marker {
+    width: 320px;
+    h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+}
+
+.map-marker {
+    // font-size: 1.6rem;
+}
+
+.marker-planned {
+    color: $muwe-blue;
+}
+
+.marker-ongoing {
+    color: $muwe-green;
+}

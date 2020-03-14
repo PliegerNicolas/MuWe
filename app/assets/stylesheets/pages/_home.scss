@@ -2,6 +2,19 @@ button:focus {
   outline: none;
 }
 
+.create-event {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+  padding: 5px 20px;
+  font-family: $headers-font;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: $muwe-green;
+  border-radius: 15px;
+  z-index: 9999999;
+}
+
 #map {
   height: 52vh;
   background-color: #5DD1EE;

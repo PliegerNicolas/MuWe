@@ -1,3 +1,6 @@
+<div>
+  <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
+</div>
 <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <div class="index-event-filter">
@@ -19,10 +22,11 @@
         <div class="i-event">
 
           <div class="i-event-image-holder">
+            <div class="i-event-image" >
           <% if event.location_photo.attachment %>
-            <div class="i-event-image" style="background-image: url(<%= event.location_photo %>)">
+            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
           <% else %>
-            <div class="i-event-image" style="background-image: url(<%= asset_url('park.jpeg') %>)">
+            <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
           <% end %>
             <p class="i-event-image-city"><%= event.city %></p>
             <p class="i-event-image-address"><%= event.address %></p>
@@ -67,4 +71,3 @@
     <% end %>
   </div>
 </div>
-

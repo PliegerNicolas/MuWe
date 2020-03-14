@@ -1,0 +1,148 @@
+.profile-heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    div {
+        margin-right: 20px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid $gray-800;
+    }
+}
+
+.profile {
+}
+
+.profile-general {
+    display: flex;
+    padding: 20px;
+    font-family: $oswald;
+
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 30px;
+
+        .profile-name {
+            margin-bottom: 5px;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .profile-city {
+            color: $gray-600;
+            font-size: .9rem;
+            font-weight: 400;
+        }
+    }
+
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .number {
+        color: $muwe-green;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .comments div:nth-child(2),
+    .followers div:nth-child(2),
+    .following div:nth-child(2) {
+        color: $gray-700;
+    }
+}
+
+.profile-about {
+    margin-top: 40px;
+    padding: 40px;
+
+    h3 {
+        color: $muwe-green;
+        font-family: $oswald;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .profile-bio {
+        font-family: $oswald;
+        font-weight: 400;
+    }
+
+    .profile-social {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        width: 160px;
+
+        i {
+            color: $muwe-green;
+            font-size: 1.4rem;
+        }
+    }
+}
+
+.profile-instruments {
+    margin-top: 40px;
+    padding: 40px;
+
+    h3 {
+        margin-bottom: 10px;
+        color: $muwe-green;
+        font-family: $oswald;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+.profile-photo {
+    margin-left: 20px;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+    }
+
+    img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%;
+
+    }
+
+}
+
+.profile-tabs {
+    display: flex;
+    margin: 0 40px;
+    padding: 20px 0 0 0;
+    font-family: $oswald;
+    border-bottom: 1px solid $gray-500;
+
+    .profile-tab {
+        padding: 0 10px;
+
+        &.active {
+            border-bottom: 3px solid $gray-800;
+        }
+    }
+}
+
+.profile-tab-content {
+    padding: 20px 40px;
+    font-family: $body-font;
+}

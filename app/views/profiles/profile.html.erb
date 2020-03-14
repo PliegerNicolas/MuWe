@@ -1,8 +1,91 @@
-<h1>Public profile</h1>
-<ul>
-  <li><%= @profile.user.first_name %></li>
-  <li><%= @profile.last_name %></li>
-  <li><%= @profile.birth_date %></li>
-  <li><%= @profile.city %></li>
-  <li><%= @profile.bio %></li>
-</ul>
+<div class="profile">
+  <div class="row">
+    <div class="col-4">
+
+      <div class="profile-general box">
+
+        <div class="left">
+          <div class="profile-photo">
+            <%= image_tag @profile.profile_photo %>
+          </div>
+        </div>
+        <div class="right">
+          <div>
+            <div class="profile-name">
+              <%= @profile.user.full_name %>
+            </div>
+            <div class="profile-city">
+              <i class="fas fa-map-marker-alt"></i>
+              <%= @profile.city %>, Portugal
+            </div>
+            <%= @profile.birth_date %>
+          </div>
+          <div class="stats">
+            <div class="comments">
+              <div class="number">6535</div>
+              <div>Comment</div>
+            </div>
+            <div class="followers">
+              <div class="number">189</div>
+              <div>Followers</div>
+            </div>
+            <div class="following">
+              <div class="number">123</div>
+              <div>Following</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="profile-about box">
+        <h3>About</h3>
+        <div class="profile-bio">
+          <%= @profile.bio %>
+        </div>
+
+        <div class="profile-social">
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-pinterest"></i>
+          <i class="fab fa-whatsapp"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+      </div>
+
+      <div class="profile-instruments box">
+        <h3>Instruments</h3>
+        <div class="tag-list">
+          <div class="tag-item">Piano</div>
+          <div class="tag-item">Clarinet</div>
+          <div class="tag-item">Saxophone</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-8">
+
+      <div class="box">
+        <div class="profile-tabs">
+          <div class="profile-tab active">
+            <div class="title">Activity</div>
+
+          </div>
+          <div class="profile-tab">
+            <div class="title">Timeline</div>
+
+          </div>
+          <div class="profile-tab">
+            <div class="title">More</div>
+
+          </div>
+        </div>
+
+        <div class="profile-tab-content">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quos nam ipsam alias ea architecto saepe. Molestiae accusamus qui itaque similique, facilis dolore commodi animi? Quam voluptas recusandae reprehenderit quibusdam? Sapiente corporis repellat aut eum officiis ipsam nihil animi adipisci sit accusamus ullam assumenda repudiandae, vero exercitationem minus dolor velit, maiores voluptas explicabo. Iusto tenetur eveniet consectetur veniam magnam natus, laborum excepturi reprehenderit ad vitae debitis quasi optio! Reprehenderit officiis est hic deserunt veritatis reiciendis ab sint eius tempora debitis, pariatur consequuntur id doloribus culpa necessitatibus! Fugiat quia in eius, omnis quasi commodi doloribus rem, sequi suscipit praesentium reiciendis itaque repellat. Dolore incidunt facere rem. Necessitatibus quibusdam totam natus, asperiores vero expedita magni qui eius quidem tempora aliquam ipsa itaque, eligendi hic quaerat ut deleniti odio delectus consectetur suscipit harum ea ex. Eaque tempore eius neque modi culpa maiores asperiores perspiciatis qui sed quo iste et cum dolor eveniet ab, optio assumenda recusandae laudantium, suscipit perferendis nulla laborum sapiente animi maxime? Magnam cumque reprehenderit nisi laboriosam nam totam tempore libero eaque velit voluptate quae dolor laudantium recusandae excepturi optio perferendis similique distinctio doloribus animi repellat, quisquam voluptas quaerat cupiditate facere. Tenetur et, eum veniam modi nam ad. Aspernatur, nostrum. Quas.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

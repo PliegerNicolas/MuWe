@@ -38,9 +38,21 @@ const bouncedMarkers = debounce(() => {
   fetchMarkers()
     .then((response) => {
       response.forEach((marker) => {
-        console.log(marker);
-        new mapboxgl.Marker()
+        // console.log(marker);
+
+        let popup = new mapboxgl.Popup({ offset: 25, maxWidth: '320px' }).setHTML(
+          `<div class="popup-marker">
+            <h3>${marker.title}</h3>
+            <p>${marker.description}</p>
+            <p>Players: ${marker.max_players} | Status: ${marker.status}</p>
+          </div>`
+        );
+
+        let color = (marker.status == 'planned') ? '#44AEE6' : '#6BB382';
+
+        new mapboxgl.Marker({color})
           .setLngLat([ marker.longitude, marker.latitude ])
+          .setPopup(popup)
           .addTo(map);
       });
     });
@@ -60,7 +72,7 @@ const initMapbox = () => {
       map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v10',
-        center: [-74.5, 40], // starting position [lng, lat]
+        center: [-9.142685, 38.736946], // hard code lng & lat from Lisbon
         zoom: 9 // starting zoom
       });
 
