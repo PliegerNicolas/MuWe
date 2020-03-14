@@ -22,6 +22,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'pundit'
+gem 'flatpickr'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

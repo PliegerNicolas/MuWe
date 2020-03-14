@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MuWe. - Social Network</title>
-  <%= csrf_meta_tags %>
-  <%= action_cable_meta_tag %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <!-- <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' /> -->
-  <%= stylesheet_pack_tag 'application', media: 'all' %>
-</head>
-<body>
-  <%= render 'shared/flashes' %>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MuWe. - Social Network</title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <!-- <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' /> -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <!-- TODO IMPROVE SHOULD USE THE LOCAL FILE!!! -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
+  </head>
+  <body>
+    <%= render 'shared/flashes' %>
+
 
   <section>
     <%= render 'shared/navbar' %>
@@ -20,7 +24,7 @@
     <%= yield %>
   </main>
 
-<%= javascript_include_tag 'application' %>
-<%= javascript_pack_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
 </body>
 </html>
