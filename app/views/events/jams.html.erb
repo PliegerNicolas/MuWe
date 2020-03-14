@@ -22,7 +22,7 @@
             <strong><%= event.title %></strong>
           </div>
           <div class="jam-date">
-            <%= event.start_date.strftime("%A, %d %B") %>
+            <%= event.start_date.strftime("%A, %d %B") if event.start_date%>
             <%#= event.start_time.strftime("%H:%M") %>
           </div>
           <div class="jam-address">
