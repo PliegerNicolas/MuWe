@@ -1,0 +1,45 @@
+.profile {
+}
+
+.profile-general {
+    display: flex;
+    padding: 20px;
+    font-family: $oswald;
+
+    .right {
+        padding-left: 30px;
+        .profile-name {
+            font-size: 1.3rem;
+        }
+
+        .profile-city {
+            color: $gray-600;
+            font-size: .9rem;
+            font-weight: 400;
+        }
+    }
+
+}
+
+.profile-photo {
+    margin-left: 20px;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 15px;
+        height: 15px;
+    }
+
+    img {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 50%;
+
+    }
+
+}
