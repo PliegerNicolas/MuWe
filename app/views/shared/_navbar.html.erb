@@ -46,7 +46,7 @@
     <% else %>
       <div class="profile-photo-container">
         <%= link_to new_user_session_path do %>
-          <%= image_tag (cl_image_path 'default_instrument_image'), height: '71px', width: '71px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large" %>
+          <%= image_tag (cl_image_path 'default_instrument_image'), height: '71px', width: '71px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar" %>
         <% end %>
       </div>
       <div class="user-profile-action-buttons">
