@@ -7,9 +7,15 @@
     font-family: $oswald;
 
     .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         padding-left: 30px;
+
         .profile-name {
-            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-size: 1.6rem;
+            font-weight: 700;
         }
 
         .profile-city {
@@ -19,6 +25,25 @@
         }
     }
 
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .number {
+        color: $muwe-green;
+        font-size: 1.3rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .comments div:nth-child(2),
+    .followers div:nth-child(2),
+    .following div:nth-child(2) {
+        color: $gray-700;
+    }
 }
 
 .profile-photo {

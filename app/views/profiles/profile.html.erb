@@ -10,12 +10,28 @@
           </div>
         </div>
         <div class="right">
-          <div class="profile-name">
-            <%= @profile.user.full_name %>
+          <div>
+            <div class="profile-name">
+              <%= @profile.user.full_name %>
+            </div>
+            <div class="profile-city">
+              <i class="fas fa-map-marker-alt"></i>
+              <%= @profile.city %>, Portugal
+            </div>
           </div>
-          <div class="profile-city">
-            <i class="fas fa-map-marker-alt"></i>
-            <%= @profile.city %>
+          <div class="stats">
+            <div class="comments">
+              <div class="number">6535</div>
+              <div>Comment</div>
+            </div>
+            <div class="followers">
+              <div class="number">189</div>
+              <div>Followers</div>
+            </div>
+            <div class="following">
+              <div class="number">123</div>
+              <div>Following</div>
+            </div>
           </div>
         </div>
 
