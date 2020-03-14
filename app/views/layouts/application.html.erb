@@ -10,7 +10,8 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <!-- <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' /> -->
     <%= stylesheet_pack_tag 'application', media: 'all' %>
-    <link rel="stylesheet" href="node_modules/select2/dist/css/select2.css">
+    <!-- TODO IMPROVE SHOULD USE THE LOCAL FILE!!! -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
   </head>
   <body>
     <%= render 'shared/flashes' %>
@@ -23,7 +24,7 @@
     <%= yield %>
   </main>
 
-<%= javascript_include_tag 'application' %>
-<%= javascript_pack_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag 'application' %>
 </body>
 </html>

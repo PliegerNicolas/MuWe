@@ -3,8 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { initMapbox } from '../plugins/mapbox'
 import { initCards } from '../plugins/cards';
+import { initSelect2 } from '../plugins/init_select2';
 import "../plugins/flatpickr"
-import { initSelect2 } from './plugins/init_select2';
 
 
 initSelect2();
