@@ -1,15 +1,46 @@
-<div class="container-fluid p-0">
+<div class="container-fluid">
   <div class="row">
 
     <div class="col-5">
+
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="box mb-5">
+        <h2>heading</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
     </div>
 
     <div class="col-7">
+
+
       <div class="new-event-wrapper">
-        <div class="map-wrapper">
-          <div class="new-event-box">
-            <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
-          </div>
+
+        <div class="new-event-box box">
+          <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
+        </div>
+
+        <div class="map-wrapper box">
+          <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        </div>
 
           <div class="events-wrapper">
             <% @events.each do |event| %>
@@ -54,9 +85,7 @@
             <% end %>
           </div>
 
-          <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         </div>
-      </div>
     </div>
 
   </div>

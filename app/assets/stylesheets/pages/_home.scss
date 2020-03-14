@@ -15,7 +15,7 @@ input:focus {
   font-family: $headers-font;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: $muwe-green;
+  // background-color: $muwe-green;
   border-radius: 15px;
   z-index: 9999999;
 }
@@ -29,19 +29,20 @@ input:focus {
 .new-event-box {
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 20px 40px;
-  height: 90px;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  padding: 0 20px;
+  height: 80px;
   background-color: rgba($gray-200, .7);
-  z-index: 25;
+  margin-bottom: 20px;
+  // z-index: 25;
 }
 
 .map-wrapper {
   position: relative;
-  // height: 50vh;
+  height: 50vh;
   flex: 1;
 }
 
@@ -120,7 +121,8 @@ input:focus {
 }
 
 .events-wrapper {
-  position: absolute;
+  // position: absolute;
+  display: none;
   bottom: 0;
   height: 260px;
   display: flex;
