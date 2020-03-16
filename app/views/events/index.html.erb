@@ -7,7 +7,7 @@
   <div class="spacer"></div>
   <div class="filters">
     <button class="filter">All</button>
-    <button class="filter">Time</button>
+    <button class="filter" data-toggle="modal" data-target="#timeModal">Time</button>
     <button class="filter" data-toggle="modal" data-target="#cityModal">City</button>
     <button class="filter">Status</button>
     <button class="filter">Trust</button>
@@ -20,4 +20,5 @@
   </div>
 </div>
 
+<%= render "events/modals/time_modal" %>
 <%= render "events/modals/city_modal" %>
