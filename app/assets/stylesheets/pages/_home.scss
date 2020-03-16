@@ -15,7 +15,7 @@ input:focus {
   font-family: $headers-font;
   font-weight: bold;
   text-transform: uppercase;
-  // background-color: $muwe-green;
+  background-color: $muwe-green;
   border-radius: 15px;
   z-index: 9999999;
 }
@@ -43,6 +43,7 @@ input:focus {
 .map-wrapper {
   position: relative;
   height: 50vh;
+  min-height: 400px;
   flex: 1;
 }
 

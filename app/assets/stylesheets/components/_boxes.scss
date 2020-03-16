@@ -1,6 +1,6 @@
 .box {
+    padding: 10px;
+    background-color: rgba($gray-300, .5);
     background-color: $gray-100;
-    box-shadow: 0 6px 8px 0 rgba(0,0,0,.2);
-    // box-shadow: 5px 5px 10px rgb(255, 255, 255), -5px -5px 10px rgb(210, 210, 210);
     border-radius: 3px;
 }
