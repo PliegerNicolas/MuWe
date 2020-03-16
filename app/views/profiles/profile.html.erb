@@ -6,7 +6,11 @@
 
         <div class="left">
           <div class="profile-photo">
-            <%= image_tag @profile.profile_photo %>
+            <% if @profile.profile_photo.attachment %>
+              <%= image_tag @profile.profile_photo %>
+            <% else %>
+              <%= image_tag (cl_image_path 'default_instrument_image') %>
+            <% end %>
           </div>
         </div>
         <div class="right">

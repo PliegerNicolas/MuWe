@@ -6,68 +6,21 @@
 <div class="index-event-filter">
   <div class="spacer"></div>
   <div class="filters">
-    <button class="filter">All</button>
-    <button class="filter">Time</button>
-    <button class="filter">City</button>
+    <%= form_tag root_path, method: :get, remote: true do   %>
+      <input type="submit" value="Today" class="filter">
+    <% end %>
+    <button class="filter" data-toggle="modal" data-target="#timeModal">Time</button>
+    <button class="filter" data-toggle="modal" data-target="#cityModal">City</button>
     <button class="filter">Status</button>
     <button class="filter">Trust</button>
   </div>
 </div>
 
 <div class="index-page-content">
-  <div class="i-events">
-    <% @events.each do |event| %>
-      <% unless event.finished? %>
-
-        <div class="i-event">
-
-          <div class="i-event-image-holder">
-            <div class="i-event-image" >
-          <% if event.location_photo.attachment %>
-            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
-          <% else %>
-            <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
-          <% end %>
-            <p class="i-event-image-city"><%= event.city %></p>
-            <p class="i-event-image-address"><%= event.address %></p>
-            </div>
-
-          </div>
-
-          <div class="i-event-content-holder">
-
-            <p class="i-event-title"><%= event.title %></p>
-
-            <div class="i-event-content">
-              <div class="left-i-event-section i-event-container">
-                <div class="i-event-status">
-                  <p>
-                    <% if event.ongoing? %>
-                      <i class="fas fa-circle" style="color: #6BB382"></i>
-                    <% else %>
-                      <i class="fas fa-circle" style="color: #44AEE6"></i>
-                    <% end %>
-                    <%= event.status.capitalize %>
-                  </p>
-                  <p><%= event.participants.count %>/<%= event.max_players %></p>
-                </div>
-                <div class="i-event-time">
-                  <p><%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %></p>
-                </div>
-                <div class="i-event-style">
-                  <p>Style : <%= event.music_style.style %></p>
-                </div>
-              </div>
-
-              <div class="i-event-content-spacer"></div>
-
-              <div class="right-i-event-section i-event-container">
-                <p class="i-event-description"><%= event.description %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+  <div id="i-events">
+    <%= render @events %>
   </div>
 </div>
+
+<%= render "events/modals/time_modal" %>
+<%= render "events/modals/city_modal" %>

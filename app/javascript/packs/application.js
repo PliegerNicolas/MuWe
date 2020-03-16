@@ -10,6 +10,7 @@ import { addressAutocomplete } from "../plugins/address_autocomplete";
 
 initSelect2();
 initMapbox();
+window.initMapbox = initMapbox;
 initCards();
 
 $('.select2').select2({ width: '100%' });

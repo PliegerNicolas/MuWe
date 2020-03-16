@@ -2,6 +2,10 @@ button:focus {
   outline: none;
 }
 
+input:focus {
+  outline: none;
+}
+
 .create-event {
   position: absolute;
   top: 10px;
@@ -65,8 +69,8 @@ button:focus {
       background-color: $muwe-white;
       border: 2px solid $muwe-dark-gray;
       height: 75%;
-      width: 6%;
-      min-width: 40px;
+      width: 7vw;
+      min-width: 80px;
       color: $muwe-dark-gray;
       font-size: 18px;
       font-weight: bold;
