@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   def index
     @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
 
+    if params[:city]
+      #@events = @events.near(params[:city])
+      @events = @events.where("events.city iLike ?", params[:city])
+    end
+
     @markers = @events.map do |event|
       {
         lng: event.longitude,

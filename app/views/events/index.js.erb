@@ -1,0 +1,12 @@
+function FilterRefresh() {
+  document.querySelector('#cityModal .close').click();
+
+  const i_events = document.querySelector('#i-events');
+  const filtered_events = '<%= j render @events %>';
+
+  i_events.innerHTML = filtered_events;
+
+  initMapbox();
+}
+
+FilterRefresh();
