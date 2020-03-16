@@ -127,7 +127,7 @@ print ' { '
     status: Faker::Number.within(range: 0..2),
     start_date: Faker::Date.between(from: 3.days.ago, to: Date.today + 7),
     start_time: Faker::Time.between(from: Time.now - 8.hours, to: Time.now),
-    end_time: Faker::Time.between(from: Time.now, to: Time.now + 5.hours)
+    end_time: Faker::Time.between(from: Time.now, to: Time.now + 1.hours)
   )
   new_event.participants.create(user_id: new_event.user_id, status: 1)
   print '#'
