@@ -75,7 +75,7 @@
         </div>
 
         <div class="map-wrapper muwe-shadow">
-          <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+          <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
           <div class="swiper-container">
             <div class="events-wrapper swiper-wrapper">
@@ -140,13 +140,14 @@
 
 
 
+
 <!--
 <div class="index-event-filter">
   <div class="spacer"></div>
   <div class="filters">
-    <%= form_tag root_path, method: :get, remote: true do   %>
+    <%#= form_tag root_path, method: :get, remote: true do   %>
       <input type="submit" value="Today" class="filter">
-    <% end %>
+    <%# end %>
     <button class="filter" data-toggle="modal" data-target="#timeModal">Time</button>
     <button class="filter" data-toggle="modal" data-target="#cityModal">City</button>
     <button class="filter" data-toggle="modal" data-target="#statusModal">Status</button>
@@ -155,10 +156,11 @@
 
 <div class="index-page-content">
   <div id="i-events">
-    <%= render @events %>
+    <%#= render @events %>
   </div>
 </div>
 
-<%= render "events/modals/time_modal" %>
-<%= render "events/modals/city_modal" %>
-<%= render "events/modals/status_modal" %>
+<%#= render "events/modals/time_modal" %>
+<%#= render "events/modals/city_modal" %>
+<%#= render "events/modals/status_modal" %>
+-->

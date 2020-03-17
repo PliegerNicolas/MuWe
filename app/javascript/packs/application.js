@@ -2,20 +2,19 @@ import "bootstrap";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Swiper from 'swiper';
 
-import { initMapbox } from '../plugins/mapbox'
+import { initMap } from '../plugins/mapbox'
 import { initCards } from '../plugins/cards';
 import { initSelect2 } from '../plugins/init_select2';
 import "../plugins/flatpickr"
 import { addressAutocomplete } from "../plugins/address_autocomplete";
 
 
-initSelect2();
-initMapbox();
-window.initMapbox = initMapbox;
 initCards();
-
+initSelect2();
 $('.select2').select2({ width: '100%' });
 addressAutocomplete();
+initMap();
+window.initMap = initMap;
 
 let mapSwiper = new Swiper('.swiper-container', {
     direction: 'horizontal',
@@ -31,3 +30,4 @@ let mapSwiper = new Swiper('.swiper-container', {
         nextEl: '.swiper-button-next'
     }
 });
+
