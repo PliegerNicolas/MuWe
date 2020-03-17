@@ -1,0 +1,43 @@
+.post {
+    .title {
+        margin-bottom: 1rem;
+        color: $muwe-green;
+        font-family: $oswald;
+        font-size: 1.3rem;
+    }
+
+    p {
+        padding-left: 20px;
+        font-size: 13px;
+        line-height: 1.3;
+        border-left: 2px solid $muwe-green;
+    }
+
+    .social-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid $gray-300;
+
+        span {
+            flex: 1;
+            padding-right: 6px;
+            font-size: .9rem;
+            text-align: right;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 2px;
+            width: 28px;
+            height: 28px;
+            background-color: rgba($gray-300, 1);
+            border: 1px solid $gray-600;
+            border-radius: 50%;
+        }
+    }
+}
