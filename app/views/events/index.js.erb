@@ -3,10 +3,10 @@ function FilterRefresh() {
   document.querySelector('#cityModal .close').click();
   document.querySelector('#statusModal .close').click();
 
-  const i_events = document.querySelector('#i-events');
+  const events_wrapper = document.querySelector('#events-wrapper');
   const filtered_events = '<%= j render @events %>';
 
-  i_events.innerHTML = filtered_events;
+  events_wrapper.innerHTML = filtered_events;
 
   initMap();
 }

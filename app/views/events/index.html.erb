@@ -72,52 +72,58 @@
 
         <div class="new-event-box muwe-shadow">
           <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
+          <%= form_tag root_path, method: :get, remote: true do   %>
+            <input type="submit" value="Today" class="filter">
+          <% end %>
+          <button class="filter" data-toggle="modal" data-target="#timeModal">Time</button>
+          <button class="filter" data-toggle="modal" data-target="#cityModal">City</button>
+          <button class="filter" data-toggle="modal" data-target="#statusModal">Status</button>
         </div>
 
         <div class="map-wrapper muwe-shadow">
           <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
           <div class="swiper-container">
-            <div class="events-wrapper swiper-wrapper">
+            <div id="events-wrapper" class="swiper-wrapper">
               <% @events.each do |event| %>
-                <div class="event-wrapper swiper-slide muwe-shadow">
+              <div class="event-wrapper swiper-slide muwe-shadow">
 
-                  <div class="event-photo">
-                    <% if event.location_photo.attachment %>
-                      <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                <div class="event-photo">
+                  <% if event.location_photo.attachment %>
+                  <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                  <% else %>
+                  <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                  <% end %>
+
+                  <div class="event-status">
+                    <% if event.ongoing? %>
+                    <i class="fas fa-circle" style="color: #6BB382"></i>
                     <% else %>
-                      <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                    <i class="fas fa-circle" style="color: #44AEE6"></i>
                     <% end %>
-
-                    <div class="event-status">
-                      <% if event.ongoing? %>
-                        <i class="fas fa-circle" style="color: #6BB382"></i>
-                      <% else %>
-                        <i class="fas fa-circle" style="color: #44AEE6"></i>
-                      <% end %>
-                      <span>
-                        <%= event.status.capitalize %>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="event-title">
-                    <%= event.title %>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <div class="event-style">
-                      <%= event.music_style.style %>
-                    </div>
-                    <div class="participants">
-                      <i class="fas fa-users"></i>
-                      <%= event.participants.count %>/<%= event.max_players %>
-                    </div>
-                  </div>
-                  <div class="event-time">
-                    <i class="fas fa-clock"></i>
-                    <%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %>
+                    <span>
+                      <%= event.status.capitalize %>
+                    </span>
                   </div>
                 </div>
+
+                <div class="event-title">
+                  <%= event.title %>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="event-style">
+                    <%= event.music_style.style %>
+                  </div>
+                  <div class="participants">
+                    <i class="fas fa-users"></i>
+                    <%= event.participants.count %>/<%= event.max_players %>
+                  </div>
+                </div>
+                <div class="event-time">
+                  <i class="fas fa-clock"></i>
+                  <%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %>
+                </div>
+              </div>
               <% end %>
             </div>
             <div class="swiper-button-prev"></div>
@@ -129,13 +135,15 @@
 
 
 
-        </div>
+      </div>
     </div>
 
   </div>
 
 
-
+<%= render "events/modals/time_modal" %>
+<%= render "events/modals/city_modal" %>
+<%= render "events/modals/status_modal" %>
 
 
 
