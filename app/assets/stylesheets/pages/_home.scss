@@ -121,31 +121,42 @@ input:focus {
   }
 }
 
+.swiper-container {
+  // border: 1px solid red;
+  position: absolute;
+  bottom: 0;
+  padding: 0 50px 0 30px;
+  width: 100%;
+  background-color: rgba($gray-100, .8);
+  z-index: 2;
+}
+
 .events-wrapper {
   // position: absolute;
   display: none;
   bottom: 0;
-  height: 260px;
+  height: 230px;
   display: flex;
   align-items: center;
-  padding: 20px;
-  z-index: 28;
+  padding: 0;
+  // z-index: 28;
   // background-color: rgba($gray-200, .7);
 }
 
 .event-wrapper {
-  margin: 0 20px;
-  width: 260px;
-  height: 220px;
+  margin: 0 10px;
+  width: 260px !important;
+  height: 200px;
   padding: 10px;
   font-family: $oswald;
   border-radius: 8px;
+  background-color: $gray-100;
 
   .event-photo {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     width: 100%;
-    height: 120px;
+    height: 110px;
 
     img {
       width: 100%;

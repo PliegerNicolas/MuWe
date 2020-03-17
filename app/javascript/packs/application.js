@@ -1,5 +1,6 @@
 import "bootstrap";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Swiper from 'swiper';
 
 import { initMapbox } from '../plugins/mapbox'
 import { initCards } from '../plugins/cards';
@@ -14,5 +15,19 @@ window.initMapbox = initMapbox;
 initCards();
 
 $('.select2').select2({ width: '100%' });
-
 addressAutocomplete();
+
+let mapSwiper = new Swiper('.swiper-container', {
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    grabCursor: true,
+    freeMode: true,
+    scrollbar: {
+        el: '.swiper-scrollbar',
+        hide: true
+    },
+    navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next'
+    }
+});
