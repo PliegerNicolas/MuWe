@@ -1,5 +1,7 @@
 function FilterRefresh() {
+  document.querySelector('#timeModal .close').click();
   document.querySelector('#cityModal .close').click();
+  document.querySelector('#statusModal .close').click();
 
   const i_events = document.querySelector('#i-events');
   const filtered_events = '<%= j render @events %>';
