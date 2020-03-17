@@ -7,10 +7,11 @@ input:focus {
 }
 
 .create-event {
-  position: absolute;
-  top: 10px;
-  right: 100px;
+  // position: absolute;
+  // top: 10px;
+  // right: 100px;
   padding: 5px 20px;
+  color: $gray-100;
   font-family: $headers-font;
   font-weight: bold;
   text-transform: uppercase;
@@ -19,10 +20,44 @@ input:focus {
   z-index: 9999999;
 }
 
+.new-event-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.new-event-box {
+  display: flex;
+  align-items: center;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  padding: 0 20px;
+  height: 80px;
+  background-color: rgba($gray-200, .7);
+  margin-bottom: 20px;
+  // z-index: 25;
+}
+
+.map-wrapper {
+  position: relative;
+  height: 50vh;
+  min-height: 500px;
+  flex: 1;
+}
+
 #map {
-  height: 52vh;
-  background-color: #5DD1EE;
-  border-radius: 0 0 15px 15px;
+  // height: 52vh;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // background-color: #5DD1EE;
+  // border-radius: 0 0 15px 15px;
 
   .organize-jam-button {
     text-decoration: none;
@@ -83,5 +118,93 @@ input:focus {
         transition: 0.4s;
       }
     }
+  }
+}
+
+.swiper-container {
+  // border: 1px solid red;
+  position: absolute;
+  bottom: 0;
+  padding: 0 50px 0 30px;
+  width: 100%;
+  background-color: rgba($gray-100, .8);
+  z-index: 2;
+}
+
+.events-wrapper {
+  // position: absolute;
+  display: none;
+  bottom: 0;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  // z-index: 28;
+  // background-color: rgba($gray-200, .7);
+}
+
+.event-wrapper {
+  margin: 0 10px;
+  width: 260px !important;
+  height: 200px;
+  padding: 10px;
+  font-family: $oswald;
+  border-radius: 8px;
+  background-color: $gray-100;
+
+  .event-photo {
+    position: relative;
+    margin-bottom: 4px;
+    width: 100%;
+    height: 110px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .event-status {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px 6px;
+      width: auto;
+      color: $gray-800;
+      font-family: $headers-font;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background-color: rgba($gray-200, .9);
+      border-radius: 2px;
+
+      i {
+        font-size: 10px;
+      }
+
+      span {
+        margin-left: 6px;
+      }
+    }
+  }
+
+  .event-title {
+    color: $muwe-green;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .event-style, .participants {
+    color: $gray-800;
+    font-size: .9rem;
+  }
+
+  .event-time {
+    color: $muwe-green;
+    font-size: .8rem;
   }
 }
