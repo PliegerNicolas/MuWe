@@ -5,10 +5,10 @@
       <%= f.input :title, input_html:{ class: "no-border"} %>
     </div>
 
-
-    <div class="col-sm-4 upload-btn-wrapper">
-       <button class="btn">Upload a file</button>
-      <%= f.input :location_photo, as: :file, input_html:{ placeholder: 'Localização', class: "no-border"} %>
+      <div class="col-sm-4 upload-btn-wrapper">
+      <%= f.input :location_photo, name: 'filePhoto', label: false, as: :file, input_html:{ class: 'required borrowerImageFile', id: 'filePhoto', onchange: 'readURL(this);' } %>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <img id="previewHolder" src="http://placehold.it/180" alt="Uploaded Image Preview Holder" width="250px" height="250px"/>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
   </div>
 </div>
 <div class="container">
-  <%= f.submit %>
+  <%= f.button :submit, "Book" , class: "btn btn-primary submit" %>
 </div>
 <% end %>
 </div>

@@ -27,9 +27,6 @@ input {
   align-items: center;
 }
 
-.select2-container--default {
-
-}
 
 .title .description {
 border-bottom: solid 1px;
@@ -40,4 +37,16 @@ border-bottom: solid 1px;
   border: 0;
   background-color: transparent !important;
   border-bottom: solid 1px;
+}
+
+.ImageFile {
+  z-index: 999;
+  opacity: 0;
+  width: 320px;
+  height: 200px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  margin-right: auto;
+  margin-left: auto;
 }
