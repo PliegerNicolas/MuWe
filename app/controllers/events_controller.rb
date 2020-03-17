@@ -9,8 +9,8 @@ class EventsController < ApplicationController
       @events = @events.where("events.start_time >= ? and events.end_time <= ?",
                               params[:time_filter][:start_time], params[:time_filter][:end_time])
     end
-
-    @events = @events.where("events.city iLike ?", params[:city]) if params[:city] # City filter
+    @events = @events.where("events.city iLike ?", params[:city_filter][:city]) if params[:city_filter] # City filter
+    @events = @events.where(status: params[:status_filter][:status].downcase) if params[:status_filter] # Status filter
 
     @markers = @events.map do |event|
       {
