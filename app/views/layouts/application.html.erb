@@ -22,7 +22,9 @@
     <%= render 'shared/navbar' %>
   </section>
   <main>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </main>
 
   <%= javascript_include_tag 'application' %>

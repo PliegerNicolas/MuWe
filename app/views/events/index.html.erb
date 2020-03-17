@@ -1,73 +1,146 @@
-<div>
-  <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
-</div>
-<div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  <div class="row">
 
-<div class="index-event-filter">
-  <div class="spacer"></div>
-  <div class="filters">
-    <button class="filter">All</button>
-    <button class="filter">Time</button>
-    <button class="filter">City</button>
-    <button class="filter">Status</button>
-    <button class="filter">Trust</button>
-  </div>
-</div>
+    <div class="col-5">
 
-<div class="index-page-content">
-  <div class="i-events">
-    <% @events.each do |event| %>
-      <% unless event.finished? %>
 
-        <div class="i-event">
-
-          <div class="i-event-image-holder">
-            <div class="i-event-image" >
-          <% if event.location_photo.attachment %>
-            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
-          <% else %>
-            <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
-          <% end %>
-            <p class="i-event-image-city"><%= event.city %></p>
-            <p class="i-event-image-address"><%= event.address %></p>
+      <div class="muwe-shadow box mb-4">
+        <div class="post-edit">
+          <h5>What are you up to ?</h5>
+          <form action="">
+            <div>
+              <textarea name="" id="" class="form-control" cols="30" rows="1" placeholder="Post your content"></textarea>
             </div>
-
-          </div>
-
-          <div class="i-event-content-holder">
-
-            <p class="i-event-title"><%= event.title %></p>
-
-            <div class="i-event-content">
-              <div class="left-i-event-section i-event-container">
-                <div class="i-event-status">
-                  <p>
-                    <% if event.ongoing? %>
-                      <i class="fas fa-circle" style="color: #6BB382"></i>
-                    <% else %>
-                      <i class="fas fa-circle" style="color: #44AEE6"></i>
-                    <% end %>
-                    <%= event.status.capitalize %>
-                  </p>
-                  <p><%= event.participants.count %>/<%= event.max_players %></p>
-                </div>
-                <div class="i-event-time">
-                  <p><%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %></p>
-                </div>
-                <div class="i-event-style">
-                  <p>Style : <%= event.music_style.style %></p>
-                </div>
-              </div>
-
-              <div class="i-event-content-spacer"></div>
-
-              <div class="right-i-event-section i-event-container">
-                <p class="i-event-description"><%= event.description %></p>
-              </div>
+            <div class="mt-2">
+              <button class="btn btn-primary">Submit</button>
             </div>
-          </div>
+          </form>
         </div>
-      <% end %>
-    <% end %>
+      </div>
+
+
+      <div class="post box muwe-shadow mb-3">
+        <h2 class="title">Lorem ipsum dolor sit.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+        <div class="social-container">
+          <span>Share on</span>
+          <button><i class="fab fa-facebook"></i></button>
+          <button><i class="fab fa-twitter"></i></button>
+          <button><i class="fab fa-instagram"></i></button>
+          <button><i class="fab fa-linkedin"></i></button>
+        </div>
+      </div>
+      <div class="post box muwe-shadow mb-3">
+        <h2 class="title">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+        <div class="social-container">
+          <span>Share on</span>
+          <button><i class="fab fa-facebook"></i></button>
+          <button><i class="fab fa-twitter"></i></button>
+          <button><i class="fab fa-instagram"></i></button>
+          <button><i class="fab fa-linkedin"></i></button>
+        </div>
+      </div>
+      <div class="post box muwe-shadow mb-3">
+        <h2 class="title">Lorem ipsum dolor sit amet consectetur.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+        <div class="social-container">
+          <span>Share on</span>
+          <button><i class="fab fa-facebook"></i></button>
+          <button><i class="fab fa-twitter"></i></button>
+          <button><i class="fab fa-instagram"></i></button>
+          <button><i class="fab fa-linkedin"></i></button>
+        </div>
+      </div>
+      <div class="post box muwe-shadow mb-5">
+        <h2 class="title">Lorem ipsum dolor sit amet.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="post box muwe-shadow mb-5">
+        <h2 class="title">Lorem ipsum dolor sit amet consectetur.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+      <div class="post box muwe-shadow mb-5">
+        <h2 class="title">Lorem ipsum dolor sit.</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem ipsa assumenda fugiat quasi aspernatur quia possimus dignissimos incidunt. Beatae et nostrum reiciendis voluptates. Saepe, tempora facere at facilis maxime error.</p>
+      </div>
+    </div>
+
+    <div class="col-7">
+
+
+      <div class="new-event-wrapper">
+
+        <div class="new-event-box muwe-shadow">
+          <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
+          <%= form_tag root_path, method: :get, remote: true do   %>
+            <input type="submit" value="Today" class="filter">
+          <% end %>
+          <button class="filter" data-toggle="modal" data-target="#timeModal">Time</button>
+          <button class="filter" data-toggle="modal" data-target="#cityModal">City</button>
+          <button class="filter" data-toggle="modal" data-target="#statusModal">Status</button>
+        </div>
+
+        <div class="map-wrapper muwe-shadow">
+          <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+          <div class="swiper-container">
+            <div id="events-wrapper" class="swiper-wrapper">
+              <% @events.each do |event| %>
+              <div class="event-wrapper swiper-slide muwe-shadow">
+
+                <div class="event-photo">
+                  <% if event.location_photo.attachment %>
+                  <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                  <% else %>
+                  <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+                  <% end %>
+
+                  <div class="event-status">
+                    <% if event.ongoing? %>
+                    <i class="fas fa-circle" style="color: #6BB382"></i>
+                    <% else %>
+                    <i class="fas fa-circle" style="color: #44AEE6"></i>
+                    <% end %>
+                    <span>
+                      <%= event.status.capitalize %>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="event-title">
+                  <%= event.title %>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="event-style">
+                    <%= event.music_style.style %>
+                  </div>
+                  <div class="participants">
+                    <i class="fas fa-users"></i>
+                    <%= event.participants.count %>/<%= event.max_players %>
+                  </div>
+                </div>
+                <div class="event-time">
+                  <i class="fas fa-clock"></i>
+                  <%= event.start_time.to_s(:time) %> => <%= event.end_time.to_s(:time) %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-scrollbar"></div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+
   </div>
-</div>
+
+
+<%= render "events/modals/time_modal" %>
+<%= render "events/modals/city_modal" %>
+<%= render "events/modals/status_modal" %>

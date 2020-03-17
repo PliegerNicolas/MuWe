@@ -21,7 +21,7 @@
             <%= user_form.input :first_name, required: true %>
         <% end %>
           <%= f.input :last_name %>
-          <%= f.input :birth_date, as: :date %>
+          <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 10 %>
           <%= f.input :bio %>
           <%= f.input :profile_photo, as: :file %>
       </div>
