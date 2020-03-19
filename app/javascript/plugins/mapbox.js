@@ -2,15 +2,12 @@ import mapboxgl from 'mapbox-gl';
 import { debounce } from 'lodash';
 import axios from 'axios'
 
-let map;
-
-
-
+let map, initUserPos;
+let mapElement;
+let eventsWrapper = document.getElementById('events-wrapper');
 
 const fitBound = () => {
   let latitudes = events.filter(event => {
-    // console.log(event.longitude);
-    // console.log(event.latitude);
     return event.latitude
   });
   let longitudes = events.filter(event => event.longitude);
@@ -26,19 +23,43 @@ const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by 
 
 const fetchMarkers =  async () => {
   const pos = map.getCenter();
+  const { _sw, _ne } = map.getBounds();
+
   const res = await axios.get('/search', {
     params: {
       latitude: pos.lat,
-      longitude: pos.lng
+      longitude: pos.lng,
+      max_lat: _ne.lat,
+      min_lat: _sw.lat,
+      max_lng: _ne.lng,
+      min_lng: _sw.lng
     }
   });
-  return res.data.events;
+  return {
+    events: res.data.events,
+    cards: res.data.cards
+  }
+}
+
+const clearMarkers = () => {
+  // this querySelectorAll is to generic and also gets the userposition marker
+  // maybe a custom className could be added to marker before addTo(map)
+  const markers = mapElement.querySelectorAll('.mapboxgl-marker');
+  markers.forEach((marker) => {
+    marker.remove();
+  })
 }
 
 const bouncedMarkers = debounce(() => {
   fetchMarkers()
     .then((response) => {
-      response.forEach((marker) => {
+      const { events, cards } = response;
+
+      clearMarkers();
+
+      eventsWrapper.innerHTML = cards;
+
+      events.forEach((marker) => {
         // console.log(marker);
 
         let popup = new mapboxgl.Popup({ offset: 25, maxWidth: '320px' }).setHTML(
@@ -59,12 +80,7 @@ const bouncedMarkers = debounce(() => {
     });
 }, 1000);
 
-
-
-
-
 const initMap = () => {
-  let initUserPos, mapCenter;
   let sPath = window.location.pathname;
   let sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
@@ -76,7 +92,7 @@ const initMap = () => {
     console.log("initial user\'s position :", initUserPos); // We've got the initial user position here
 
     if(sPage == '') {
-      const mapElement = document.getElementById('map'); // Get info about map in HTML
+      mapElement = document.getElementById('map'); // Get info about map in HTML
       mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
       if (mapElement) { // Initalise first view of mapbox map
@@ -104,6 +120,7 @@ const initMap = () => {
       // Execute the rest => what happens with the markers
 
       map.on('render', () => {
+        // console.log(map.getBounds());
         bouncedMarkers();
       });
     }

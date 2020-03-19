@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
-  validates :title, :start_date, :start_time, :end_time, :address, :max_players, presence: true
+  # validates :title, :start_date, :start_time, :end_time, :address, :max_players, presence: true
+  validates :title, :start_date, :start_time, :end_time, :max_players, presence: true
   belongs_to :user
   has_many :participants, dependent: :destroy
   has_many :comments
