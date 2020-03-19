@@ -134,6 +134,61 @@ print ' { '
   print '#'
 end
 
+def rand_coords(coords, lat, lng, num = 5)
+  num.times do
+    coords << { lat: lat + Random.rand(0.01..0.05), lng: lng + Random.rand(0.01..0.05) }
+  end
+end
+
+coords = Array.new
+# Add events near Sofia usual position
+# Oeiras - main one
+lat = 38.691650
+lng = -9.3106365
+coords << { lat: lat, lng: lng }
+rand_coords(coords, lat, lng)
+
+# Add events near Nicolas usual position
+# Azoia - main one
+lat = 38.771137
+lng = -9.4770421
+coords << { lat: lat, lng: lng }
+rand_coords(coords, lat, lng)
+
+# Add events near Nuno usual position
+# Qta do Anjo - main one
+lat = 38.567527
+lng = -8.899005
+coords << { lat: lat, lng: lng }
+rand_coords(coords, lat, lng)
+
+# insert a bunch of random coords
+rand_coords(coords, 38.898212, -9.257787, 10)
+rand_coords(coords, 38.824677, -9.160750, 10)
+rand_coords(coords, 38.73542, -9.142147, 10)
+rand_coords(coords, 40.209668, -8.41986, 20)
+rand_coords(coords, 40.660841, -7.908266, 15)
+rand_coords(coords, 41.145657, -8.616749, 15)
+
+coords.size.times do |i|
+  start_time = Faker::Time.between(from: Time.now - 5.minutes, to: Time.now + 4.hours)
+  Event.create!(
+    user_id: User.order('RANDOM()').first.id,
+    title: Faker::Music.album,
+    country: 'Portugal',
+    latitude: coords[i][:lat],
+    longitude: coords[i][:lng],
+    description: Faker::Lorem.sentence(word_count: 18),
+    max_players: Faker::Number.within(range: 2..8),
+    music_style_id: MusicStyle.order('RANDOM()').first.id,
+    status: Faker::Number.within(range: 0..2),
+    start_date: Faker::Date.between(from: 2.days.ago, to: Date.today + 7),
+    start_time: start_time,
+    end_time: Faker::Time.between(from: start_time, to: start_time + 2.hours)
+  )
+end
+
+
 print ' }'
 
 #End creating events
