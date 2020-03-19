@@ -70,9 +70,10 @@
   <% if @event.comments.blank? %>
     Be the first to leave a message.
   <% else %>
-    <% @event.comments.order(created_at: :asc).last(15).each do |comment| %>
+    <% @event.comments.order(created_at: :asc).last(20).each do |comment| %>
       <%= render 'comments/show', comment: comment %>
     <% end %>
   <% end %>
+</div>
 
 <%= render 'comments/form', event: @event, comment: @comment %>

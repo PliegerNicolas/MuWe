@@ -1,4 +1,4 @@
-<%= simple_form_for([ event, comment ]) do |form| %>
+<%= simple_form_for([ event, comment ], remote: true) do |form| %>
   <%= form.input :message, as: :text %>
   <%= form.button :submit %>
 <% end %>

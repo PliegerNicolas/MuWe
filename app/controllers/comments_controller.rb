@@ -7,9 +7,15 @@ class CommentsController < ApplicationController
       @comment.event_id = @event.id
       authorize @comment
       if @comment.save
-        redirect_to event_path(@event)
+        respond_to do |format|
+          format.html { redirect_to event_path(@event) }
+          format.js
+        end
       else
-        render 'events/show'
+        respond_to do |format|
+          format.html { render }
+          format.js
+        end
       end
     end
   end

@@ -1,0 +1,12 @@
+function addComment(newComment) {
+  var comments = document.getElementById('comments')
+  comments.insertAdjacentHTML('beforeend', newComment)
+  if (comments.children.length >= 20) {
+    comments.children[0].remove();
+  }
+}
+
+<% if @comment.valid? %>
+  addComment('<%= j render "comments/show", event: @event, comment: @comment %>'); // New comment
+<% else %>
+<% end %>
