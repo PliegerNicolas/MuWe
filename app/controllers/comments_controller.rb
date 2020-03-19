@@ -1,19 +1,10 @@
 class CommentsController < ApplicationController
-  def show
-  end
-
-  def new
-  end
-
   def create
   end
 
-  def edit
-  end
+  private
 
-  def update
-  end
-
-  def destroy
+  def comment_params
+    params.require(:comment).permit(:user_id, :event_id, :post_id, :message)
   end
 end

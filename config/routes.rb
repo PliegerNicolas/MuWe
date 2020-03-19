@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
     post 'participant/:id/', to: 'participants#accept', as: :accept_user
     delete 'participant/:id/', to: 'participants#decline', as: :decline_user
+
+    resources :comments, only: :create
   end
   resources :profiles, only: [:edit]
 
