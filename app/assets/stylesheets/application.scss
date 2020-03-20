@@ -25,22 +25,15 @@ p {
 
 body {
   min-height: 100vh;
-  background-color: $muwe-gray;
-  display: grid;
-  grid-template-areas: 'navbar content';
-  grid-template-columns: 110px auto;
 }
 
 main {
-  overflow: hidden;
-  grid-column-start: 2;
-  background-color: $white;
+  display: flex;
+  flex-direction: column;
   position: relative;
-}
-
-section {
-  position: fixed;
-  width: 110px;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: $muwe-gray;
 }
 
 h1 {

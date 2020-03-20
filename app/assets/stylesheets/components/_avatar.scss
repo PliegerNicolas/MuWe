@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  // width: 75px;
+  // height: 75px;
   border-radius: 50%;
   background-color: $muwe-white;
   transition: 0.5s;
+
   &:hover {
     background-color: $muwe-green;
     transition: 0.4s;
@@ -14,23 +15,26 @@
   }
 
   .muwe-avatar {
-    width: 71px;
+    // width: 71px;
     border-radius: 50%;
   }
+
   .muwe-avatar-large {
     width: 120px;
     border-radius: 50%;
   }
+
   .muwe-avatar-bordered {
     width: 40px;
     border-radius: 50%;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border: white 1px solid;
   }
+
   .muwe-avatar-square {
     width: 40px;
     border-radius: 0px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border: white 1px solid;
   }
 }

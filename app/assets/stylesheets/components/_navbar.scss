@@ -1,16 +1,17 @@
 .navbar {
-  @include flex-column;
-  height: 100vh;
-  padding: 0;
-  border-left: 1.5px solid #FFF7F2;
-  border-right: 3px solid #FFF7F2;
-  box-shadow: inset 1px 0 15px 0 rgba(255,247,242,0.15);
-  background-color: $muwe-black;
+  padding: 5px 20px;
+  height: 80px;
+  // box-shadow: inset 1px 0 15px 0 rgba(255, 247, 242, 0.15);
+  // background-color: $muwe-black;
+  background-color: $gray-800;
+  // background-color: $white;
 
   a {
     color: $muwe-white;
+    // color: $strong-purple;
     text-decoration: none;
     transition: 0.5s;
+
     &:hover {
       transition: 0.4s;
       color: $muwe-green;
@@ -23,10 +24,25 @@
   }
 }
 
-svg { // Menu buttons
+.notifications {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+
+  i {
+    color: $muwe-white;
+  }
+}
+
+svg {
+  // Menu buttons
   width: 38px;
   height: 38px;
   fill: $muwe-white;
+
   &:hover {
     fill: $muwe-green;
     transition: 0.4s;
@@ -34,29 +50,43 @@ svg { // Menu buttons
 }
 
 .navbar-content {
-  @include flex-column;
-  justify-content: space-between;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
-.section {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.item-logo {
+  margin: 0 30px !important;
+
+  img {
+    width: 65px;
+    height: 65px;
+  }
 }
 
 .navbar-menu-section {
-  @include flex-column;
-  justify-content: space-between;
-  height: 32vh;
+  ul {
+    margin: 0;
+  }
 }
 
 .navbar-profile-section {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
-  height: 26vh;
 
-  .profile-photo-container {
-    margin: 25px 0;
+  .user-profile-action-buttons {
+    margin-right: 30px;
+
+    a {
+      margin: 0 5px;
+    }
   }
 
   p {
@@ -65,6 +95,6 @@ svg { // Menu buttons
   }
 }
 
-.navbar-logo {
-  margin-top: 12px;
+.location-and-users-count {
+  display: none;
 }
