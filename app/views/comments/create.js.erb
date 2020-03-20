@@ -1,7 +1,7 @@
 function addComment(newComment) {
   var comments = document.getElementById('comments')
   comments.insertAdjacentHTML('beforeend', newComment)
-  if (comments.children.length >= 20) {
+  if (comments.children.length > 20) {
     comments.children[0].remove();
   }
 }
