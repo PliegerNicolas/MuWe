@@ -66,14 +66,18 @@
 <% end %>
 <!-- End logic about inscription to event -->
 
-<div id="comments">
-  <% if @event.comments.blank? %>
-    Be the first to leave a message.
-  <% else %>
-    <% @event.comments.order(created_at: :asc).last(20).each do |comment| %>
-      <%= render 'comments/show', comment: comment %>
+<!-- Tchat start -->
+<% unless @event.participants.where(status: 'accepted', user_id: current_user).empty? %>
+  <div id="comments">
+    <% if @event.comments.blank? %>
+      Be the first to leave a message.
+    <% else %>
+      <% @event.comments.order(created_at: :asc).last(20).each do |comment| %>
+        <%= render 'comments/show', comment: comment %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<%= render 'comments/form', event: @event, comment: @comment %>
+  <%= render 'comments/form', event: @event, comment: @comment %>
+<% end %>
+<!-- Tchat end -->
