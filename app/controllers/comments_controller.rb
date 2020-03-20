@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
       @comment.event_id = @event.id
       authorize @comment
-      if @comment.save
+      if @event.participants.where(status: 'accepted', user_id: current_user).blank?
+        @comment.save
         respond_to do |format|
           format.html { redirect_to event_path(@event) }
           format.js
