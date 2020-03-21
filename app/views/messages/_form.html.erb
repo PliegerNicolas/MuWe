@@ -1,0 +1,4 @@
+<%= simple_form_for([@event, Message.new], remote: true) do |f| %>
+  <%= f.input :message, label: false %>
+  <%= f.submit "Send" %>
+<% end %>
