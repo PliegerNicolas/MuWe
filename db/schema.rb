@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_115154) do
+ActiveRecord::Schema.define(version: 2020_03_21_151007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,12 +38,10 @@ ActiveRecord::Schema.define(version: 2020_03_07_115154) do
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "event_id"
     t.bigint "post_id"
-    t.text "message"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -140,6 +138,12 @@ ActiveRecord::Schema.define(version: 2020_03_07_115154) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
+  create_table "tchat_rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -155,7 +159,6 @@ ActiveRecord::Schema.define(version: 2020_03_07_115154) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "music_styles"

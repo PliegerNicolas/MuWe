@@ -241,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview
   algoliasearch-rails
   autoprefixer-rails
   bootsnap

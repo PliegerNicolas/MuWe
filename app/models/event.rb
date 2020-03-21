@@ -3,7 +3,6 @@ class Event < ApplicationRecord
   validates :title, :start_date, :start_time, :end_time, :max_players, presence: true
   belongs_to :user
   has_many :participants, dependent: :destroy
-  has_many :comments
   belongs_to :music_style
   has_one_attached :location_photo
 
