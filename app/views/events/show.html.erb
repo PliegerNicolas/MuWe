@@ -85,10 +85,12 @@
 
     scrollLastMessageIntoView();
     App['chat_room_<%= @event.id %>'] = App.cable.subscriptions.create({ channel: 'EventChatsChannel', event_chat_id: <%= @event.id %> }, { received: (data) => {
-      if (data.current_user_id !== <%= current_user.id %>)
-      var messagesContainer = document.getElementById('messages');
-      messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
-      scrollLastMessageIntoView();
-    } })
+      if (data.current_user_id !== <%= current_user.id %>) {
+        var messagesContainer = document.getElementById('messages');
+        messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+        scrollLastMessageIntoView();
+      }
+    }
+  })
   </script>
 <% end %>
