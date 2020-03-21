@@ -1,8 +1,6 @@
 import "bootstrap";
-import 'mapbox-gl/dist/mapbox-gl.css';
 import Swiper from 'swiper';
 
-// prettier-ignore
 import {
     initMap
 } from '../plugins/mapbox';

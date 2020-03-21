@@ -12,7 +12,6 @@ gem 'rails', '5.2.4.1'
 gem 'redis'
 gem 'cloudinary', '~> 1.12.0'
 gem 'inline_svg'
-gem "actionview"
 
 gem 'faker' # Will need in the final version to be removed
 
@@ -31,7 +30,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry-byebug'
+  # gem 'pry-byebug', '~> 3.4' # This gem doesn't play well with bootsnap
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
