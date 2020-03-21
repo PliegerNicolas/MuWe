@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'messages/destroy'
   devise_for :users
 
   root to: 'events#index'
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
     post 'participant/:id/', to: 'participants#accept', as: :accept_user
     delete 'participant/:id/', to: 'participants#decline', as: :decline_user
 
-    resources :comments, only: :create
+    resources :messages, only: [:create, :destroy]
   end
   resources :profiles, only: [:edit]
 

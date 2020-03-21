@@ -67,17 +67,10 @@
 <!-- End logic about inscription to event -->
 
 <!-- Tchat start -->
-<% unless @event.participants.where(status: 'accepted', user_id: current_user).empty? %>
-  <div id="comments">
-    <% if @event.comments.blank? %>
-      Be the first to leave a message.
-    <% else %>
-      <% @event.comments.order(created_at: :asc).last(20).each do |comment| %>
-        <%= render 'comments/show', comment: comment %>
-      <% end %>
+  <div id="messages">
+    <% @event.messages.each do |message| %>
+      <%= render "messages/message", message: message %>
     <% end %>
   </div>
-
-  <%= render 'comments/form', event: @event, comment: @comment %>
-<% end %>
+  <%= render 'messages/form', event: @event, comment: @comment %>
 <!-- Tchat end -->

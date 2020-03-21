@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_21_151007) do
+ActiveRecord::Schema.define(version: 2020_03_21_154241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(version: 2020_03_21_151007) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_messages_on_event_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "music_styles", force: :cascade do |t|
     t.string "style"
     t.datetime "created_at", null: false
@@ -138,12 +148,6 @@ ActiveRecord::Schema.define(version: 2020_03_21_151007) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
-  create_table "tchat_rooms", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -166,6 +170,8 @@ ActiveRecord::Schema.define(version: 2020_03_21_151007) do
   add_foreign_key "followers", "users"
   add_foreign_key "instrument_users", "instruments"
   add_foreign_key "instrument_users", "users"
+  add_foreign_key "messages", "events"
+  add_foreign_key "messages", "users"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
   add_foreign_key "posts", "users"

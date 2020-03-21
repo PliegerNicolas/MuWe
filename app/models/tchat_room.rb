@@ -1,2 +1,0 @@
-class TchatRoom < ApplicationRecord
-end
