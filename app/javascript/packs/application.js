@@ -1,5 +1,8 @@
 import "bootstrap";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import "flatpickr/dist/flatpickr.min.css";
+import "swiper/css/swiper.min.css";
+
 import Swiper from 'swiper';
 
 // prettier-ignore
