@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
-import { debounce } from 'lodash';
+import {
+  debounce
+} from 'lodash';
 import axios from 'axios'
 
 let map, initUserPos;
@@ -17,13 +19,20 @@ const fitBound = () => {
 
 const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
   const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 1500 });
+  markers.forEach(marker => bounds.extend([marker.lng, marker.lat]));
+  map.fitBounds(bounds, {
+    padding: 70,
+    maxZoom: 15,
+    duration: 1500
+  });
 };
 
-const fetchMarkers =  async () => {
+const fetchMarkers = async () => {
   const pos = map.getCenter();
-  const { _sw, _ne } = map.getBounds();
+  const {
+    _sw,
+    _ne
+  } = map.getBounds();
 
   const res = await axios.get('/search', {
     params: {
@@ -53,7 +62,10 @@ const clearMarkers = () => {
 const bouncedMarkers = debounce(() => {
   fetchMarkers()
     .then((response) => {
-      const { events, cards } = response;
+      const {
+        events,
+        cards
+      } = response;
 
       clearMarkers();
 
@@ -62,7 +74,10 @@ const bouncedMarkers = debounce(() => {
       events.forEach((marker) => {
         // console.log(marker);
 
-        let popup = new mapboxgl.Popup({ offset: 25, maxWidth: '320px' }).setHTML(
+        let popup = new mapboxgl.Popup({
+          offset: 25,
+          maxWidth: '320px'
+        }).setHTML(
           `<div class="popup-marker">
             <h3>${marker.title}</h3>
             <p>${marker.description}</p>
@@ -72,8 +87,10 @@ const bouncedMarkers = debounce(() => {
 
         let color = (marker.status == 'planned') ? '#44AEE6' : '#6BB382';
 
-        new mapboxgl.Marker({color})
-          .setLngLat([ marker.longitude, marker.latitude ])
+        new mapboxgl.Marker({
+            color
+          })
+          .setLngLat([marker.longitude, marker.latitude])
           .setPopup(popup)
           .addTo(map);
       });
@@ -91,7 +108,7 @@ const initMap = () => {
     }
     console.log("initial user\'s position :", initUserPos); // We've got the initial user position here
 
-    if(sPage == '') {
+    if (sPage == '') {
       mapElement = document.getElementById('map'); // Get info about map in HTML
       mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
@@ -127,4 +144,7 @@ const initMap = () => {
   });
 }
 
-export { initMap };
+export {
+  initMap,
+  map
+};

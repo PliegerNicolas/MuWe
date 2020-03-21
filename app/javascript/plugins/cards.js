@@ -1,8 +1,10 @@
-import { map } from '../plugins/mapbox';
+import {
+    map
+} from '../plugins/mapbox';
 
 const initCards = () => {
-    document.querySelectorAll('.small-card').forEach(function(card) {
-        card.addEventListener('click', function(evt){
+    document.querySelectorAll('.small-card').forEach(function (card) {
+        card.addEventListener('click', function (evt) {
             map.flyTo({
                 center: [
                     card.dataset.lng,
@@ -15,4 +17,6 @@ const initCards = () => {
     });
 }
 
-export { initCards }
+export {
+    initCards
+}
