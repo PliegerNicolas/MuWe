@@ -130,7 +130,6 @@ print ' { '
     start_time: start_time,
     end_time: Faker::Time.between(from: start_time, to: start_time + 2.hours)
   )
-  new_event.participants.create(user_id: new_event.user_id, status: 1)
   print '#'
 end
 

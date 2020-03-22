@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   after_create :attach_default_event_image
+  after_create :self_participate
 
   validates :title, :start_date, :start_time, :end_time, :max_players, presence: true
   belongs_to :user
@@ -17,6 +18,10 @@ class Event < ApplicationRecord
 
   def accepted_participants
     self.participants.where("participants.status=?", 1) # TODO: dynamically get accepted status from participants
+  end
+
+  def self_participate
+    self.participants.create!(user_id: self.user_id, status: 1)
   end
 
   def attach_default_event_image
