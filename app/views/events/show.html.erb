@@ -67,10 +67,10 @@
 <!-- End logic about inscription to event -->
 
 <!-- Tchat start -->
-<% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
-  To get access to tchat you must be a participant.
-<% else %>
-  <div id="messages">
+<div id="messages">
+  <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
+    To get access to tchat you must be a participant.
+  <% else %>
     <% @event.messages.each do |message| %>
       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
     <% end %>
