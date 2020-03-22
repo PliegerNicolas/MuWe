@@ -67,10 +67,7 @@
 <!-- End logic about inscription to event -->
 
 <!-- Tchat start -->
-<% unless @event.participants.where(status: 'accepted', user_id: current_user).empty? %>
-  You need to be a participant to access event tchat.
-<% else %>
-
+<% unless @event.participants.where(user: current_user, status: 'accepted').empty? %>
   <div id="messages">
     <% @event.messages.each do |message| %>
       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
@@ -89,6 +86,7 @@
       lastMessage.scrollIntoView();
     };
 
+    <% if current_user %>
     scrollLastMessageIntoView();
     App['chat_room_<%= @event.id %>'] = App.cable.subscriptions.create({ channel: 'EventChatsChannel', event_chat_id: <%= @event.id %> }, { received: (data) => {
       if (data.current_user_id !== <%= current_user.id %>) {
@@ -98,5 +96,6 @@
       }
     }
   })
+  <% end %>
   </script>
 <% end %>
