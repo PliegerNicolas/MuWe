@@ -13,6 +13,7 @@ class Event < ApplicationRecord
 
   enum status: { planned: 0, ongoing: 1, finished: 2 }
   # .planned(! or ?), .active(! or ?), .finished(! or ?) to update or check the status easily
+
   def accepted_participants
     self.participants.where("participants.status=?", 1) # TODO: dynamically get accepted status from participants
   end
