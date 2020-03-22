@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
-  # validates :title, :start_date, :start_time, :end_time, :address, :max_players, presence: true
+  after_create :attach_default_event_image
+
   validates :title, :start_date, :start_time, :end_time, :max_players, presence: true
   belongs_to :user
   has_many :participants, dependent: :destroy
@@ -16,5 +17,12 @@ class Event < ApplicationRecord
 
   def accepted_participants
     self.participants.where("participants.status=?", 1) # TODO: dynamically get accepted status from participants
+  end
+
+  def attach_default_event_image
+    image_path = 'https://res.cloudinary.com/dhemw39dw/image/upload/v1582662629/default_instrument_image.jpg'
+    file = URI.open(image_path)
+    filename = File.basename(URI.parse(image_path).path)
+    self.location_photo.attach(io: file, filename: filename)
   end
 end
