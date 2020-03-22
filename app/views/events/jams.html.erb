@@ -10,8 +10,6 @@
         <div class="card-img-top" >
           <% if event.location_photo.attachment %>
             <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "card-img-top" %>
-          <% else %>
-            <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "card-img-top" %>
           <% end %>
         </div>
         <% end %>
