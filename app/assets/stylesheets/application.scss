@@ -6,10 +6,10 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
-// @import "font-awesome-sprockets";
-// @import "font-awesome";
-@import "flatpickr/dist/flatpickr.min.css";
-@import "swiper/css/swiper.min.css";
+@import "mapbox-gl/dist/mapbox-gl";
+@import "flatpickr/dist/flatpickr";
+@import "select2/dist/css/select2.min";
+@import "swiper/swiper";
 
 // Your CSS partials
 @import "components/index";
