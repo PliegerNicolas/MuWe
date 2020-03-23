@@ -67,12 +67,17 @@
 <!-- End logic about inscription to event -->
 
 <!-- Tchat start -->
-  <div id="messages">
+<div id="messages">
+  <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
+    To get access to tchat you must be a participant.
+  <% else %>
     <% @event.messages.each do |message| %>
       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
     <% end %>
   </div>
+
   <%= render 'messages/form', event: @event, comment: @comment %>
+<% end %>
 <!-- Tchat end -->
 
 <% content_for :after_js do %>
@@ -80,9 +85,12 @@
     function scrollLastMessageIntoView() {
       const messages = document.querySelectorAll('.message')
       const lastMessage = messages[messages.length - 1]
-      lastMessage.scrollIntoView();
+      if(lastMessage) {
+        lastMessage.scrollIntoView();
+      }
     };
 
+    <% if current_user %>
     scrollLastMessageIntoView();
     App['chat_room_<%= @event.id %>'] = App.cable.subscriptions.create({ channel: 'EventChatsChannel', event_chat_id: <%= @event.id %> }, { received: (data) => {
       if (data.current_user_id !== <%= current_user.id %>) {
@@ -92,5 +100,6 @@
       }
     }
   })
+  <% end %>
   </script>
 <% end %>

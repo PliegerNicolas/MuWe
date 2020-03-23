@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :instrument_users, dependent: :destroy
   has_many :events
+  has_many :messages, dependent: :destroy
   has_many :comments
   has_many :ratings
   has_many :followers, class_name: 'Follower', foreign_key: 'user_id'

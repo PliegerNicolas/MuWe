@@ -1,5 +1,5 @@
 meta_product_name: "MuWe"
 meta_title: "MuWe. - Social Network"
 meta_description: "MuWe simplifies and promotes musical interactions by uniting Musicans around the world."
-meta_image: "muwe-logo.svg" # should exist in `app/assets/images/`
+meta_image: "muwe-meta-image.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
