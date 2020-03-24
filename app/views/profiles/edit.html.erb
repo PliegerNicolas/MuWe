@@ -1,40 +1,42 @@
-<div class="profile-heading">
-  <div>
-    <% if @profile.profile_photo.attachment %>
-    <%= image_tag @profile.profile_photo, height: '120px', width: '120px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar-large"%>
-    <% end %>
+<div class="container">
+  <div class="profile-heading">
+    <div>
+      <% if @profile.profile_photo.attachment %>
+      <%= image_tag @profile.profile_photo, height: '120px', width: '120px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar-large"%>
+      <% end %>
+    </div>
+    <h2>Edit <%= @profile.user.first_name %>'s profile</h2>
   </div>
-  <h2>Edit <%= @profile.user.first_name %>'s profile</h2>
-</div>
 
-<div class="row">
-  <div class="col-6">
-    <%= simple_form_for @profile do |f| %>
-      <%= f.error_notification %>
+  <div class="row">
+    <div class="col-6">
+      <%= simple_form_for @profile do |f| %>
+        <%= f.error_notification %>
 
-      <div class="form-inputs">
+        <div class="form-inputs">
 
-        <%= f.fields_for current_user do |user_form| %>
-            <%= user_form.input :email, required: true, autofocus: true %>
-            <%= user_form.input :first_name, required: true %>
-        <% end %>
-          <%= f.input :last_name %>
-          <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 10 %>
-          <%= f.input :bio %>
-          <%= f.input :profile_photo, as: :file %>
-      </div>
+          <%= f.fields_for current_user do |user_form| %>
+              <%= user_form.input :email, required: true, autofocus: true %>
+              <%= user_form.input :first_name, required: true %>
+          <% end %>
+            <%= f.input :last_name %>
+            <%= f.input :birth_date, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 10 %>
+            <%= f.input :bio %>
+            <%= f.input :profile_photo, as: :file %>
+        </div>
 
 
-      <div class="form-actions">
-        <%= f.button :submit, "Update", class: 'btn-primary' %>
-        <%= link_to "Back", :back, class: 'btn btn-outline-secondary float-right' %>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-3 offset-3">
-    <h4>Cancel my account</h4>
-    <p class="text-justify">Unhappy? Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus dolorem ab animi doloremque corrupti quidem architecto dicta, magnam alias consequatur facere nihil consequuntur distinctio aut nemo natus doloribus quam ratione. Dignissimos provident error in veniam libero quam officiis nisi nihil!</p>
-    <p>&nbsp;</p>
-    <p><%= link_to "Cancel my account", registration_path(User), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-outline-danger' %></p>
+        <div class="form-actions">
+          <%= f.button :submit, "Update", class: 'btn-primary' %>
+          <%= link_to "Back", :back, class: 'btn btn-outline-secondary float-right' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-3 offset-3">
+      <h4>Cancel my account</h4>
+      <p class="text-justify">Unhappy? Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus dolorem ab animi doloremque corrupti quidem architecto dicta, magnam alias consequatur facere nihil consequuntur distinctio aut nemo natus doloribus quam ratione. Dignissimos provident error in veniam libero quam officiis nisi nihil!</p>
+      <p>&nbsp;</p>
+      <p><%= link_to "Cancel my account", registration_path(User), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-outline-danger' %></p>
+    </div>
   </div>
 </div>
