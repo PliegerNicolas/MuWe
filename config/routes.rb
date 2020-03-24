@@ -23,7 +23,10 @@ Rails.application.routes.draw do
 
     resources :messages, only: [:create, :destroy]
   end
-  resources :profiles, only: [:edit]
+
+  resources :profiles, only: [:edit] do
+    resources :posts, only: [:create, :destroy, :edit]
+  end
 
   get 'search', to: 'search#index'
 
