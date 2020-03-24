@@ -17,7 +17,7 @@
         </li>
         <li class="list-inline-item item-logo">
           <%= link_to root_path do %>
-            <%= image_tag 'muwe-logo.svg', height: '85px', width: '85px' %>
+            <%= image_tag 'muwe-logo.svg', height: '85px', width: '85px', secure: true %>
           <% end %>
         </li>
         <li class="list-inline-item">
@@ -45,14 +45,14 @@
         <% if user_signed_in? %>
           <%= link_to profile_path(current_user.id) do %>
             <% if current_user.profile.profile_photo.attachment %>
-              <%= image_tag (current_user.profile.profile_photo), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar" %>
+              <%= image_tag (current_user.profile.profile_photo), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
             <% else %>
-              <%= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar" %>
+              <%= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
             <% end %>
           <% end %>
         <% else %>
           <%= link_to new_user_session_path do %>
-            <%= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar" %>
+            <%= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
           <% end %>
         <% end %>
       </div>

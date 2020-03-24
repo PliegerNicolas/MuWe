@@ -7,9 +7,9 @@
         <div class="left">
           <div class="profile-photo">
             <% if @profile.profile_photo.attachment %>
-              <%= image_tag @profile.profile_photo %>
+              <%= image_tag @profile.profile_photo, secure: true %>
             <% else %>
-              <%= image_tag (cl_image_path 'default_instrument_image') %>
+              <%= image_tag (cl_image_path 'default_instrument_image', secure: true) %>
             <% end %>
           </div>
         </div>
