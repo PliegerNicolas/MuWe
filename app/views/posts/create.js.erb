@@ -1,16 +1,14 @@
-function refreshForm(emptyForm) {
-  const newPostForm = document.getElementById('new_post');
-  newPostForm.innerHTML = emptyForm;
+function refreshForm(emptyFormHTML) {
+  const oldPostForm = document.getElementById('new_post');
+  oldPostForm.innerHTML = emptyFormHTML;
 }
 
 function addPost(postHTML) {
   const posts = document.getElementById('posts');
-  posts.insertAdjacent('beforeend', postHTML);
+  posts.insertAdjacentHTML('beforeend', postHTML);
+  console.log(posts);
+  console.log(postHTML);
 }
 
-<% if @post.errors.any? %>
-  refreshForm('<%= j render "posts/form", profile: @profile, post: @post %>')
-<% else %>
-  addPost('<%= j render "posts/show", post: @post %>')
-  refreshForm('<%= j render "posts/form", profile: @profile, post: @post %>')
-<% end %>
+refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
+addPost('<%= j render "posts/show", post: @post %>');
