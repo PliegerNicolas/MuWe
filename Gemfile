@@ -24,6 +24,7 @@ gem 'webpacker'
 gem 'pundit'
 gem 'flatpickr'
 gem "algoliasearch-rails"
+gem 'pagy', '~> 3.7', '>= 3.7.4'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

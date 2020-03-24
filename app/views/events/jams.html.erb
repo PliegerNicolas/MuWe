@@ -3,7 +3,7 @@
 
   <div class="row">
     <% @events.each do |event| %>
-    <% unless event.finished? %>
+    <% unless event.finished? # this is redundant since we get only the events with status not finished in the controller %>
     <div class="col-sm-4 col-xl-3 jams">
       <div class="jam-card">
         <%= link_to event_path(event.id) do %>
@@ -59,4 +59,7 @@
     <% end %>
     <% end %>
   </div>
+
+  <%== pagy_bootstrap_nav(@pagy) %>
+
 </div>
