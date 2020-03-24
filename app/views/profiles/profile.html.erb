@@ -94,4 +94,4 @@
   </div>
 </div>
 
-<%= link_to "post post", profile_posts_path(@profile.id), method: :post %>
+<%= render 'posts/form', profile: @profile, post: Post.new %>
