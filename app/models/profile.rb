@@ -7,7 +7,7 @@ class Profile < ApplicationRecord
   has_one_attached :profile_photo
 
   def attach_default_profile_image
-    image_path = '//res.cloudinary.com/dhemw39dw/image/upload/v1582662629/default_instrument_image.jpg'
+    image_path = 'https://extraupdate.com/wp-content/uploads/2019/02/map_img_1138084_1501023103.jpg'
     file = URI.open(image_path)
     filename = File.basename(URI.parse(image_path).path)
     self.profile_photo.attach(io: file, filename: filename)

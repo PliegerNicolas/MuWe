@@ -8,14 +8,14 @@
 puts 'Destroying all Events and Participants'
 Event.destroy_all
 
-puts 'Destroying all Users, Profiles and Participants again'
-User.destroy_all # if Rails.env.development?
-
 puts "Destroying Comments, Ratings, Followers and posts"
 Comment.destroy_all # if Rails.env.development?
 Rating.destroy_all # if Rails.env.development?
 Follower.destroy_all # if Rails.env.development?
 Post.destroy_all # if Rails.env.development?
+
+puts 'Destroying all Users, Profiles and Participants again'
+User.destroy_all # if Rails.env.development?
 
 puts "Destroying all instruments"
 Instrument.destroy_all
