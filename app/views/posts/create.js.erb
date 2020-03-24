@@ -10,5 +10,9 @@ function addPost(postHTML) {
   console.log(postHTML);
 }
 
-refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
-addPost('<%= j render "posts/show", post: @post %>');
+<% if @post.valid? %>
+  addPost('<%= j render "posts/show", post: @post %>');
+  refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
+<% else %>
+  refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
+<% end %>
