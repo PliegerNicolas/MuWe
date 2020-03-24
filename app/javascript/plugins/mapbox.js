@@ -155,6 +155,11 @@ const initMap = () => {
             center: [-90.048981, 35.149532],
             zoom: 11
           })
+
+        map.on('render', () => {
+          // console.log(map.getBounds());
+          bouncedMarkers();
+          });
         }
       }
     }
