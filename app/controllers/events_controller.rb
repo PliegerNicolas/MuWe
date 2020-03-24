@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def jams
-    @pagy, @events = pagy(policy_scope(Event))
+    @pagy, @events = pagy(policy_scope(Event.where.not(status: 'finished')), items: 12)
     authorize @events
   end
 
