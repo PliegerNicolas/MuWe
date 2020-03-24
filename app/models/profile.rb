@@ -3,6 +3,7 @@ class Profile < ApplicationRecord
 
   belongs_to :user
   has_many :instrument_users
+  has_many :posts
   has_one_attached :profile_photo
 
   def attach_default_profile_image

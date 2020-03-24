@@ -38,7 +38,6 @@ class EventsController < ApplicationController
 
   def show
     set_event
-    @comment = Comment.new
   end
 
   def edit

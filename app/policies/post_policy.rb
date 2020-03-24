@@ -5,7 +5,7 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
-  def prospect?
-    true
+  def create?
+    record.user == user
   end
 end

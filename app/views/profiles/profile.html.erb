@@ -93,3 +93,14 @@
     </div>
   </div>
 </div>
+
+<div id="posts">
+  <% if @profile.user.posts.blank? %>
+    <p><%= @profile.user.full_name %> has made no posts yet.</p>
+  <% else %>
+    <% @profile.user.posts.each do |post| %>
+      <%= render 'posts/show', post: post %>
+    <% end %>
+  <% end %>
+</div>
+<%= render 'posts/form', profile: @profile, post: Post.new %>
