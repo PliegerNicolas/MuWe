@@ -76,5 +76,7 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
     authorize @event
+    events = Event.near([params[:latitude], params[:longitude]])
+
   end
 end
