@@ -99,13 +99,17 @@ const bouncedMarkers = debounce(() => {
         markersLoaded[marker.id] = {
           'lng': marker.longitude,
           'lat': marker.latitude,
+          el
         }
       });
+      console.log(markersLoaded);
+
       // get all the cards loaded in .swiper-wrapper
       const cardsLoaded = document.querySelectorAll('.swiper-wrapper > div');
       cardsLoaded.forEach(el => {
         el.addEventListener('click', (e) => {
           map.setCenter(markersLoaded[el.dataset.event]);
+          markersLoaded[el.dataset.event].el.togglePopup();
         });
       });
     });
