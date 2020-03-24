@@ -1,7 +1,7 @@
 <div class="profile-heading">
   <div>
     <% if @profile.profile_photo.attachment %>
-    <%= image_tag @profile.profile_photo, height: '120px', width: '120px', crop: "scale", gravity: "faces", format: "png", class: "muwe-avatar-large"%>
+    <%= image_tag @profile.profile_photo, height: '120px', width: '120px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar-large"%>
     <% end %>
   </div>
   <h2>Edit <%= @profile.user.first_name %>'s profile</h2>

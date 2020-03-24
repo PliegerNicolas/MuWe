@@ -9,7 +9,7 @@
         <%= link_to event_path(event.id) do %>
         <div class="card-img-top" >
           <% if event.location_photo.attachment %>
-            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "card-img-top" %>
+            <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", secure: true, class: "card-img-top" %>
           <% end %>
         </div>
         <% end %>
@@ -39,15 +39,13 @@
                 <span class="total-attendees"><%= pluralize(event.accepted_participants.count, 'participant') %></span>
                 <% if event.accepted_participants.count > 5 %>
                   <div class="jam-attendee-item">
-                    <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                    <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", secure: true, class: "attendee-avatar" %>
                   </div>
                 <% end %>
                  <% event.accepted_participants.limit(5).each do |participant| %>
                   <div class="jam-attendee-item">
                     <% if participant.user.profile.profile_photo.attachment  %>
-                      <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
-                    <% else %>
-                      <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                      <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", secure: true, class: "attendee-avatar" %>
                     <% end %>
                   </div>
                 <% end %>
