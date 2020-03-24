@@ -68,6 +68,7 @@ const bouncedMarkers = debounce(() => {
       } = response;
 
       clearMarkers();
+      let markersLoaded = {}
 
       eventsWrapper.innerHTML = cards;
 
@@ -87,12 +88,25 @@ const bouncedMarkers = debounce(() => {
 
         let color = (marker.status == 'planned') ? '#44AEE6' : '#6BB382';
 
-        new mapboxgl.Marker({
+        let el = new mapboxgl.Marker({
             color
           })
           .setLngLat([marker.longitude, marker.latitude])
           .setPopup(popup)
           .addTo(map);
+
+        // keep a dictionnary of the markers
+        markersLoaded[marker.id] = {
+          'lng': marker.longitude,
+          'lat': marker.latitude,
+        }
+      });
+      // get all the cards loaded in .swiper-wrapper
+      const cardsLoaded = document.querySelectorAll('.swiper-wrapper > div');
+      cardsLoaded.forEach(el => {
+        el.addEventListener('click', (e) => {
+          map.setCenter(markersLoaded[el.dataset.event]);
+        });
       });
     });
 }, 1000);
