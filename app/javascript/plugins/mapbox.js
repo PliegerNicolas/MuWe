@@ -121,7 +121,7 @@ const bouncedMarkers = debounce(() => {
         });
       });
     });
-}, 600);
+}, 400);
 
 const initMap = () => {
   let sPath = window.location.pathname;

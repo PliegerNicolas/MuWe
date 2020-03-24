@@ -39,7 +39,7 @@
         <%= render 'shared/navbar' %>
       </div>
 
-      <div class="content-container">
+      <div class="content-container <%= "#{controller.controller_name}-#{controller.action_name}" %>">
         <%= yield %>
       </div>
     </main>
