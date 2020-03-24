@@ -141,7 +141,24 @@ const initMap = () => {
         bouncedMarkers();
       });
     }
-  });
+  },
+  function(error) {
+    if (error.code == error.PERMISSION_DENIED)
+      if (sPage == '') {
+        mapElement = document.getElementById('map'); // Get info about map in HTML
+        mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
+        if (mapElement) { // Initalise first view of mapbox map
+        map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v10',
+          center: [-90.048981, 35.149532],
+          zoom: 11
+        })
+        }
+      }
+    }
+  );
 }
 
 export {
