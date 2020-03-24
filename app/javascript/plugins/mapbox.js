@@ -110,16 +110,19 @@ const bouncedMarkers = debounce(() => {
       cardsLoaded.forEach(el => {
         el.addEventListener('click', (e) => {
           if (markerPopupOpened !== undefined) {
-            markerPopupOpened.togglePopup();
+            markerPopupOpened.togglePopup(); // if a popup is open close it
           }
 
-          map.setCenter(markersLoaded[el.dataset.event]);
+          map.flyTo({
+            center: [markersLoaded[el.dataset.event]['lng'], markersLoaded[el.dataset.event]['lat']],
+            zoom: 10,
+          });
           markersLoaded[el.dataset.event].el.togglePopup();
           markerPopupOpened = markersLoaded[el.dataset.event].el;
         });
       });
     });
-}, 1000);
+}, 600);
 
 const initMap = () => {
   let sPath = window.location.pathname;
