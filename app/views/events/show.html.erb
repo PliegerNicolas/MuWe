@@ -6,7 +6,7 @@
   <span><i class="fas fa-chevron-left"></i></span> Back
 </div>
 
-<div class="top-content" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
+<div class="top-content" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(//makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
   <div class="teste">
     <div class="left-top-card">
       <div class="event-title">
@@ -53,7 +53,7 @@
           </tr>
           <tr>
             <td> <div class="host-info2">
-              <%= image_tag "https://miro.medium.com/fit/c/256/256/0*5qs0rmcj7-nuNnBq.jpg", class: "host-avatar" %>
+              <%= image_tag "//miro.medium.com/fit/c/256/256/0*5qs0rmcj7-nuNnBq.jpg", class: "host-avatar" %>
               <div class="host-name"><%= link_to @event.user.full_name %> (Host)</div>
             </div>
           </td>
@@ -69,7 +69,7 @@
       </tr>
       <tr>
         <td><div class="host-info2">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "host-avatar" %>
+          <%= image_tag "//kitt.lewagon.com/placeholder/users/ssaunier", class: "host-avatar" %>
           <div class="host-name">Jon Doe</div>
         </div>
       </td>
@@ -112,7 +112,7 @@
     </div>
   </div>
   <h4><strong><div class="event-sub-titles"> Event Location </div></strong></h4>
-  <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
+  <div class="right-below-card" style="background-image: url(//onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
   <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
    <h4><strong><div class="attendees"> Go and meet new friends </div></strong></h4>
       <% if @event.accepted_participants.count > 0 %>
@@ -120,7 +120,7 @@
                 <span class="total-attendees"><%= pluralize(@event.accepted_participants.count, 'participant') %></span>
                 <% if @event.accepted_participants.count > 5 %>
                   <div class="jam-attendee-item">
-                    <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                    <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                   </div>
                 <% end %>
                  <% @event.accepted_participants.limit(5).each do |participant| %>
@@ -128,7 +128,7 @@
                     <% if participant.user.profile.profile_photo.attachment  %>
                       <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                     <% else %>
-                      <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                      <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                     <% end %>
                   </div>
                 <% end %>

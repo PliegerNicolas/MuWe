@@ -39,7 +39,7 @@
                 <span class="total-attendees"><%= pluralize(event.accepted_participants.count, 'participant') %></span>
                 <% if event.accepted_participants.count > 5 %>
                   <div class="jam-attendee-item">
-                    <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", secure: true, class: "attendee-avatar" %>
+                    <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", secure: true, class: "attendee-avatar" %>
                   </div>
                 <% end %>
                  <% event.accepted_participants.limit(5).each do |participant| %>
