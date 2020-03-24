@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   end
 
   def attach_default_event_image
-    image_path = 'https://res.cloudinary.com/dhemw39dw/image/upload/v1582662629/default_instrument_image.jpg'
+    image_path = '//res.cloudinary.com/dhemw39dw/image/upload/v1582662629/default_instrument_image.jpg'
     file = URI.open(image_path)
     filename = File.basename(URI.parse(image_path).path)
     self.location_photo.attach(io: file, filename: filename)
