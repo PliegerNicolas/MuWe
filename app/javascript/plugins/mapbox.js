@@ -142,7 +142,7 @@ const initMap = () => {
       });
     }
   },
-  function(error) {
+  function(error) { // Fallback method if localisation refused by user
     if (error.code == error.PERMISSION_DENIED)
       if (sPage == '') {
         mapElement = document.getElementById('map'); // Get info about map in HTML
