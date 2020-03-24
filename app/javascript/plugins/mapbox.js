@@ -7,7 +7,6 @@ import axios from 'axios'
 let map, initUserPos;
 let mapElement;
 let eventsWrapper = document.getElementById('events-wrapper');
-let markerPopupOpened;
 
 const fitBound = () => {
   let latitudes = events.filter(event => {
@@ -109,16 +108,16 @@ const bouncedMarkers = debounce(() => {
       const cardsLoaded = document.querySelectorAll('.swiper-wrapper > div');
       cardsLoaded.forEach(el => {
         el.addEventListener('click', (e) => {
-          if (markerPopupOpened !== undefined) {
-            markerPopupOpened.togglePopup(); // if a popup is open close it
-          }
+          // close all popup that are eventually open
+          mapElement.querySelectorAll('.mapboxgl-popup').forEach(popup => {
+            popup.remove();
+          });
 
           map.flyTo({
             center: [markersLoaded[el.dataset.event]['lng'], markersLoaded[el.dataset.event]['lat']],
             zoom: 10,
           });
           markersLoaded[el.dataset.event].el.togglePopup();
-          markerPopupOpened = markersLoaded[el.dataset.event].el;
         });
       });
     });
