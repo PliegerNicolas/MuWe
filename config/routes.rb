@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :destroy]
   end
 
-  resources :profiles, only: [:edit] do
+  resources :profiles do
+    patch 'posts/:id/update', to: 'posts#update', as: :update_post
     resources :posts, only: [:create, :destroy, :edit]
   end
 
