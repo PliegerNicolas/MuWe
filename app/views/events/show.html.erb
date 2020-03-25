@@ -38,7 +38,7 @@
       <div class="left-below-card">
         <div class="players-card">
           <h4><strong>Players</strong></h4>
-          <p><div class="warning-players">There are still X spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
+          <p><div class="warning-players">There are still <%= 6 - @event.participants.count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
           <table style="width:100%">
 
             <tr class="table-titles">
@@ -46,37 +46,21 @@
               <th>Instrument</th>
               <th>Rating</th>
             </tr>
-            <tr>
-              <td> <div class="host-info2">
-                  <% if @event.user.profile.profile_photo.attachment %>
-                  <%= image_tag @event.user.profile.profile_photo, class: "host-avatar" %>
-                  <% else %>
-                  <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
-                  <% end %>
-                  <div class="host-name"><%= link_to @event.user.full_name %> (Host)</div>
-                </div>
-              </td>
-              <td>
-                <% unless @event.user.instrument_users.empty? %>
-                  <%= @event.user.instrument_users.first.instrument.name %>
-                <% end %>
-              </td>
-              <td>
-                <div class="host-rating">
-                <i class="fas fa-star"></i>
-              </div>
-              </td>
-            </tr>
             <% @event.participants.each do |participant| %>
             <tr>
               <td>
                 <div class="host-info2">
                 <% if participant.user.profile.profile_photo.attachment %>
-                <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
+                  <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
                 <% else %>
-                <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
+                  <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
                 <% end %>
-                <div class="host-name"><%= participant.user.full_name %></div>
+                <%  %>
+                <% if @event.participants.where(user_id: @event.user_id).include?(participant) %>
+                  <div class="host-name"><%= participant.user.full_name %> (Host)</div>
+                <% else %>
+                  <div class="host-name"><%= participant.user.full_name %></div>
+                <% end %>
                 </div>
               </td>
               <td>
