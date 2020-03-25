@@ -19,11 +19,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-
+    find_post
+    raise
   end
 
   def destroy
-
+    find_post
+    @post.destroy
+    raise
   end
 
   private
@@ -39,5 +42,9 @@ class PostsController < ApplicationController
     regexes.each do |regex|
       @post.references << text.match(regex)[0] if text.match(regex)
     end
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 end

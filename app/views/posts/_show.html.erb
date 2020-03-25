@@ -2,6 +2,7 @@
   <p class="reference"><%= post.references.first %></p>
   <%= embed_link(post)  %>
   <p class="description"><%= post.description %></p>
+  <%= link_to "Delete", profile_post_path(post.id), method: :delete %>
 </div>
 
 <!-- We want youtube, soundcloud, bandcamp, vimeo-->
