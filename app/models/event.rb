@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
-  # validates :title, :start_date, :start_time, :end_time, :address, :max_players, presence: true
+  after_create :attach_default_event_image
+  after_create :self_participate
+
   validates :title, :start_date, :start_time, :end_time, :max_players, presence: true
   belongs_to :user
   has_many :participants, dependent: :destroy
@@ -13,7 +15,19 @@ class Event < ApplicationRecord
 
   enum status: { planned: 0, ongoing: 1, finished: 2 }
   # .planned(! or ?), .active(! or ?), .finished(! or ?) to update or check the status easily
+
   def accepted_participants
     self.participants.where("participants.status=?", 1) # TODO: dynamically get accepted status from participants
+  end
+
+  def self_participate
+    self.participants.create!(user_id: self.user_id, status: 1)
+  end
+
+  def attach_default_event_image
+    image_path = 'https://extraupdate.com/wp-content/uploads/2019/02/map_img_1138084_1501023103.jpg'
+    file = URI.open(image_path)
+    filename = File.basename(URI.parse(image_path).path)
+    self.location_photo.attach(io: file, filename: filename)
   end
 end

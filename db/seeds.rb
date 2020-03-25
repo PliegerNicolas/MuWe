@@ -8,14 +8,14 @@ require "open-uri"
 puts 'Destroying all Events and Participants'
 Event.destroy_all
 
-puts 'Destroying all Users, Profiles and Participants again'
-User.destroy_all # if Rails.env.development?
-
 puts "Destroying Comments, Ratings, Followers and posts"
 Comment.destroy_all # if Rails.env.development?
 Rating.destroy_all # if Rails.env.development?
 Follower.destroy_all # if Rails.env.development?
 Post.destroy_all # if Rails.env.development?
+
+puts 'Destroying all Users, Profiles and Participants again'
+User.destroy_all # if Rails.env.development?
 
 puts "Destroying all instruments"
 Instrument.destroy_all
@@ -125,7 +125,7 @@ puts ''
 
 print 'Creating events'
 print ' { '
-20.times do
+12.times do
   start_time = Faker::Time.between(from: Time.now - 5.minutes, to: Time.now + 4.hours)
   new_event = Event.create(
     user_id: User.order('RANDOM()').first.id,
@@ -141,7 +141,6 @@ print ' { '
     start_time: start_time,
     end_time: Faker::Time.between(from: start_time, to: start_time + 2.hours)
   )
-  new_event.participants.create(user_id: new_event.user_id, status: 1)
   print '#'
 end
 

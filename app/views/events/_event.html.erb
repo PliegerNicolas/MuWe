@@ -1,11 +1,9 @@
 
-  <div class="event-wrapper swiper-slide muwe-shadow">
+  <div data-event="<%= event.id %>" class="event-wrapper swiper-slide muwe-shadow">
 
     <div class="event-photo">
       <% if event.location_photo.attachment %>
-      <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
-      <% else %>
-      <%= image_tag ('park.jpg'), height: '71px', width: '71px', crop: "scale", format: "png", class: "i-event-image" %>
+        <%= image_tag (event.location_photo), height: '71px', width: '71px', crop: "scale", format: "png", secure: true, class: "i-event-image" %>
       <% end %>
 
       <div class="event-status">

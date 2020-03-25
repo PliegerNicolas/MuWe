@@ -7,15 +7,15 @@
   // background-color: $white;
 
   a {
-    color: $muwe-white;
+    color: $white;
     // color: $strong-purple;
     text-decoration: none;
     transition: 0.5s;
 
     &:hover {
       transition: 0.4s;
-      color: $muwe-green;
-      opacity: 0.8;
+      color: $light-purple;
+      // opacity: 0.8;
     }
   }
 
@@ -44,7 +44,7 @@ svg {
   fill: $muwe-white;
 
   &:hover {
-    fill: $muwe-green;
+    fill: $light-purple;
     transition: 0.4s;
   }
 }
@@ -67,6 +67,8 @@ svg {
 
 .navbar-menu-section {
   ul {
+    display: flex;
+    align-items: center;
     margin: 0;
   }
 }
@@ -86,6 +88,24 @@ svg {
 
     a {
       margin: 0 5px;
+      color: $white;
+
+      &:hover {
+        color: $dark-purple;
+        background-color: $gray-100;
+        opacity: 1;
+      }
+    }
+
+    .signup {
+      color: $white;
+      background-color: $light-purple;
+
+      &:hover {
+        color: $white;
+        background-color: $dark-purple;
+        opacity: 1;
+      }
     }
   }
 

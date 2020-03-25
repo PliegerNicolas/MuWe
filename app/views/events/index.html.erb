@@ -1,13 +1,15 @@
 <div class="map-wrapper">
   <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-  <div class="swiper-container">
-    <div id="events-wrapper" class="swiper-wrapper">
-      <%= render @events %>
+  <div class="swiper-cards-container">
+    <div class="swiper-container">
+      <div id="events-wrapper" class="swiper-wrapper">
+        <%= render @events %>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-scrollbar"></div>
     </div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-scrollbar"></div>
   </div>
 
   <div class="new-event-wrapper">

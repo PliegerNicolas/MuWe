@@ -109,6 +109,7 @@
     </div>
 
 
+
     <div class="teste3">
       <div class="like-share-buttons">
         <div class="buttons-list">
@@ -122,12 +123,13 @@
       <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
       <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
       <div class="event-address-under-map"><h4><strong> Go and meet new friends</strong></h4> </div>
+
       <% if @event.accepted_participants.count > 0 %>
               <div class="jam-attendees">
                 <span class="total-attendees"><%= pluralize(@event.accepted_participants.count, 'participant') %></span>
                 <% if @event.accepted_participants.count > 5 %>
                   <div class="jam-attendee-item">
-                    <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                    <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                   </div>
                 <% end %>
                  <% @event.accepted_participants.limit(5).each do |participant| %>
@@ -135,7 +137,7 @@
                     <% if participant.user.profile.profile_photo.attachment  %>
                       <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                     <% else %>
-                      <%= cl_image_tag "https://res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                      <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
                     <% end %>
                   </div>
                 <% end %>
@@ -146,4 +148,99 @@
   </div>
 </div>
 
+</div>
+  <br>
+   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+<p> Pending:
+  <% @event.participants.each do |participant| %>
+  <% if participant.status == 'postulating' %>
+  <%= link_to profile_path(participant.user.id) do %>
+  <%= participant.user.first_name %>
+  <% end %>
+  <% end %>
+  <% end %>
+</p>
 
+<p> Declined:
+  <%= @event.participants.where(status: 'declined').count %>
+</p>
+
+<!-- Logic about inscription to event -->
+<% if signed_in? %>
+<% user_events = current_user.event_participations %>
+
+<% if current_user == @event.user %>
+<%= link_to 'Participants', event_participants_path(@event.id) %>
+<%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+
+<% else %>
+
+<% if user_events.include?(@event) == false %>
+<%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post %>
+
+<% else %>
+
+<% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
+<% if participants.first.status == 'declined' %>
+<p>Your participation has been declined</p>
+
+<% else %>
+
+<%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete %>
+
+<% end %>
+<% end %>
+<% end %>
+
+<% else %>
+<p>To participate you need to login</p>
+<% end %>
+<!-- End logic about inscription to event -->
+
+<!-- Tchat start -->
+<div id="messages">
+  <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
+    To get access to tchat you must be a participant.
+  <% else %>
+    <% @event.messages.each do |message| %>
+      <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
+    <% end %>
+  </div>
+
+  <%= render 'messages/form', event: @event, message: @message %>
+<% end %>
+<!-- Tchat end -->
+
+<% content_for :after_js do %>
+  <script>
+    function scrollLastMessageIntoView() {
+      const messages = document.querySelectorAll('.message')
+      const lastMessage = messages[messages.length - 1]
+      if(lastMessage) {
+        lastMessage.scrollIntoView();
+      }
+    };
+
+    <% if current_user %>
+    scrollLastMessageIntoView();
+    App['chat_room_<%= @event.id %>'] = App.cable.subscriptions.create({ channel: 'EventChatsChannel', event_chat_id: <%= @event.id %> }, { received: (data) => {
+      if (data.current_user_id !== <%= current_user.id %>) {
+        var messagesContainer = document.getElementById('messages');
+        messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+        scrollLastMessageIntoView();
+      }
+    }
+  })
+  <% end %>
+  </script>
+<% end %>

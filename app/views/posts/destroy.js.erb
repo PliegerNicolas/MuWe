@@ -1,0 +1,20 @@
+function removePost() {
+  const post = document.getElementById('<%= @post.id %>')
+  const fadeEffect = setInterval(function () {
+  if (!post.style.opacity) {
+    post.style.opacity = 1;
+    }
+    if (post.style.opacity > 0) {
+      post.style.opacity -= 0.1;
+    } else {
+      clearInterval(fadeEffect);
+    }
+  }, 30);
+  setTimeout(function() {
+    post.remove();
+  }, 400);
+}
+
+<% if @post.valid? %>
+  removePost();
+<% end %>

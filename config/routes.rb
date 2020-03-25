@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root to: 'events#index'
 
   get 'jams', to: 'events#jams' # Main jams page similar to index
-  get 'prospect', to: 'posts#prospect' # Main prospect page
 
   get 'nearby', to: 'events#nearby' # find events nearby based on geolocation
 
@@ -24,7 +23,11 @@ Rails.application.routes.draw do
 
     resources :messages, only: [:create, :destroy]
   end
-  resources :profiles, only: [:edit]
+
+  resources :profiles do
+    patch 'posts/:id/update', to: 'posts#update', as: :update_post
+    resources :posts, only: [:create, :destroy, :edit]
+  end
 
   get 'search', to: 'search#index'
 

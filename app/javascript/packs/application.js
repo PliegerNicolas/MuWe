@@ -44,10 +44,10 @@ let mapSwiper = new Swiper('.swiper-container', {
     freeMode: true,
     scrollbar: {
         el: '.swiper-scrollbar',
-        hide: true
+        hide: false,
     },
     navigation: {
         prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next'
+        nextEl: '.swiper-button-next',
     }
 });

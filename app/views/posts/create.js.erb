@@ -1,0 +1,25 @@
+function refreshForm(emptyFormHTML) {
+  const oldPostForm = document.getElementById('new_post');
+  oldPostForm.innerHTML = emptyFormHTML;
+}
+
+function addPost(postHTML) {
+  const posts = document.getElementById('posts');
+  posts.insertAdjacentHTML('beforeend', postHTML);
+}
+
+function scrollToLastPost() {
+  const posts = document.querySelectorAll('.post')
+  const lastPost = posts[posts.length - 1]
+  if(lastPost) {
+    lastPost.scrollIntoView();
+  }
+}
+
+<% if @post.valid? %>
+  addPost('<%= j render "posts/show", post: @post %>');
+  refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
+  scrollToLastPost();
+<% else %>
+  refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
+<% end %>

@@ -5,8 +5,8 @@
 
 <!--
   <%# if message.user.profile.profile_photo.attachment %>
-    <%#= image_tag message.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png" %>
+    <%#= image_tag message.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
   <%# else %>
-    <%#= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png" %>
+    <%#= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
   <%# end %>
 -->

@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>MuWe. - Social Network</title>
-
-
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
 
@@ -31,10 +28,7 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <!-- <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' /> -->
-    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <!-- TODO IMPROVE SHOULD USE THE LOCAL FILE!!! -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-yFNVv7j3I7ek9IXVOyJkz9dANtzqJhk&libraries=places"></script>
   </head>
   <body>
@@ -45,7 +39,7 @@
         <%= render 'shared/navbar' %>
       </div>
 
-      <div class="content-container">
+      <div class="content-container <%= "#{controller.controller_name}-#{controller.action_name}" %>">
         <%= yield %>
       </div>
     </main>
