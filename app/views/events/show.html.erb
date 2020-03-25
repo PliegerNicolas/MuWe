@@ -2,119 +2,128 @@
 <br>
 
 <div class="container">
- <div class="header-button-back">
-  <span><i class="fas fa-chevron-left"></i></span> Back
-</div>
+  <div class="header-button-back">
+    <span><i class="fas fa-chevron-left"></i><p>Back</p></span>
+  </div>
 
-<div class="top-content" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(//makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
-  <div class="teste">
-    <div class="left-top-card">
-      <div class="event-title">
-        <%= @event.title %>
+  <div class="top-content", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
+    <div class="teste">
+      <div class="left-top-card">
+        <div class="event-title">
+          <%= @event.title %>
+        </div>
+        <div class="event-host">
+          <h5>By <%= link_to @event.user.full_name  %></h5>
+        </div>
+        <br>
+        <div class="event-address">
+          <h5><i class="fas fa-map-marker-alt"></i><%= @event.address %>, <%= @event.city %></h5>
+        </div>
       </div>
-      <div class="event-host">
-        <h5>By <%= link_to @event.user.full_name  %></h5>
+    </div>
+
+    <div class="right-top-card">
+      <div><h4><strong>Date & Time</strong></h4>
+        <span><h5><div class="event-start-time"><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> at <%= @event.start_time.to_s(:time) %></div></h5></span>
       </div>
       <br>
-      <div class="event-address">
-        <h5><i class="fas fa-map-marker-alt"></i><%= @event.address %>, <%= @event.city %></h5>
-      </div>
+      <div class="going-to-play-btn"><%= link_to 'Go play', event_add_participant_path(@event.id), method: :post %></div>
+      <div class="going-to-watch-btn"> Go watch </div>
     </div>
   </div>
+  <br>
 
-  <div class="right-top-card">
-    <div><h4><strong>Date & Time</strong></h4>
-      <span><h5><div class="event-start-time"><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> at <%= @event.start_time.to_s(:time) %></div></h5></span>
-    </div>
-    <br>
-    <div class="going-to-play-btn"><%= link_to 'Go play', event_add_participant_path(@event.id), method: :post %></div>
-    <div class="going-to-watch-btn"> Go watch </div>
-  </div>
-</div>
-<br>
+  <div class="below-content">
+    <div class="teste2">
+      <div class="left-below-card">
+        <div class="players-card">
+          <h4><strong>Players</strong></h4>
+          <p><div class="warning-players">There are still X spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
+          <table style="width:100%">
 
-<div class="below-content">
-  <div class="teste2">
-    <div class="switch-buttons">
-      <div class="buttons-list">
-        <li><h5><div class="about-btn">About</div></h5></li>
-        <li><h5><div class="chat-btn">Chat</div></h5></li>
-      </div>
-    </div>
-    <div class="left-below-card">
-      <div class="players-card">
-        <h4><strong>Players</strong></h4>
-        <p><div class="warning-players">There are still X spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
-        <table style="width:100%">
-          <tr class="table-titles">
-            <th>Player</th>
-            <th>Instrument</th>
-            <th>Rating</th>
-          </tr>
-          <tr>
-            <td> <div class="host-info2">
-              <%= image_tag "//miro.medium.com/fit/c/256/256/0*5qs0rmcj7-nuNnBq.jpg", class: "host-avatar" %>
-              <div class="host-name"><%= link_to @event.user.full_name %> (Host)</div>
+            <tr class="table-titles">
+              <th>Player</th>
+              <th>Instrument</th>
+              <th>Rating</th>
+            </tr>
+            <tr>
+              <td> <div class="host-info2">
+                  <% if @event.user.profile.profile_photo.attachment %>
+                  <%= image_tag @event.user.profile.profile_photo, class: "host-avatar" %>
+                  <% else %>
+                  <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
+                  <% end %>
+                  <div class="host-name"><%= link_to @event.user.full_name %> (Host)</div>
+                </div>
+              </td>
+              <td>
+                <%= @event.user.instrument_users.first.instrument.name %>
+              </td>
+              <td>
+                <div class="host-rating">
+                <i class="fas fa-star"></i>
+              </div>
+              </td>
+            </tr>
+            <% @event.participants.each do |participant| %>
+            <tr>
+              <td>
+                <div class="host-info2">
+                <% if participant.user.profile.profile_photo.attachment %>
+                <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
+                <% else %>
+                <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
+                <% end %>
+                <div class="host-name"><%= participant.user.full_name %></div>
+                </div>
+              </td>
+              <td>
+                <%= participant.user.instrument_users.first.instrument.name  %>
+              </td>
+              <td>
+                <div class="host-rating">
+                  <i class="fas fa-star"></i>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </table>
+            <% if @event.accepted_participants.count > 0 %>
+             <div class="play-btn"><%= link_to 'I want to play!', event_add_participant_path(@event.id), method: :post %></div>
+            <% else %>
+            <div class="play-btn">I want to play!</div>
+            <!-- <div class="play-btn">Be the first player to join!</div> -->
+            <% end %>
+            <div class="list-of-details">
+            <h4><strong>Details</strong></h4>
+            <div class="participants"><span class="fas fa-guitar"></span> 20 players responded to the event</div>
+            <div class="music-style"><span class="fas fa-music"></span>Music style: <%= @event.music_style.style %></div>
+            <div class="event-time-detail"><span class="fas fa-clock"></span> <%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
+            <div class="event-address-detail"><span class="fas fa-map-marker-alt"></span><%= @event.address %>, <%= @event.city %></div>
+            <div class="event-description"><%= @event.description %></div>
             </div>
-          </td>
-          <td>Guitar</td>
-          <td><div class="host-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><div class="host-info2">
-          <%= image_tag "//kitt.lewagon.com/placeholder/users/ssaunier", class: "host-avatar" %>
-          <div class="host-name">Jon Doe</div>
+            <br>
+            <br>
         </div>
-      </td>
-      <td>Drums</td>
-      <td><div class="host-rating">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
       </div>
-    </td>
-  </tr>
-</table>
-<% if @event.accepted_participants.count > 0 %>
-<div class="play-btn">I want to play!</div>
-<% else %>
-<div class="play-btn">I want to play!</div>
-<!-- <div class="play-btn">Be the first player to join!</div> -->
-<% end %>
-
-  <div class="list-of-details">
-      <h4><strong>Details</strong></h4>
-      <div class="participants"><span class="fas fa-guitar"></span> 20 players responded to the event</div>
-      <div class="music-style"><span class="fas fa-music"></span>Music style: <%= @event.music_style.style %></div>
-      <div class="event-time-detail"><span class="fas fa-clock"></span> <%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
-      <div class="event-address-detail"><span class="fas fa-map-marker-alt"></span><%= @event.address %>, <%= @event.city %></div>
-      <div class="event-description"><%= @event.description %></div>
-  </div>
-</div>
-</div>
-</div>
-
-<div class="teste3">
-  <div class="like-share-buttons">
-    <div class="buttons-list">
-      <ul>
-        <li><div class="like-btn"><span class="fas fa-heart"></span>Interested</div></li>
-        <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li>
-      </ul>
     </div>
-  </div>
-  <h4><strong><div class="event-sub-titles"> Event Location </div></strong></h4>
-  <div class="right-below-card" style="background-image: url(//onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
-  <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
-   <h4><strong><div class="attendees"> Go and meet new friends </div></strong></h4>
+
+
+
+    <div class="teste3">
+      <div class="like-share-buttons">
+        <div class="buttons-list">
+          <ul>
+            <li><div class="like-btn"><span class="fas fa-heart"></span>Interested</div></li>
+            <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="event-sub-titles"> <h4><strong>Event Location</strong></h4> </div>
+      <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
+      <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
+      <div class="event-address-under-map"><h4><strong> Go and meet new friends</strong></h4> </div>
+
       <% if @event.accepted_participants.count > 0 %>
               <div class="jam-attendees">
                 <span class="total-attendees"><%= pluralize(@event.accepted_participants.count, 'participant') %></span>
@@ -138,6 +147,7 @@
             <% end %>
   </div>
 </div>
+
 </div>
   <br>
    <br>

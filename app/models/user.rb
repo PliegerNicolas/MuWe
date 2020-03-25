@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+  class User < ApplicationRecord
   after_create :create_profile
 
   has_one :profile, dependent: :destroy

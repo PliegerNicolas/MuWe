@@ -1,14 +1,9 @@
 
-.event-image {
-  object-fit: cover;
-  object-position: center center;
-}
-
-
 .fa-long-arrow-left {
   margin-left: 10px;
   margin-right: 22px;
 }
+
 
 .host-info {
   display: flex;
@@ -239,7 +234,6 @@
 .below-content {
   background-size: cover;
   background-position: center;
-  height: 400px;
   display: flex;
   align-items: top;
   color: white;
@@ -427,6 +421,12 @@ tr {
 .going-to-play-btn a {
     color: #fff;
     text-decoration: none;
+}
+
+
+.play-btn a {
+  color: #fff;
+  text-decoration: none;
 }
 
 a:hover

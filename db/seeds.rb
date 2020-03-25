@@ -1,6 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-
+require "open-uri"
 
 
 # Cleaning DB
@@ -28,7 +28,8 @@ MusicStyle.destroy_all
 # Creating users
 
 puts "Creating custom development accounts"
-
+photos_array = ['https://avatars3.githubusercontent.com/u/6062926?v=4', 'https://media-exp1.licdn.com/dms/image/C4D03AQEmothdoW13iA/profile-displayphoto-shrink_800_800/0?e=1590624000&v=beta&t=wwftHdc-adZ-BbtZj1U0GY0BUn8ZF8Xhk9Rg8gTnEP8','https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1571484812/vd06m1xkrasx7aqbzdjs.jpg']
+i = 0
 [['Nuno', 'Martins'], ['Sofia', 'Mogas'], ['Nicolas', 'Plieger']].each do |name|
   new_user = User.create!(
     first_name: "#{name[0]}",
@@ -41,7 +42,9 @@ puts "Creating custom development accounts"
   new_user.profile.birth_date = Faker::Date.birthday(min_age: 18, max_age: 65)
   new_user.profile.bio = Faker::Lorem.sentence(word_count: 18)
   new_user.profile.city = Faker::Address.city
+  new_user.profile.profile_photo.attach(io: URI.open(photos_array[i]), filename: "photo#{i}.png", content_type: 'image/png')
   new_user.profile.save
+  i = i + 1
 end
 
 print 'Creating random Users'
@@ -83,6 +86,14 @@ end
 print ' }'
 
 # End creating instruments
+puts 'Creating user instruments conection'
+print ' { '
+ User.all.each do |user|
+  InstrumentUser.new(user_id: user.id, instrument_id: Instrument.all.sample.id).save
+  print '#'
+ end
+print ' }'
+
 
 puts ''
 
