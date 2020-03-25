@@ -1,5 +1,4 @@
-<%= simple_form_for([ profile, post ], remote: true) do |f| %>
-  <%= f.input :reference, as: :string %>
+<%= simple_form_for([ profile, post ]) do |f| %>
   <%= f.input :description, as: :text %>
   <%= f.button :submit %>
 <% end %>

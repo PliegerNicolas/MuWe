@@ -1,4 +1,7 @@
 <div class="post">
-  <p class="reference"><%= post.reference %></p>
+  <p class="reference"><%= post.references.first %></p>
+  <%= embed_link(post)  %>
   <p class="description"><%= post.description %></p>
 </div>
+
+<!-- We want youtube, soundcloud, bandcamp, vimeo-->
