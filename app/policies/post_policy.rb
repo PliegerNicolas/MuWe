@@ -8,4 +8,12 @@ class PostPolicy < ApplicationPolicy
   def create?
     record.user == user
   end
+
+  def edit?
+    create?
+  end
+
+  def destroy?
+    create?
+  end
 end

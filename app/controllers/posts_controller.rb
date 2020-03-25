@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   def create
-    @profile = Profile.find(current_user.id)
+    @profile = Profile.find(params[:profile_id])
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user_id = @profile.user.id
     add_links_to_references(@post.description)
     authorize @post
     if @post.save
@@ -19,14 +19,24 @@ class PostsController < ApplicationController
   end
 
   def edit
-    find_post
-    raise
+    set_post
+    authorize @post
   end
 
   def destroy
-    find_post
-    @post.destroy
-    raise
+    set_post
+    authorize @post
+    if @post.destroy
+      respond_to do |format|
+        format.html { redirect_to profile_path(@profile.id) }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { render 'profiles/profile' }
+        format.js
+      end
+    end
   end
 
   private
@@ -44,7 +54,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def find_post
+  def set_post
     @post = Post.find(params[:id])
+    @profile = Profile.find(params[:profile_id])
   end
 end

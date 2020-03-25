@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :destroy]
   end
 
-  resources :profiles, only: [:edit] do
+  resources :profiles do
     resources :posts, only: [:create, :destroy, :edit]
   end
 
