@@ -26,11 +26,12 @@ class PostsController < ApplicationController
   def destroy
     set_post
     authorize @post
-    if @post.destroy
+    if @post.valid?
       respond_to do |format|
         format.html { redirect_to profile_path(@profile.id) }
         format.js
       end
+      @post.destroy
     else
       respond_to do |format|
         format.html { render 'profiles/profile' }

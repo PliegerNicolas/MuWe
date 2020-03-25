@@ -1,5 +1,4 @@
-<div class="post">
-  <p class="reference"><%= post.references.first %></p>
+<div class="post" id="<%= post.id %>">
   <%= embed_link(post)  %>
   <p class="description"><%= post.description %></p>
   <%= link_to "Delete", profile_post_path(post.user.profile, post.id), method: :delete, remote: true %>
