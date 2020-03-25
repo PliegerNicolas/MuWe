@@ -57,7 +57,9 @@
                 </div>
               </td>
               <td>
-                <%= @event.user.instrument_users.first.instrument.name %>
+                <% unless @event.user.instrument_users.empty? %>
+                  <%= @event.user.instrument_users.first.instrument.name %>
+                <% end %>
               </td>
               <td>
                 <div class="host-rating">
@@ -78,7 +80,9 @@
                 </div>
               </td>
               <td>
-                <%= participant.user.instrument_users.first.instrument.name  %>
+                <% unless @event.user.instrument_users.empty? %>
+                  <%= @event.user.instrument_users.first.instrument.name %>
+                <% end %>
               </td>
               <td>
                 <div class="host-rating">
