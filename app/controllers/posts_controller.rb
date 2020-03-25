@@ -23,6 +23,15 @@ class PostsController < ApplicationController
     authorize @post
   end
 
+  def update
+    set_post
+    if params[:post][:description]
+      authorize @post
+      @post.update!(description: params[:post][:description])
+    end
+    redirect_to profile_path(@profile.id)
+  end
+
   def destroy
     set_post
     authorize @post
