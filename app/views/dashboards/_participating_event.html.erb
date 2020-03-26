@@ -1,28 +1,32 @@
+----
 <div class="participating_to_event">
   <%= link_to event_path(event.id) do %>
-    <%= event.title %>
+    <% event.title %>
   <% end %>
-  <%= event.address %> |
   <div class="participants">
     <% event.participants.each do |participant| %>
-      <div class="participants">
-        <% if participant.user = current_user %>
-          <div class="you">
-            <%= link_to profile_path(participant.user) do %>
-              <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-              <%= participant.user.full_name %>
-            <% end %>
-              <%= link_to 'Uninscribe', event_remove_participant_path(event.id), method: :delete %>
-          </div>
-        <% else %>
-          <div class="others">
-            <%= link_to profile_path(participant.user) do %>
-              <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-              <%= participant.user.full_name %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <% if participant.user == current_user %> <!-- Check for host -->
+        <div class="current-user-participant"> <!-- You -->
+          <%= link_to profile_path(participant.user.profile.id) do %>
+            <%= participant.user.full_name  %>
+          <% end %>
+          <%= participant.status %>
+          <%= link_to 'Uninscribe', event_remove_participant_path(event.id), method: :delete %>
+        </div>
+      <% elsif event.participants.where(user_id: event.user_id).include?(participant) %>
+        <div class="host">
+          <%= link_to profile_path(participant.user.profile.id) do %>
+            <%= participant.user.full_name  %>
+          <% end %>
+          (Host)
+        </div>
+      <% elsif participant.status == 'accepted' %> <!-- Other accepted participants -->
+        <div class="participant">
+          <%= link_to profile_path(participant.user.profile.id) do %>
+            <%= participant.user.full_name  %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
