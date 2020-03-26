@@ -1,3 +1,7 @@
-<% @events.each do |event| %>
+<% @events_created.each do |event| %>
+  <%= event.user.full_name %>
+<% end %>
+
+<% @events_participating.each do |event| %>
   <%= event.user.full_name %>
 <% end %>
