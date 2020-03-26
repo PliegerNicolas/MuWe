@@ -5,6 +5,7 @@
     <%= event.address %> |
 
     <div class="postulating-users">
+      <p>Postulating participants</p>
       <% event.participants.where(status: 'postulating').each do |participant| %>
         <div class="postulating-user">
           <%= link_to profile_path(participant.user) do %>
@@ -18,6 +19,7 @@
     </div>
 
     <div class="accepted-users">
+      <p>Accepted participants</p>
       <% event.participants.where(status: 'accepted').each do |participant| %>
         <div class="accepted-user">
           <% unless event.participants.where(user_id: event.user_id).include?(participant) %> <!-- Check if host -->
@@ -37,6 +39,7 @@
     </div>
 
     <div class="declined-users">
+      <p>Declined participants</p>
       <% event.participants.where(status: 'declined').each do |participant| %>
         <div class="declined-user">
           <%= link_to profile_path(participant.user) do %>
