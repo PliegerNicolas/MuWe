@@ -52,7 +52,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.finished! # this should archive and will archive
     authorize @event
-    redirect_to jams_path
+    redirect_to dashboard_path
   end
 
   def nearby
