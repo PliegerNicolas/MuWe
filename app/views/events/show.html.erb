@@ -3,7 +3,9 @@
 
 <div class="container">
   <div class="header-button-back">
-    <span><i class="fas fa-chevron-left"></i><p>Back</p></span>
+    <%= link_to events_path do %>
+      <span><i class="fas fa-chevron-left"></i> Back</span>
+    <% end %>
   </div>
 
   <div class="top-content", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
@@ -27,8 +29,32 @@
         <span><h5><div class="event-start-time"><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> at <%= @event.start_time.to_s(:time) %></div></h5></span>
       </div>
       <br>
-      <div class="going-to-play-btn"><%= link_to 'Go play', event_add_participant_path(@event.id), method: :post %></div>
-      <div class="going-to-watch-btn"> Go watch </div>
+      <!-- Logic about inscription -->
+        <% if signed_in? %>
+          <% user_events = current_user.event_participations %>
+
+          <% if current_user == @event.user %>
+            <%= link_to 'Participants', event_participants_path(@event.id), class: "going-to-play-btn" %>
+            <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
+          <% else %>
+            <% if user_events.include?(@event) == false %>
+              <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
+            <% else %>
+              <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
+              <% if participants.first.status == 'declined' %>
+                <p>Your participation has been declined</p>
+              <% elsif participants.first.status == 'postulating' %>
+                <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                <p>Your inscription is pending</p>
+              <% else %>
+                <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="play-btn"><%= link_to "Sign-in to participate", new_user_session_path  %></p>
+        <% end %>
+        <!-- Logic about inscription -->
     </div>
   </div>
   <br>
@@ -38,7 +64,7 @@
       <div class="left-below-card">
         <div class="players-card">
           <h4><strong>Players</strong></h4>
-          <p><div class="warning-players">There are still <%= @event.max_players - @event.participants.count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
+          <p><div class="warning-players">There are still <%= @event.max_players - @event.participants.where(status: 'accepted').count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
           <table style="width:100%">
 
             <tr class="table-titles">
@@ -46,7 +72,7 @@
               <th>Instrument</th>
               <th>Rating</th>
             </tr>
-            <% @event.participants.each do |participant| %>
+            <% @event.participants.where(status: 'accepted').each do |participant| %>
             <tr>
               <td>
                 <div class="host-info2">
@@ -76,29 +102,6 @@
             </tr>
             <% end %>
           </table>
-          <!-- Logic about inscription -->
-            <% if signed_in? %>
-              <% user_events = current_user.event_participations %>
-
-              <% if current_user == @event.user %>
-                <%= link_to 'Participants', event_participants_path(@event.id), class: "play-btn" %>
-                <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "play-btn" %>
-              <% else %>
-                <% if user_events.include?(@event) == false %>
-                  <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post, class: "play-btn" %>
-                <% else %>
-                  <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
-                  <% if participants.first.status == 'declined' %>
-                    <p>Your participation has been declined</p>
-                  <% else %>
-                    <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete, class: "play-btn" %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% else %>
-              <p class="play-btn"><%= link_to "Sign-in to participate", new_user_session_path  %></p>
-            <% end %>
-            <!-- Logic about inscription -->
             <div class="list-of-details">
             <h4><strong>Details</strong></h4>
             <div class="participants"><span class="fas fa-guitar"></span> <%= @event.participants.count %> players responded to the event</div>
