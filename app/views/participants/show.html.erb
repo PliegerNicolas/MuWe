@@ -3,8 +3,7 @@
 <h2>Postulating</h2>
 <% @postulating_participants.each do |postulating_participant| %>
   <%= link_to profile_path(postulating_participant.user.id)do %>
-    <%= postulating_participant.user.first_name %>
-    <%= postulating_participant.user.profile.last_name %>
+    <%= postulating_participant.user.full_name %>
   <% end %>
   <%= link_to "Accept", event_accept_user_path(@event.id, postulating_participant.id), method: :post %>
   <%= link_to "Decline", event_decline_user_path(@event.id, postulating_participant.id), method: :delete %>
