@@ -1,4 +1,12 @@
 <div class="participating_to_event">
   <%= event.title %> |
   <%= event.address %> |
+  <div class="participants">
+    <% event.participants.each do |participant| %>
+      <div class="participant">
+        <%= participant.user.full_name %>
+        <%= participant.status %>
+      </div>
+    <% end %>
+  </div>
 </div>
