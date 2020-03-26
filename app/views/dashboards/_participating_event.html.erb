@@ -11,6 +11,7 @@
             <%= participant.user.full_name  %>
           <% end %>
           <%= participant.status %>
+          <%= link_to 'Uninscribe', event_remove_participant_path(event.id), method: :delete %>
         </div>
       <% elsif event.participants.where(user_id: event.user_id).include?(participant) %>
         <div class="host">
