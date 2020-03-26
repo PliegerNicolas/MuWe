@@ -28,4 +28,8 @@ class EventPolicy < ApplicationPolicy
   def nearby?
     true
   end
+
+  def dashboard?
+    true
+  end
 end
