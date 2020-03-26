@@ -28,7 +28,7 @@
       <div class="user-profile-action-buttons">
         <% if user_signed_in? %>
           <%= link_to "Dashboard", dashboard_path, class: 'btn btn-sm' %>
-          <%= link_to "My profile", edit_profile_path, class: 'btn btn-sm btn-warning' %>
+          <%= link_to "My profile", edit_profile_path, class: 'btn btn-sm btn-profile' %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary' %>
         <% else %>
           <%= link_to "Login", new_user_session_path, class: 'btn btn-sm btn-outline-secondary' %>
