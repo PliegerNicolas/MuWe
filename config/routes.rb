@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   patch 'profile/:id', to: 'profiles#update', as: :update_profile
   get 'profile/:id', to: 'profiles#profile', as: :profile # current_user profile page
 
+  get 'dashboard', to: 'dashboards#dashboard', as: :dashboard # Dashboard
+
   resources :events do
     get 'participants', to: 'participants#show', as: :participants
     post 'participant', to: 'participants#create', as: :add_participant
