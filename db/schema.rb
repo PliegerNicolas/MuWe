@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_223132) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference"
     t.text "references", default: [], array: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

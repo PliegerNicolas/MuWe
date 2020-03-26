@@ -51,3 +51,13 @@ let mapSwiper = new Swiper('.swiper-container', {
         nextEl: '.swiper-button-next',
     }
 });
+
+const filterBtn = document.querySelector('.btn-filter');
+const filterBtnClose = document.querySelector('.btn-filter-close');
+const filterWrapper = document.querySelector('.filter-wrapper');
+filterBtn.addEventListener('click', () => {
+    filterWrapper.classList.toggle('open');
+});
+filterBtnClose.addEventListener('click', () => {
+    filterWrapper.classList.toggle('open');
+});
