@@ -14,7 +14,7 @@ class ParticipantsController < ApplicationController
     if Participant.where(user_id: current_user, event_id: @event.id).empty?
       @participant.save if @participant.valid?
     end
-    redirect_to dashboard_path
+    redirect_to event_path(params[:event_id])
   end
 
   def destroy
@@ -25,7 +25,7 @@ class ParticipantsController < ApplicationController
       participants = Participant.where(user_id: current_user, event_id: current_event)
       participants.destroy_all unless participants.first.status == 'declined'
     end
-    redirect_to dashboard_path
+    redirect_to event_path(current_event.id)
   end
 
   def accept
