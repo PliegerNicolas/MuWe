@@ -56,8 +56,22 @@ input:focus {
 }
 
 .filter-wrapper {
-  display: none;
-  transition: .3s;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 240px;
+  height: 380px;
+  background-color: transparent;
+  transform: translateX(-240px);
+  z-index: 999999999;
+  transition: .4s;
+
+  &.open {
+    background-color: #fff;
+    transform: translateX(0);
+  }
 
   .btn-filter-close {
     position: absolute;
@@ -66,18 +80,6 @@ input:focus {
     width: 40px;
     height: 40px;
   }
-}
-
-.filter-wrapper.open {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  width: 240px;
-  height: 380px;
-  background-color: #fff;
-  z-index: 999999999;
 }
 
 .new-event-wrapper {
