@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   def dashboard
-    raise
+    @events = Event.where(user_id: current_user.id)
+    authorize @events
   end
 end
