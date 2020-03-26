@@ -1,11 +1,27 @@
 <div class="participating_to_event">
-  <%= event.title %> |
+  <%= link_to event_path(event.id) do %>
+    <%= event.title %>
+  <% end %>
   <%= event.address %> |
   <div class="participants">
     <% event.participants.each do |participant| %>
-      <div class="participant">
-        <%= participant.user.full_name %>
-        <%= participant.status %>
+      <div class="participants">
+        <% if participant.user = current_user %>
+          <div class="you">
+            <%= link_to profile_path(participant.user) do %>
+              <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
+              <%= participant.user.full_name %>
+            <% end %>
+              <%= link_to 'Uninscribe', event_remove_participant_path(event.id), method: :delete %>
+          </div>
+        <% else %>
+          <div class="others">
+            <%= link_to profile_path(participant.user) do %>
+              <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
+              <%= participant.user.full_name %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -12,7 +12,7 @@ class ParticipantsController < ApplicationController
     @participant = Participant.new(user_id: current_user.id, event_id: params[:event_id])
     authorize @participant
     if Participant.where(user_id: current_user, event_id: @event.id).empty?
-      @participant.save if @participant.valid?
+      @participant.save
     end
     redirect_to event_path(params[:event_id])
   end
