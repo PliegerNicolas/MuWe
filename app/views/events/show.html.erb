@@ -8,7 +8,8 @@
     <% end %>
   </div>
 
-  <div class="top-content", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://makingmusicmag.com/wp-content/uploads/2015/07/guitar-907652_1280.jpg)">
+  <div class="top-content", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= @event.location_photo.attachment ? cl_image_path(@event.location_photo.key, secure: true) : image_url("login-bg.jpg") %>)">
+
     <div class="teste">
       <div class="left-top-card">
         <div class="event-title">
