@@ -13,8 +13,19 @@
   </div>
 
   <div class="new-event-wrapper">
-    <div class="new-event-box muwe-shadow">
-      <%= link_to 'create jam', new_event_path, class: 'btn create-event' %>
+  </div>
+
+  <div class="map-actions">
+    <%= link_to new_event_path, class: 'btn-create-event', title: 'CREATE JAM' do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+
+    <button class="btn-filter">
+      <i class="fas fa-search"></i>
+    </button>
+
+    <div class="filter-wrapper">
+      <span class="btn-filter-close"><i class="fas fa-times-circle"></i></span>
       <%= form_tag root_path, method: :get, remote: true do   %>
         <input type="submit" value="Today" class="filter">
       <% end %>
