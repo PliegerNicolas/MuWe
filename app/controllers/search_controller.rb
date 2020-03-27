@@ -24,22 +24,9 @@ class SearchController < ApplicationController
         time = [filter_params[:start_time], filter_params[:end_time]]
         @events = @events.filter_by_time(time) if time && time[0] < time[1]
       end
-      unless filter_params[:max_players].blank?
-        @events = @events.filter_by_max_players(filter_params[:max_players].to_i)
-      end
-      unless filter_params[:status].blank?
-        @events = @events.filter_by_status(filter_params[:status].to_s)
-      end
+      @events = @events.filter_by_max_players(filter_params[:max_players]) unless filter_params[:max_players].blank?
+      @events = @events.filter_by_status(filter_params[:status].downcase!) unless filter_params[:status].blank?
     end
-
-    # keep this line as reference for improvments, cause if there's no events between the boundaries of the map
-    # we should still display something ??
-    # @events = Event.where.not(latitude: nil, longitude: nil).near([@lat, @lng], 80) unless @lng.nil? && @lat.nil?
-
-    # @events = Event.where.not(latitude: nil).or(Event.where.not(longitude: nil))
-    #                .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
-    #                .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
-    #                .where('start_date >= ? AND end_time > ?', Date.today, Time.now)
 
     html = render_to_string @events
 
