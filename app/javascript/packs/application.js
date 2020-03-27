@@ -23,6 +23,9 @@ import {
     readURL
 } from '../plugins/file_upload';
 
+import {
+  map_filter
+} from '../plugins/map_filter';
 
 initCards();
 initSelect2();
@@ -36,6 +39,7 @@ addressAutocomplete();
 
 initMap();
 window.initMap = initMap;
+map_filter();
 
 let mapSwiper = new Swiper('.swiper-container', {
     direction: 'horizontal',

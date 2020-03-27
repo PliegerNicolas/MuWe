@@ -16,6 +16,13 @@ class Event < ApplicationRecord
   enum status: { planned: 0, ongoing: 1, finished: 2 }
   # .planned(! or ?), .active(! or ?), .finished(! or ?) to update or check the status easily
 
+  scope :filter_by_periode_uniq, ->(periode) { where(start_date: periode) }
+  scope :filter_by_periode_multiple, ->(periodes) { where('start_date BETWEEN ? AND ?', periodes[0], periodes[1]) }
+  scope :filter_by_time, ->(time) { where('start_time >= ? AND end_time <= ?', time[0], time[1]) }
+  scope :filter_by_max_players, ->(max_players) { where(max_players: max_players) }
+  scope :filter_by_status, ->(status) { where(status: status) }
+  scope :filter_by_duo_status, ->(status_multiple) { where(status: status_multiple) }
+
   def accepted_participants
     self.participants.where("participants.status=?", 1) # TODO: dynamically get accepted status from participants
   end

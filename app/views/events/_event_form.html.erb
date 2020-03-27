@@ -25,10 +25,10 @@
       </div>
     </div>
     <div class="col-sm-2 start-time">
-      <%= f.input :start_time, collection: @times, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
+      <%= f.input :start_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
     </div>
     <div class="col-sm-2 end-time">
-      <%= f.input :end_time, collection: @times, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
+      <%= f.input :end_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
     </div>
   </div>
   <div class="row">

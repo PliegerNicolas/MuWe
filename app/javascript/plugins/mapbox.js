@@ -13,8 +13,8 @@ const fitBound = () => {
     return event.latitude
   });
   let longitudes = events.filter(event => event.longitude);
-  console.log(latitudes);
-  console.log(longitudes);
+  // console.log(latitudes);
+  // console.log(longitudes);
 };
 
 const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
@@ -41,7 +41,12 @@ const fetchMarkers = async () => {
       max_lat: _ne.lat,
       min_lat: _sw.lat,
       max_lng: _ne.lng,
-      min_lng: _sw.lng
+      min_lng: _sw.lng,
+      periode: document.querySelector("#filter_periode").value,
+      start_time: document.querySelector("#filter_start_time").value,
+      end_time: document.querySelector("#filter_end_time").value,
+      max_players: document.querySelector("#filter_max_players").value,
+      status: document.querySelector("#filter_status").value
     }
   });
   return {
@@ -102,7 +107,7 @@ const bouncedMarkers = debounce(() => {
           el
         }
       });
-      console.log(markersLoaded);
+      // console.log(markersLoaded);
 
       // get all the cards loaded in .swiper-wrapper
       const cardsLoaded = document.querySelectorAll('.swiper-wrapper > div');
