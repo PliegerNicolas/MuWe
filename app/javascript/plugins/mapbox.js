@@ -13,8 +13,8 @@ const fitBound = () => {
     return event.latitude
   });
   let longitudes = events.filter(event => event.longitude);
-  console.log(latitudes);
-  console.log(longitudes);
+  // console.log(latitudes);
+  // console.log(longitudes);
 };
 
 const fitMapToMarkers = (map, markers) => { // We'll have to replace markers by position of current_user
@@ -107,7 +107,7 @@ const bouncedMarkers = debounce(() => {
           el
         }
       });
-      console.log(markersLoaded);
+      // console.log(markersLoaded);
 
       // get all the cards loaded in .swiper-wrapper
       const cardsLoaded = document.querySelectorAll('.swiper-wrapper > div');
