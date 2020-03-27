@@ -33,7 +33,13 @@ class SearchController < ApplicationController
       @events = @events.filter_by_time(time) if time && time[0] < time[1]
     end
     @events = @events.filter_by_max_players(filter_params[:max_players]) unless filter_params[:max_players].blank?
-    @events = @events.filter_by_status(filter_params[:status].downcase!) unless filter_params[:status].blank?
+    if !filter_params[:status].blank? && filter_params[:status] == 'Ongoing/Planned'
+      status_multiple = filter_params[:status].split('/')
+      status_multiple.map!(&:downcase)
+      @events = @events.filter_by_duo_status(status_multiple)
+    elsif !filter_params[:status].blank?
+      @events = @events.filter_by_status(filter_params[:status].downcase!)
+    end
 
     html = render_to_string @events
 
