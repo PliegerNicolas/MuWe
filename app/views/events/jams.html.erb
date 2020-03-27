@@ -29,7 +29,9 @@
             <i class="fas fa-user"></i>
             <label>created by</label>
             <span>
-              <%= event.user.full_name %>
+              <%= link_to profile_path(event.user.profile.id) do %>
+                <%= event.user.full_name  %>
+              <% end %>
             </span>
           </div>
             <%= link_to event_path(event.id) do %>
