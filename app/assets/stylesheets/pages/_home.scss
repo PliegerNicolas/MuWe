@@ -8,7 +8,7 @@ input:focus {
 
 .navbar-container {
   width: 100%;
-  box-shadow: 0 10px 10px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
@@ -16,6 +16,18 @@ input:focus {
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    // background-color: $gray-800;
+    background-image: linear-gradient(175deg, $gray-800 45%, $dark-purple 80%, $light-purple);
+    transform: skewY(-7deg);
+  }
 }
 
 .btn-create-event,
