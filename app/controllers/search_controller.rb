@@ -29,7 +29,6 @@ class SearchController < ApplicationController
       end
       unless filter_params[:status].blank?
         @events = @events.filter_by_status(filter_params[:status].to_s)
-        byebug
       end
     end
 
