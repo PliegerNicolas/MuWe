@@ -17,13 +17,13 @@ class SearchController < ApplicationController
         periode_uniq = (Date.today + 1.day).strftime('%F') if filter_params[:periode] == "Tomorrow"
         periode_multiple = [Date.today, Date.today + 7.day] if filter_params[:periode] == "7 days from now"
         periode_multiple = [Date.today, Date.today + 14.day] if filter_params[:periode] == "14 days from now"
-        byebug
         @events = @events.filter_by_periode_uniq(periode_uniq) if periode_uniq
         @events = @events.filter_by_periode_multiple(periode_multiple) if periode_multiple
-        byebug
       end
       unless filter_params[:start_time].blank? && filter_params[:end_time].blank?
-
+        time = [filter_params[:start_time], filter_params[:end_time]]
+        byebug
+        @events = @events.filter_by_time(time) if time && time[0] < time[1]
       end
       unless filter_params[:max_players].blank?
 
