@@ -32,6 +32,7 @@ end
 
 group :development, :test do
   # gem 'pry-byebug', '~> 3.4' # This gem doesn't play well with bootsnap
+  gem 'byebug'
   gem 'pry-rails'
   gem 'listen', '~> 3.0.5'
   gem 'spring'

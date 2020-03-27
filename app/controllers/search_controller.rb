@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   def index
+    byebug
     @lng = params[:longitude]
     @lat = params[:latitude]
     @max_lat = params[:max_lat]
