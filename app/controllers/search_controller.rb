@@ -22,14 +22,14 @@ class SearchController < ApplicationController
       end
       unless filter_params[:start_time].blank? && filter_params[:end_time].blank?
         time = [filter_params[:start_time], filter_params[:end_time]]
-        byebug
         @events = @events.filter_by_time(time) if time && time[0] < time[1]
       end
       unless filter_params[:max_players].blank?
-
+        @events = @events.filter_by_max_players(filter_params[:max_players].to_i)
       end
       unless filter_params[:status].blank?
-
+        @events = @events.filter_by_status(filter_params[:status].to_s)
+        byebug
       end
     end
 
