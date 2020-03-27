@@ -65,3 +65,13 @@ filterBtn.addEventListener('click', () => {
 filterBtnClose.addEventListener('click', () => {
     filterWrapper.classList.toggle('open');
 });
+
+const navbar = document.querySelector('.navbar-container');
+window.addEventListener('scroll', (e) => {
+    const offset = navbar.offsetTop;
+    if (window.pageYOffset > offset) {
+        navbar.classList.add('fixed');
+    } else {
+        navbar.classList.remove('fixed');
+    }
+});
