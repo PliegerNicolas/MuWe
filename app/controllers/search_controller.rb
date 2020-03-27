@@ -7,8 +7,7 @@ class SearchController < ApplicationController
     @max_lng = params[:max_lng]
     @min_lng = params[:min_lng]
 
-    @events = policy_scope(Event).filter_by_periode_uniq(Date.today.strftime('%F'))
-                                 .where.not(latitude: nil, longitude: nil)
+    @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
                                  .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
                                  .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
 
