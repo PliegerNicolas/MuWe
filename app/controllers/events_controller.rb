@@ -13,11 +13,6 @@ class EventsController < ApplicationController
     @events = @events.where(status: params[:status_filter][:status].downcase) if params[:status_filter] # Status filter
   end
 
-  def jams
-    @pagy, @events = pagy(policy_scope(Event.where.not(status: 'finished')), items: 12)
-    authorize @events
-  end
-
   def new
     @event = Event.new
     authorize @event

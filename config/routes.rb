@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   root to: 'events#index'
 
-  get 'jams', to: 'events#jams' # Main jams page similar to index
-
   get 'nearby', to: 'events#nearby' # find events nearby based on geolocation
 
   get 'profile/edit', to: 'profiles#edit', as: :edit_profile
