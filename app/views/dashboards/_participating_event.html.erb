@@ -4,15 +4,19 @@
       <%= image_tag event.location_photo, height: '200px', width: '300px' %>
     <% end %>
   </div>
-  <div class="dashboard-participants">
+  <div class="dashboard-my-participations">
     <% event.participants.each do |participant| %>
       <% if participant.user == current_user %> <!-- Check for host -->
         <div class="current-user-participant"> <!-- You -->
-          <%= link_to profile_path(participant.user.profile.id) do %>
-            <%= participant.user.full_name  %>
+          <% if participant.status == 'postulating' %>
+            <p>Your postulation is <strong>pending</strong>.</p>
+            <%= link_to 'Cancel inscription', event_remove_participant_path(event.id), method: :delete, class: "participations-action-button" %>
+          <% elsif participant.status == 'accepted' %>
+            <p>Your postulation has been <strong>accepted</strong> !</p>
+            <%= link_to 'Cancel inscription', event_remove_participant_path(event.id), method: :delete, class: "participations-action-button" %>
+          <% elsif participant.status == 'declined' %>
+            <p>Your postulation has been <strong>declined</strong>.</p>
           <% end %>
-          <%= participant.status %>
-          <%= link_to 'Cancel inscription', event_remove_participant_path(event.id), method: :delete %>
         </div>
       <% elsif event.participants.where(user_id: event.user_id).include?(participant) %>
         <div class="host">

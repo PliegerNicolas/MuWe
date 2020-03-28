@@ -67,7 +67,7 @@
   overflow:hidden;
   overflow-y:scroll;
   padding: 5px;
-  .host-action-button {
+  .action-button {
     color: $muwe-black;
     padding: 4px 6px;
     border-radius: 4px;
@@ -88,5 +88,40 @@
   text-align: center;
   hr {
     width: 60%;
+  }
+}
+
+// \/ My participations
+
+.current-user-participant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    text-align: center;
+  }
+}
+
+
+.dashboard-my-participations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 55%;
+  margin: 10px;
+}
+
+.participations-action-button {
+  margin-top: 20px;
+  color: $muwe-black;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background-color: $light-purple;
+  transition: 0.3s;
+  border: 2px solid rgba(177,109,231,0.36);
+  &:hover {
+    border: 2px solid rgba(43,26,56,0.36);
+    transition: 0.2s;
   }
 }
