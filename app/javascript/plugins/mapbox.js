@@ -89,8 +89,6 @@ const bouncedMarkers = debounce(() => {
       clearMarkers();
       let markersLoaded = {}
 
-      flyToCity(city_coords, map_box_limit); // City filter
-
       eventsWrapper.innerHTML = cards;
 
       events.forEach((marker) => {
