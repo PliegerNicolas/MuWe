@@ -3,6 +3,7 @@ import {
   debounce
 } from 'lodash';
 import axios from 'axios'
+import HTMLPopup from './popup';
 
 let map, initUserPos;
 let mapElement;
@@ -80,18 +81,14 @@ const bouncedMarkers = debounce(() => {
       eventsWrapper.innerHTML = cards;
 
       events.forEach((marker) => {
-        // console.log(marker);
+        console.log(marker);
+        let htmlPopup = new HTMLPopup(marker);
 
         let popup = new mapboxgl.Popup({
-          offset: 25,
-          maxWidth: '320px'
+          // offset: 25,
+          maxWidth: 'max-content'
         }).setHTML(
-          `<div class="popup-marker">
-            <h3>${marker.title}</h3>
-            <p>${marker.description}</p>
-            <p>Players: ${marker.max_players} | Status: ${marker.status}</p>
-            <p class="mt-2"><a href="/events/${marker.id}" target="_blank" class="btn btn-sm btn-muwe">See more</a></p>
-          </div>`
+          htmlPopup.content()
         );
 
         let color = (marker.status == 'planned') ? '#44AEE6' : '#6BB382';
