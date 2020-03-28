@@ -66,6 +66,18 @@
   overflow:hidden;
   overflow-y:scroll;
   padding: 5px;
+  .host-action-button {
+    color: $muwe-black;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background-color: $light-purple;
+    transition: 0.3s;
+    border: 2px solid rgba(177,109,231,0.36);
+    &:hover {
+      border: 2px solid rgba(43,26,56,0.36);
+      transition: 0.2s;
+    }
+  }
 }
 
 .archive-section {

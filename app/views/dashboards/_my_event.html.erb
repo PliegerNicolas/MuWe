@@ -18,10 +18,10 @@
           <div class="postulating-user">
             <%= link_to profile_path(participant.user) do %>
                 <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-                <%= participant.user.full_name %> | <%= participant.status %>
+                <%= participant.user.full_name %>
               <% end %>
-              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post %>
-              <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete %>
+              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "host-action-button" %>
+              <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "host-action-button" %>
           </div>
         <% end %>
       </div>
@@ -34,7 +34,7 @@
               <%= link_to profile_path(participant.user) do %> <!-- Host section -->
                 <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
                 <%= participant.user.full_name %>
-                <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete %>
+                <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "host-action-button" %>
               <% end %>
             <% else %>
               <%= link_to profile_path(participant.user) do %> <!-- Host section -->
@@ -54,7 +54,7 @@
                 <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
                 <%= participant.user.full_name %>
               <% end %>
-              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post %>
+              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "host-action-button" %>
           </div>
         <% end %>
       </div>
