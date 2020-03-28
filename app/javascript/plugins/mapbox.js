@@ -51,7 +51,7 @@ const fetchMarkers = async () => {
   });
   return {
     events: res.data.events,
-    cards: res.data.cards
+    cards: res.data.cards,
   }
 }
 
@@ -69,7 +69,9 @@ const bouncedMarkers = debounce(() => {
     .then((response) => {
       const {
         events,
-        cards
+        cards,
+        city_coords, // City filter
+        map_box_limit // City filter
       } = response;
 
       clearMarkers();

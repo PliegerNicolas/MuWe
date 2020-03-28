@@ -24,7 +24,7 @@ import {
 } from '../plugins/file_upload';
 
 import {
-  map_filter
+  map_filter, city_filter
 } from '../plugins/map_filter';
 
 initCards();
@@ -40,6 +40,7 @@ addressAutocomplete();
 initMap();
 window.initMap = initMap;
 map_filter();
+city_filter();
 
 let mapSwiper = new Swiper('.swiper-container', {
     direction: 'horizontal',
