@@ -81,10 +81,11 @@ input:focus {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  width: 240px;
-  height: 500px;
+  border-radius: 0 0 4px 0;
+  width: 260px;
+  height: 580px;
   background-color: transparent;
-  transform: translateX(-240px);
+  transform: translateX(-260px);
   z-index: 999999999;
   transition: .4s;
 
