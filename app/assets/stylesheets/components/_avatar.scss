@@ -2,20 +2,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 75px;
-  // height: 75px;
   border-radius: 50%;
-  background-color: $muwe-white;
   transition: 0.5s;
 
   &:hover {
-    background-color: $muwe-green;
-    transition: 0.4s;
-    opacity: 0.8;
+    transition: .1s;
+    transform: scale(1.1);
+  }
+
+  a {
+    i {
+      color: $light-purple;
+    }
+
+    &:hover {
+      i {
+        color: darken($light-purple, 10);
+      }
+    }
   }
 
   .muwe-avatar {
-    // width: 71px;
     border-radius: 50%;
   }
 
