@@ -1,8 +1,5 @@
 ----
 <div class="participating_to_event">
-  <%= link_to event_path(event.id) do %>
-    <% event.title %>
-  <% end %>
   <div class="participants">
     <% event.participants.each do |participant| %>
       <% if participant.user == current_user %> <!-- Check for host -->
