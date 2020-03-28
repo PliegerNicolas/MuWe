@@ -1,19 +1,16 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="content-wrapper">
-        <div id="my_events" class="position-relative">
-          <% @events_created.each do |event| %>
-            <%= render "my_event", event: event %>
-          <% end %>
-        </div>
-        <div id="participating_to_events" class="position-relative">
-          <% @events_participating.each do |event| %>
-            <%= render "participating_event", event: event %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+<div class="dashboard">
+  <div id="my_events" class="dashboard-section">
+    <h2>My Events</h2>
+    <% @events_created.each do |event| %>
+      <%= render "my_event", event: event %>
+    <% end %>
+  </div>
+
+  <div id="participating_to_events" class="dashboard-section">
+    <h2>My Participations</h2>
+    <% @events_participating.each do |event| %>
+      <%= render "participating_event", event: event %>
+    <% end %>
   </div>
 </div>
 
