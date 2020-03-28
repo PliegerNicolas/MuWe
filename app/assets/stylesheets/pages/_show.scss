@@ -125,36 +125,17 @@
   margin-left: 56px;
   justify-content: center;
   margin-bottom: 10px;
-}
 
-.buttons-list {
-  display: flex;
-}
-
-.about-btn {
-  display: flex;
-  width: 100px;
-  line-height: 30px;
-  justify-content: center;
-  color: $muwe-green;
-  font-weight: regular;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border-bottom: 2px solid $muwe-green;
-  margin-bottom: 10px;
-
-  &:hover {
-    font-weight: normal;
+  .active {
     color: $muwe-green;
+    border-bottom: 2px solid $muwe-green;
   }
 }
 
-.chat-btn {
+.about-btn, .chat-btn {
   display: flex;
   height: 30px;
   width: 100px;
-  border-radius: 5px;
   justify-content: center;
   color: #555555;
   font-weight: regular;
@@ -162,9 +143,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #e0e0e0;
-    font-weight: normal;
-    color: #555555;
+    border-bottom: 2px solid gray;
   }
 }
 

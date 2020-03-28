@@ -63,6 +63,10 @@
 
     <div class="below-content position-relative">
       <div class="teste2">
+        <div class="switch-buttons">
+          <div class="about-btn active">About</div>
+          <div class="chat-btn">Chat</div>
+        </div>
         <div class="left-below-card">
           <div class="players-card">
             <h4><strong>Players</strong></h4>
@@ -122,6 +126,27 @@
               <br>
               <br>
           </div>
+
+          <div id="chat" style="display:none">
+            <div class="row mt-5">
+              <div class="col-12">
+                <!-- Tchat start -->
+                <div id="messages">
+                  <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
+                    To get access to tchat you must be a participant.
+                  <% else %>
+                    <% @event.messages.each do |message| %>
+                      <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
+                    <% end %>
+                </div>
+
+                  <%= render 'messages/form', event: @event, message: @message %>
+                <% end %>
+                <!-- Tchat end -->
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -183,25 +208,8 @@
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col-12">
-      <!-- Tchat start -->
-      <div id="messages">
-        <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
-          To get access to tchat you must be a participant.
-        <% else %>
-          <% @event.messages.each do |message| %>
-            <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
-          <% end %>
-      </div>
 
-        <%= render 'messages/form', event: @event, message: @message %>
-      <% end %>
-      <!-- Tchat end -->
-    </div>
-  </div>
-
-  </div>
+</div>
 </div>
 
 <% content_for :after_js do %>

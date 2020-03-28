@@ -60,12 +60,18 @@ let mapSwiper = new Swiper('.swiper-container', {
 const filterBtn = document.querySelector('.btn-filter');
 const filterBtnClose = document.querySelector('.btn-filter-close');
 const filterWrapper = document.querySelector('.filter-wrapper');
-filterBtn.addEventListener('click', () => {
-    filterWrapper.classList.toggle('open');
-});
-filterBtnClose.addEventListener('click', () => {
-    filterWrapper.classList.toggle('open');
-});
+
+if (filterWrapper) {
+  filterBtn.addEventListener('click', () => {
+      filterWrapper.classList.toggle('open');
+  });
+}
+
+if (filterBtnClose) {
+  filterBtnClose.addEventListener('click', () => {
+      filterWrapper.classList.toggle('open');
+  });
+}
 
 const navbar = document.querySelector('.navbar-container');
 window.addEventListener('scroll', (e) => {
@@ -76,3 +82,24 @@ window.addEventListener('scroll', (e) => {
         navbar.classList.remove('fixed');
     }
 });
+
+
+const aboutButton = document.querySelector('.about-btn');
+if (aboutButton) {
+  aboutButton.addEventListener('click', (event) => {
+    document.querySelector('#chat').style.display = "none";
+    document.querySelector('.players-card').style.display = "initial";
+    event.target.classList.toggle('active');
+    document.querySelector('.chat-btn').classList.toggle('active');
+  });
+}
+
+const chatButton = document.querySelector('.chat-btn');
+if (chatButton) {
+  chatButton.addEventListener('click', () => {
+    document.querySelector('#chat').style.display = "initial";
+    document.querySelector('.players-card').style.display = "none";
+    event.target.classList.toggle('active');
+    document.querySelector('.about-btn').classList.toggle('active');
+  });
+}
