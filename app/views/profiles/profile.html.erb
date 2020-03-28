@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="profile">
+  <div class="content-wrapper profile">
     <div class="row">
       <div class="col-4">
 
@@ -93,16 +93,20 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12">
+        <div id="posts" class="mt-5">
+          <% if @profile.user.posts.blank? %>
+            <p><%= @profile.user.full_name %> has made no posts yet.</p>
+          <% else %>
+            <% @profile.user.posts.each do |post| %>
+              <%= render 'posts/show', post: post %>
+            <% end %>
+          <% end %>
+        </div>
+        <%= render 'posts/form', profile: @profile, post: Post.new %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div id="posts">
-  <% if @profile.user.posts.blank? %>
-    <p><%= @profile.user.full_name %> has made no posts yet.</p>
-  <% else %>
-    <% @profile.user.posts.each do |post| %>
-      <%= render 'posts/show', post: post %>
-    <% end %>
-  <% end %>
-</div>
-<%= render 'posts/form', profile: @profile, post: Post.new %>
