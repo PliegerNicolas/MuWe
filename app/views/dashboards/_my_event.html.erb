@@ -1,8 +1,10 @@
 <div class="my_event">
+  <%= link_to event_path(event.id) do %>
+    <%= image_tag event.location_photo, height: '200px', width: '300px' %>
+  <% end %>
   <% unless event.status == 'finished' %>
-    <%= event.title %> |
-    <%= event.status %> |
-    <%= event.address %> |
+    <%= event.status %>
+    <%= event.address %>
 
     <div class="postulating-users">
       <p>Postulating participants</p>
@@ -53,8 +55,12 @@
 
     <%= link_to "Archive", event_path(event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
   <% else %>
-    <%= event.title %> |
-    <%= event.status %> |
-    <%= event.address %> |
+    <%= event.status %>
+    <%= event.address %>
+    <% event.participants.each do |participant| %>
+      <%= link_to profile_path(participant.user.profile.id) do %>
+        <%= participant.user.full_name  %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

@@ -9,11 +9,12 @@
 
     <div class="teste">
       <div class="left-top-card">
-        <div class="event-title">
-          <%= @event.title %>
-        </div>
         <div class="event-host">
-          <h5>By <%= link_to @event.user.full_name  %></h5>
+          <h5>
+            By <%= link_to profile_path(@event.user.profile.id) do %>
+              <%= @event.user.full_name  %>
+            <% end %>
+          </h5>
         </div>
         <br>
         <div class="event-address">
@@ -36,16 +37,16 @@
             <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
           <% else %>
             <% if user_events.include?(@event) == false %>
-              <%= link_to 'Inscribe', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
+              <%= link_to 'Join event', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
             <% else %>
               <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
               <% if participants.first.status == 'declined' %>
                 <p>Your participation has been declined</p>
               <% elsif participants.first.status == 'postulating' %>
-                <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
                 <p>Your inscription is pending</p>
               <% else %>
-                <%= link_to 'Uninscribe', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
               <% end %>
             <% end %>
           <% end %>
@@ -75,15 +76,22 @@
               <td>
                 <div class="host-info2">
                 <% if participant.user.profile.profile_photo.attachment %>
-                  <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
-                <% else %>
-                  <%= image_tag (cl_image_path 'default_instrument_image'), class: "host-avatar" %>
+                  <%= link_to profile_path(participant.user.profile.id) do %>
+                    <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
+                  <% end %>
                 <% end %>
-                <%  %>
                 <% if @event.participants.where(user_id: @event.user_id).include?(participant) %>
-                  <div class="host-name"><%= participant.user.full_name %> (Host)</div>
+                  <div class="host-name">
+                    <%= link_to profile_path(participant.user.profile.id) do %>
+                      <%= participant.user.full_name  %>
+                    <% end %> (Host)
+                  </div>
                 <% else %>
-                  <div class="host-name"><%= participant.user.full_name %></div>
+                  <div class="host-name">
+                    <%= link_to profile_path(participant.user.profile.id) do %>
+                      <%= participant.user.full_name  %>
+                    <% end %>
+                  </div>
                 <% end %>
                 </div>
               </td>

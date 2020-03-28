@@ -14,9 +14,6 @@
         </div>
         <% end %>
         <div class="card-body">
-          <div class="jam-title">
-            <strong><%= event.title %></strong>
-          </div>
           <div class="jam-date">
             <%= event.start_date.strftime("%A, %d %B") if event.start_date%>
             <%#= event.start_time.strftime("%H:%M") %>
@@ -29,7 +26,9 @@
             <i class="fas fa-user"></i>
             <label>created by</label>
             <span>
-              <%= event.user.full_name %>
+              <%= link_to profile_path(event.user.profile.id) do %>
+                <%= event.user.full_name  %>
+              <% end %>
             </span>
           </div>
             <%= link_to event_path(event.id) do %>
