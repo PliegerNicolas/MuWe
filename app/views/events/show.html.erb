@@ -1,207 +1,205 @@
 <div class="container" style="position:relative;">
-  <div class="header-button-back">
-    <%= link_to events_path do %>
-      <span><i class="fas fa-chevron-left"></i> Back</span>
-    <% end %>
-  </div>
+  <div class="content-wrapper">
+    <div class="header-button-back d-none">
+      <%= link_to events_path do %>
+        <span><i class="fas fa-chevron-left"></i> Back</span>
+      <% end %>
+    </div>
+    <div class="top-content position-relative", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= @event.location_photo.attachment ? cl_image_path(@event.location_photo.key, secure: true) : image_url("login-bg.jpg") %>)">
 
-  <div class="top-content", style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= @event.location_photo.attachment ? cl_image_path(@event.location_photo.key, secure: true) : image_url("login-bg.jpg") %>)">
+      <div class="teste">
+        <div class="left-top-card">
+          <div class="event-host">
+            <h5>
+              By <%= link_to profile_path(@event.user.profile.id) do %>
+                <%= @event.user.full_name  %>
+              <% end %>
+            </h5>
+          </div>
+          <br>
+          <div class="event-address">
+            <h5><i class="fas fa-map-marker-alt"></i><%= @event.address %>, <%= @event.city %></h5>
+          </div>
+        </div>
+      </div>
 
-    <div class="teste">
-      <div class="left-top-card">
-        <div class="event-host">
-          <h5>
-            By <%= link_to profile_path(@event.user.profile.id) do %>
-              <%= @event.user.full_name  %>
-            <% end %>
-          </h5>
+      <div class="right-top-card">
+        <div><h4><strong>Date & Time</strong></h4>
+          <span><h5><div class="event-start-time"><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> at <%= @event.start_time.to_s(:time) %></div></h5></span>
         </div>
         <br>
-        <div class="event-address">
-          <h5><i class="fas fa-map-marker-alt"></i><%= @event.address %>, <%= @event.city %></h5>
-        </div>
-      </div>
-    </div>
+        <!-- Logic about inscription -->
+          <% if signed_in? %>
+            <% user_events = current_user.event_participations %>
 
-    <div class="right-top-card">
-      <div><h4><strong>Date & Time</strong></h4>
-        <span><h5><div class="event-start-time"><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> at <%= @event.start_time.to_s(:time) %></div></h5></span>
-      </div>
-      <br>
-      <!-- Logic about inscription -->
-        <% if signed_in? %>
-          <% user_events = current_user.event_participations %>
-
-          <% if current_user == @event.user %>
-            <%= link_to 'Participants', event_participants_path(@event.id), class: "going-to-play-btn" %>
-            <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
-          <% else %>
-            <% if user_events.include?(@event) == false %>
-              <%= link_to 'Join event', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
+            <% if current_user == @event.user %>
+              <%= link_to 'Participants', event_participants_path(@event.id), class: "going-to-play-btn" %>
+              <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
             <% else %>
-              <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
-              <% if participants.first.status == 'declined' %>
-                <p>Your participation has been declined</p>
-              <% elsif participants.first.status == 'postulating' %>
-                <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
-                <p>Your inscription is pending</p>
+              <% if user_events.include?(@event) == false %>
+                <%= link_to 'Join event', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
               <% else %>
-                <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
+                <% if participants.first.status == 'declined' %>
+                  <p>Your participation has been declined</p>
+                <% elsif participants.first.status == 'postulating' %>
+                  <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                  <p>Your inscription is pending</p>
+                <% else %>
+                  <%= link_to 'Cancel inscription', event_remove_participant_path(@event.id), method: :delete, class: "going-to-play-btn" %>
+                <% end %>
               <% end %>
             <% end %>
+          <% else %>
+            <p class="play-btn"><%= link_to "Sign-in to participate", new_user_session_path  %></p>
           <% end %>
-        <% else %>
-          <p class="play-btn"><%= link_to "Sign-in to participate", new_user_session_path  %></p>
-        <% end %>
-        <!-- Logic about inscription -->
+          <!-- Logic about inscription -->
+      </div>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <div class="below-content">
-    <div class="teste2">
-      <div class="left-below-card">
-        <div class="players-card">
-          <h4><strong>Players</strong></h4>
-          <p><div class="warning-players">There are still <%= @event.max_players - @event.participants.where(status: 'accepted').count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
-          <table style="width:100%">
+    <div class="below-content position-relative">
+      <div class="teste2">
+        <div class="left-below-card">
+          <div class="players-card">
+            <h4><strong>Players</strong></h4>
+            <p><div class="warning-players">There are still <%= @event.max_players - @event.participants.where(status: 'accepted').count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
+            <table style="width:100%">
 
-            <tr class="table-titles">
-              <th>Player</th>
-              <th>Instrument</th>
-              <th>Rating</th>
-            </tr>
-            <% @event.participants.where(status: 'accepted').each do |participant| %>
-            <tr>
-              <td>
-                <div class="host-info2">
-                <% if participant.user.profile.profile_photo.attachment %>
-                  <%= link_to profile_path(participant.user.profile.id) do %>
-                    <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
+              <tr class="table-titles">
+                <th>Player</th>
+                <th>Instrument</th>
+                <th>Rating</th>
+              </tr>
+              <% @event.participants.where(status: 'accepted').each do |participant| %>
+              <tr>
+                <td>
+                  <div class="host-info2">
+                  <% if participant.user.profile.profile_photo.attachment %>
+                    <%= link_to profile_path(participant.user.profile.id) do %>
+                      <%= image_tag participant.user.profile.profile_photo, class: "host-avatar" %>
+                    <% end %>
                   <% end %>
-                <% end %>
-                <% if @event.participants.where(user_id: @event.user_id).include?(participant) %>
-                  <div class="host-name">
-                    <%= link_to profile_path(participant.user.profile.id) do %>
-                      <%= participant.user.full_name  %>
-                    <% end %> (Host)
+                  <% if @event.participants.where(user_id: @event.user_id).include?(participant) %>
+                    <div class="host-name">
+                      <%= link_to profile_path(participant.user.profile.id) do %>
+                        <%= participant.user.full_name  %>
+                      <% end %> (Host)
+                    </div>
+                  <% else %>
+                    <div class="host-name">
+                      <%= link_to profile_path(participant.user.profile.id) do %>
+                        <%= participant.user.full_name  %>
+                      <% end %>
+                    </div>
+                  <% end %>
                   </div>
-                <% else %>
-                  <div class="host-name">
-                    <%= link_to profile_path(participant.user.profile.id) do %>
-                      <%= participant.user.full_name  %>
-                    <% end %>
+                </td>
+                <td>
+                  <% unless @event.user.instrument_users.empty? %>
+                    <%= @event.user.instrument_users.first.instrument.name %>
+                  <% end %>
+                </td>
+                <td>
+                  <div class="host-rating">
+                    <i class="fas fa-star"></i>
                   </div>
-                <% end %>
-                </div>
-              </td>
-              <td>
-                <% unless @event.user.instrument_users.empty? %>
-                  <%= @event.user.instrument_users.first.instrument.name %>
-                <% end %>
-              </td>
-              <td>
-                <div class="host-rating">
-                  <i class="fas fa-star"></i>
-                </div>
-              </td>
-            </tr>
-            <% end %>
-          </table>
-            <div class="list-of-details">
-            <h4><strong>Details</strong></h4>
-            <div class="participants"><span class="fas fa-guitar"></span> <%= @event.participants.count %> players responded to the event</div>
-            <div class="music-style"><span class="fas fa-music"></span>Music style: <%= @event.music_style.style %></div>
-            <div class="event-time-detail"><span class="fas fa-clock"></span> <%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
-            <div class="event-address-detail"><span class="fas fa-map-marker-alt"></span><%= @event.address %>, <%= @event.city %></div>
-            <div class="event-description"><%= @event.description %></div>
-            </div>
-            <br>
-            <br>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="teste3">
-      <div class="like-share-buttons">
-        <div class="buttons-list">
-          <ul>
-            <li><div class="like-btn"><span class="fas fa-heart"></span>Interested</div></li>
-            <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li>
-          </ul>
-        </div>
-      </div>
-      <div class="event-sub-titles"> <h4><strong>Event Location</strong></h4> </div>
-      <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
-      <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
-      <div class="event-address-under-map"><h4><strong> Go and meet new friends</strong></h4> </div>
-
-      <% if @event.accepted_participants.count > 0 %>
-              <div class="jam-attendees">
-                <span class="total-attendees"><%= pluralize(@event.accepted_participants.count, 'participant') %></span>
-                <% if @event.accepted_participants.count > 5 %>
-                  <div class="jam-attendee-item">
-                    <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
-                  </div>
-                <% end %>
-                 <% @event.accepted_participants.limit(5).each do |participant| %>
-                  <div class="jam-attendee-item">
-                    <% if participant.user.profile.profile_photo.attachment  %>
-                      <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
-                    <% else %>
-                      <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
-                    <% end %>
-                  </div>
-                <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+              <div class="list-of-details">
+              <h4><strong>Details</strong></h4>
+              <div class="participants"><span class="fas fa-guitar"></span> <%= @event.participants.count %> players responded to the event</div>
+              <div class="music-style"><span class="fas fa-music"></span>Music style: <%= @event.music_style.style %></div>
+              <div class="event-time-detail"><span class="fas fa-clock"></span> <%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
+              <div class="event-address-detail"><span class="fas fa-map-marker-alt"></span><%= @event.address %>, <%= @event.city %></div>
+              <div class="event-description"><%= @event.description %></div>
               </div>
-            <% else %>
-              <p>Be the first to join!</p>
-            <% end %>
+              <br>
+              <br>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="teste3">
+        <div class="like-share-buttons">
+          <div class="buttons-list">
+            <ul>
+              <li><div class="like-btn"><span class="fas fa-heart"></span>Interested</div></li>
+              <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li>
+            </ul>
+          </div>
+        </div>
+        <div class="event-sub-titles"> <h4><strong>Event Location</strong></h4> </div>
+        <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
+        <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
+        <div class="event-address-under-map"><h4><strong> Go and meet new friends</strong></h4> </div>
+
+        <% if @event.accepted_participants.count > 0 %>
+                <div class="jam-attendees">
+                  <span class="total-attendees"><%= pluralize(@event.accepted_participants.count, 'participant') %></span>
+                  <% if @event.accepted_participants.count > 5 %>
+                    <div class="jam-attendee-item">
+                      <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583593594/grey_ball_up9bao.png", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                    </div>
+                  <% end %>
+                  <% @event.accepted_participants.limit(5).each do |participant| %>
+                    <div class="jam-attendee-item">
+                      <% if participant.user.profile.profile_photo.attachment  %>
+                        <%= cl_image_tag participant.user.profile.profile_photo.key, crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                      <% else %>
+                        <%= cl_image_tag "//res.cloudinary.com/dhemw39dw/image/upload/v1583601864/computer-icons-user-profile-scalable-vector-graphics-clip-art-png-favpng-QqdJAykRhq2KYp42tCHXsWDqB_rkwokm.jpg", crop: "scale", gravity: "faces", format: "png", class: "attendee-avatar" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% else %>
+                <p>Be the first to join!</p>
+              <% end %>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12">
+      <p> Pending:
+        <% @event.participants.each do |participant| %>
+        <% if participant.status == 'postulating' %>
+        <%= link_to profile_path(participant.user.id) do %>
+        <%= participant.user.first_name %>
+        <% end %>
+        <% end %>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-12">
+      <p> Declined:
+        <%= @event.participants.where(status: 'declined').count %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <!-- Tchat start -->
+      <div id="messages">
+        <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
+          To get access to tchat you must be a participant.
+        <% else %>
+          <% @event.messages.each do |message| %>
+            <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
+          <% end %>
+      </div>
+
+        <%= render 'messages/form', event: @event, message: @message %>
+      <% end %>
+      <!-- Tchat end -->
+    </div>
+  </div>
+
   </div>
 </div>
-
-</div>
-  <br>
-   <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-<p> Pending:
-  <% @event.participants.each do |participant| %>
-  <% if participant.status == 'postulating' %>
-  <%= link_to profile_path(participant.user.id) do %>
-  <%= participant.user.first_name %>
-  <% end %>
-  <% end %>
-  <% end %>
-</p>
-
-<p> Declined:
-  <%= @event.participants.where(status: 'declined').count %>
-</p>
-
-<!-- Tchat start -->
-<div id="messages">
-  <% if @event.participants.where(user: current_user, status: 'accepted').empty? %>
-    To get access to tchat you must be a participant.
-  <% else %>
-    <% @event.messages.each do |message| %>
-      <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
-    <% end %>
-  </div>
-
-  <%= render 'messages/form', event: @event, message: @message %>
-<% end %>
-<!-- Tchat end -->
 
 <% content_for :after_js do %>
   <script>
