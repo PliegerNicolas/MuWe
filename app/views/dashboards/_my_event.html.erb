@@ -1,6 +1,6 @@
 <div class="my_event">
   <%= link_to event_path(event.id) do %>
-    <%= image_tag event.location_photo, height: '220px', width: '300px' %>
+    <%= image_tag event.location_photo, height: '200px', width: '300px' %>
   <% end %>
   <% unless event.status == 'finished' %>
     <%= event.status %>
