@@ -18,7 +18,7 @@ const city_filter = () => {
     const pos = map.getCenter();
     const { _sw, _ne } = map.getBounds();
 
-    const res = axios.get('/search', {
+    const request = axios.get('/search', {
       params: {
         latitude: pos.lat,
         longitude: pos.lng,
@@ -34,12 +34,10 @@ const city_filter = () => {
         status: document.querySelector("#filter_status").value
       }
     });
-    return {
-      events: res.data.events,
-      cards: res.data.cards,
-      city_coords: res.data.city_coords,
-      map_box_limit: res.data.map_box_limit
-    }
+    request.then(function(res) {
+      flyToCity(res.data.city_coords, res.data.map_box_limit);
+    })
+    bouncedMarkers();
   })
 }
 
