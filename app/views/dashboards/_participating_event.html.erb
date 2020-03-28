@@ -1,8 +1,10 @@
-<div class="participating_to_event">
-  <%= link_to event_path(event.id) do %>
-    <%= image_tag event.location_photo, height: '200px', width: '300px' %>
-  <% end %>
-  <div class="participants">
+<div class="participating-to-event">
+  <div class="dashboard-event-image">
+    <%= link_to event_path(event.id) do %>
+      <%= image_tag event.location_photo, height: '200px', width: '300px' %>
+    <% end %>
+  </div>
+  <div class="dashboard-participants">
     <% event.participants.each do |participant| %>
       <% if participant.user == current_user %> <!-- Check for host -->
         <div class="current-user-participant"> <!-- You -->
