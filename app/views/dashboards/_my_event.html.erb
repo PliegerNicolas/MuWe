@@ -7,8 +7,9 @@
   <div class="dashboard-participants">
     <% unless event.status == 'finished' %>
       <div class="dashboard-event-info">
-        <p><strong>Status :</strong> <%= event.status %></p>
-        <p><strong>Address :</strong> <%= event.address %></p>
+        <div><strong>Status : </strong><p><%= event.status.capitalize unless event.address.nil? %></p></div>
+        <div><strong>Address : </strong><p><%= event.address.capitalize unless event.address.nil? %></p></div>
+        <hr>
       </div>
 
       <strong>Postulating participants</strong>
@@ -58,7 +59,10 @@
         <% end %>
       </div>
 
-      <%= link_to "Archive", event_path(event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+      <div class="archive-section">
+        <hr>
+        <%= link_to "Archive", event_path(event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+      </div>
     <% else %>
       <div class="dashboard-event-info">
         <p><strong>Status :</strong> <%= event.status %></p>
