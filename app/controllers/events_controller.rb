@@ -2,15 +2,9 @@ class EventsController < ApplicationController
   include Pagy::Backend
 
   def index
-    # @events = policy_scope(Event).where.not(latitude: nil, longitude: nil) # For testing purpose
-    @events = policy_scope(Event).where('start_date = ? and end_time > ?', Date.today, Time.now).where.not(latitude: nil, longitude: nil)
-
-    if params[:time_filter] # Time filter
-      @events = @events.where("events.start_time >= ? and events.end_time <= ?",
-                              params[:time_filter][:start_time], params[:time_filter][:end_time])
-    end
-    @events = @events.where("events.city iLike ?", params[:city_filter][:city]) if params[:city_filter] # City filter
-    @events = @events.where(status: params[:status_filter][:status].downcase) if params[:status_filter] # Status filter
+    @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
+                                 .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
+                                 .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
   end
 
   def new
