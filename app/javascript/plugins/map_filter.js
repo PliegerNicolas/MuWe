@@ -1,15 +1,18 @@
 import {
-  bouncedMarkers, map
+  bouncedMarkers,
+  map
 } from '../plugins/mapbox';
 
 import axios from 'axios'
 
 const map_filter = () => {
   const filterButton = document.querySelector("#filter_button");
+  const filterWrapper = document.querySelector('.filter-wrapper');
   if (filterButton) {
     filterButton.addEventListener("click", function () {
       console.log("Filtering ...");
       bouncedMarkers();
+      filterWrapper.classList.toggle('open');
     })
   }
 }
@@ -21,7 +24,10 @@ const city_filter = () => {
       console.log("Filtering ...");
 
       const pos = map.getCenter();
-      const { _sw, _ne } = map.getBounds();
+      const {
+        _sw,
+        _ne
+      } = map.getBounds();
 
       const request = axios.get('/search', {
         params: {
@@ -39,7 +45,7 @@ const city_filter = () => {
           status: document.querySelector("#filter_status").value
         }
       });
-      request.then(function(res) {
+      request.then(function (res) {
         flyToCity(res.data.city_coords, res.data.map_box_limit);
       })
       bouncedMarkers();
@@ -57,5 +63,6 @@ const flyToCity = (city_coords, map_box_limit) => {
 }
 
 export {
-  map_filter, city_filter
+  map_filter,
+  city_filter
 };

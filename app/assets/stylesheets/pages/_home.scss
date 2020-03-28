@@ -82,8 +82,9 @@ input:focus {
   justify-content: space-around;
   flex-direction: column;
   border-radius: 0 0 4px 0;
+  padding: 40px 0 20px 0;
   width: 260px;
-  height: 580px;
+  height: auto;
   background-color: transparent;
   transform: translateX(-260px);
   z-index: 999999999;
@@ -97,9 +98,14 @@ input:focus {
   .btn-filter-close {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 0;
     width: 40px;
     height: 40px;
+    cursor: pointer;
+
+    i {
+      color: $dark-purple;
+    }
   }
 }
 
