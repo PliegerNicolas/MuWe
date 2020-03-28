@@ -32,7 +32,7 @@ class Event < ApplicationRecord
   end
 
   def attach_default_event_image
-    image_path = 'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+    image_path = random_event_image
     file = URI.open(image_path)
     filename = File.basename(URI.parse(image_path).path)
     self.location_photo.attach(io: file, filename: filename)
