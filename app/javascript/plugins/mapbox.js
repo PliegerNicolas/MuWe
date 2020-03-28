@@ -90,7 +90,7 @@ const bouncedMarkers = debounce(() => {
             <h3>${marker.title}</h3>
             <p>${marker.description}</p>
             <p>Players: ${marker.max_players} | Status: ${marker.status}</p>
-            <p class="mt-2"><a href="/events/${marker.id}" target="_blank" class="btn btn-sm btn-primary">See more</a></p>
+            <p class="mt-2"><a href="/events/${marker.id}" target="_blank" class="btn btn-sm btn-muwe">See more</a></p>
           </div>`
         );
 

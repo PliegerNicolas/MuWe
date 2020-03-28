@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :store_user_location!, if: :storable_location?
-  before_action :authenticate_user!, except: [:index, :prospect, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :user_last_activity_timer
   include Pundit
 
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^search$)/
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^search$)|(^errors$)/
   end
 
   def configure_permitted_parameters

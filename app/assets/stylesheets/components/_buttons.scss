@@ -1,0 +1,9 @@
+.btn-muwe {
+    color: $white;
+    background-color: $dark-purple;
+
+    &:hover {
+        color: $white;
+        background-color: $light-purple;
+    }
+}
