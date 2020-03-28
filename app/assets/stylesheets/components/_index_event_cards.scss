@@ -124,3 +124,13 @@
     }
   }
 }
+
+.i-event-host a {
+  color: $muwe-black;
+  opacity: 0.9;
+  transition: 0.3s;
+  &:hover {
+    color: $dark-purple;
+    transition: 0.2s;
+  }
+}
