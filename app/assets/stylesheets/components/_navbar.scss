@@ -1,21 +1,16 @@
 .navbar {
   padding: 5px 20px;
   height: 80px;
-  // box-shadow: inset 1px 0 15px 0 rgba(255, 247, 242, 0.15);
-  // background-color: $muwe-black;
   background-color: $gray-800;
-  // background-color: $white;
 
   a {
     color: $white;
-    // color: $strong-purple;
     text-decoration: none;
     transition: 0.5s;
 
     &:hover {
       transition: 0.4s;
       color: $light-purple;
-      // opacity: 0.8;
     }
   }
 
@@ -60,7 +55,6 @@ svg {
   margin: 0 30px !important;
 
   img {
-    // width: 65px;
     height: 60px;
   }
 }

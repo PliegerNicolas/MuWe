@@ -42,7 +42,8 @@
           <% end %>
         <% else %>
           <%= link_to new_user_session_path do %>
-            <%= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
+            <%#= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
+            <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         <% end %>
       </div>
