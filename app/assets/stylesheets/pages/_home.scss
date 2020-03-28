@@ -307,8 +307,19 @@ input:focus {
     }
   }
 
-  .event-time {
-    color: $muwe-green;
-    font-size: 0.8rem;
+  .time-and-more-details {
+    display: flex;
+    justify-content: space-between;
+
+    .event-time {
+      color: $dark-purple;
+      font-size: 0.8rem;
+    }
+
+    .more-details {
+      color: $dark-purple;
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
   }
 }

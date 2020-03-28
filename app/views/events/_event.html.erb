@@ -31,15 +31,20 @@
       <i class="fa fa-map-marker-alt"></i>
       <%= event.address.nil? ? 'Lorem Street, 5 - City Lorem' : event.address %>
     </div>
-    <div class="event-time">
-      <span class="mr-2">
-        <i class="fas fa-hourglass-start"></i>
-        <%= event.start_time.to_s(:time) %>
-      </span>
-      <span>
-        <i class="fas fa-hourglass-end"></i>
-        <%= event.end_time.to_s(:time) %>
-      </span>
+    <div class="time-and-more-details">
+      <div class="event-time">
+        <span class="mr-2">
+          <i class="fas fa-hourglass-start"></i>
+          <%= event.start_time.to_s(:time) %>
+        </span>
+        <span>
+          <i class="fas fa-hourglass-end"></i>
+          <%= event.end_time.to_s(:time) %>
+        </span>
+      </div>
+      <div>
+        <%= link_to 'more details', event_path(event), target: '_blank', class: 'more-details' %>
+      </div>
     </div>
   </div>
 
