@@ -21,9 +21,6 @@
     <div class="navbar-profile-section">
 
       <div class="user-profile-action-buttons">
-          <%= link_to jams_path, class: 'navbar-menu-button' do %>
-            JAMS
-          <% end %>
         <% if user_signed_in? %>
           <%= link_to "Dashboard", dashboard_path, class: 'btn btn-sm' %>
           <%= link_to "My profile", edit_profile_path, class: 'btn btn-sm btn-profile' %>

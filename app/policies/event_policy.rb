@@ -9,10 +9,6 @@ class EventPolicy < ApplicationPolicy
     true
   end
 
-  def jams?
-    true
-  end
-
   def create?
     true
   end
