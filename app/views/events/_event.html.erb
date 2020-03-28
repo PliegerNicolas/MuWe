@@ -18,6 +18,10 @@
       </div>
     </div>
 
+    <%= link_to profile_path(event.user.profile.id) do %>
+      <%= event.user.full_name %>
+    <% end %>
+
     <div class="event-infos">
       <div class="event-style">
         <%= event.music_style.style %>
