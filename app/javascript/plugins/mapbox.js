@@ -9,8 +9,12 @@ let mapElement;
 let eventsWrapper = document.getElementById('events-wrapper');
 
 const flyToCity = (city_coords, map_box_limit) => {
-  console.log(city_coords);
-  console.log(map_box_limit);
+  if (!(map_box_limit[0] > city_coords[0] && map_box_limit[1] < city_coords[0] && map_box_limit[2] > city_coords[1] && map_box_limit[3] < city_coords[1])) {
+    map.flyTo({
+      center: [city_coords[1], city_coords[0]],
+      essential: true
+    });
+  }
 }
 
 const fitBound = () => {
