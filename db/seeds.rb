@@ -125,19 +125,19 @@ puts ''
 
 print 'Creating events'
 print ' { '
-12.times do
-  start_time = Faker::Time.between(from: Time.now - 5.minutes, to: Time.now + 4.hours)
+16.times do
+  start_time = Faker::Time.between(from: Time.now + 6.hours - 5.minutes, to: Time.now + 18.hours)
   new_event = Event.create(
-    user_id: User.order('RANDOM()').first.id,
+    user_id: [User.first, User.second, User.third].sample.id,
     title: Faker::BossaNova.song,
     country: Faker::Address.country,
     city: Faker::Address.city,
     address: Faker::Address.street_name,
-    description: Faker::Lorem.sentence(word_count: 18),
+    description: Faker::Lorem.sentence(word_count: 12),
     max_players: Faker::Number.within(range: 2..8),
     music_style_id: MusicStyle.order('RANDOM()').first.id,
     status: Faker::Number.within(range: 0..2),
-    start_date: Faker::Date.between(from: 2.days.ago, to: Date.today + 7),
+    start_date: Faker::Date.between(from: 2.days.ago, to: Date.today + 10),
     start_time: start_time,
     end_time: Faker::Time.between(from: start_time, to: start_time + 2.hours)
   )
