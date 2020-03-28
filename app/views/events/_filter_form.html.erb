@@ -5,6 +5,6 @@
     <%= f.input :end_time, collection: time_array  %>
     <%= f.input :max_players, collection: 1..20 %>
     <%= f.input :status, collection: ['Ongoing/Planned', 'Ongoing', 'Planned', 'Finished'], selected: 'Ongoing/Planned' %>
-    <%= f.submit "Filter", id: "filter_button" %>
+    <%= f.submit "Filter", id: "filter_button", class: 'btn btn-sm btn-outline-dark' %>
     <!-- day, time, participants, status -->
   <% end %>

@@ -200,5 +200,6 @@ const initMap = () => {
 
 export {
   initMap,
+  bouncedMarkers,
   map
 };
