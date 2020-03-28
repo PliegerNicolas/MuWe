@@ -196,6 +196,7 @@ coords.size.times do |i|
     start_time: start_time,
     end_time: Faker::Time.between(from: start_time, to: start_time + 2.hours)
   )
+  print '#'
 end
 
 

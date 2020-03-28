@@ -41,6 +41,8 @@ class SearchController < ApplicationController
       @events = @events.filter_by_status(filter_params[:status].downcase!)
     end
 
+    @events.order(start_time: :desc)
+
     html = render_to_string @events
 
     render json: {
