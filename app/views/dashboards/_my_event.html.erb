@@ -1,7 +1,7 @@
 <div class="my-event">
   <div class="dashboard-event-image">
     <%= link_to event_path(event.id) do %>
-      <%= image_tag event.location_photo, height: '200px', width: '300px' %>
+      <%= image_tag event.location_photo, height: '300px', width: '200px', secure: true %>
     <% end %>
   </div>
   <div class="dashboard-participants">
