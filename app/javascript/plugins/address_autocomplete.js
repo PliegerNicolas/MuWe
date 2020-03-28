@@ -4,7 +4,7 @@ function addressAutocomplete() {
   if (addressInput) {
     const autocomplete = new google.maps.places.Autocomplete(addressInput);
   } else if (filterAddressInput) {
-    const autocomplete = new google.maps.places.Autocomplete(filterAddressInput, { types: ['(cities)'] })
+    // const autocomplete = new google.maps.places.Autocomplete(filterAddressInput, { types: ['(cities)'] })
   }
 }
 

@@ -8,6 +8,11 @@ let map, initUserPos;
 let mapElement;
 let eventsWrapper = document.getElementById('events-wrapper');
 
+const flyToCity = (city_coords, map_box_limit) => {
+  console.log(city_coords);
+  console.log(map_box_limit);
+}
+
 const fitBound = () => {
   let latitudes = events.filter(event => {
     return event.latitude
@@ -42,6 +47,7 @@ const fetchMarkers = async () => {
       min_lat: _sw.lat,
       max_lng: _ne.lng,
       min_lng: _sw.lng,
+      city: document.querySelector("#filter_city").value,
       periode: document.querySelector("#filter_periode").value,
       start_time: document.querySelector("#filter_start_time").value,
       end_time: document.querySelector("#filter_end_time").value,
@@ -51,7 +57,9 @@ const fetchMarkers = async () => {
   });
   return {
     events: res.data.events,
-    cards: res.data.cards
+    cards: res.data.cards,
+    city_coords: res.data.city_coords,
+    map_box_limit: res.data.map_box_limit
   }
 }
 
@@ -69,11 +77,15 @@ const bouncedMarkers = debounce(() => {
     .then((response) => {
       const {
         events,
-        cards
+        cards,
+        city_coords, // City filter
+        map_box_limit // City filter
       } = response;
 
       clearMarkers();
       let markersLoaded = {}
+
+      flyToCity(city_coords, map_box_limit); // City filter
 
       eventsWrapper.innerHTML = cards;
 

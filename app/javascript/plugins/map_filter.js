@@ -4,8 +4,8 @@ import {
 
 const map_filter = () => {
   document.querySelector("#filter_button").addEventListener("click", function () {
-    bouncedMarkers();
     console.log("Filtering ...");
+    bouncedMarkers();
   })
 }
 

@@ -8,8 +8,8 @@ class SearchController < ApplicationController
     @min_lng = params[:min_lng]
 
     @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
-    .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
-    .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
+                                 .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
+                                 .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
 
     filter_params = {
       periode: params[:periode],
@@ -43,6 +43,15 @@ class SearchController < ApplicationController
 
     @events.order(start_time: :desc)
 
+    unless params[:city].blank?
+      results = Geocoder.search(params[:city])
+      @city_coords = results.first.coordinates
+    else
+      @city_coords = []
+    end
+
+    @map_box_limit = [@max_lat, @min_lat, @max_lng, @min_lng]
+
     html = render_to_string @events
 
     render json: {
@@ -53,7 +62,9 @@ class SearchController < ApplicationController
       min_lat: @min_lat,
       max_lng: @max_lng,
       min_lng: @min_lng,
-      cards: html
+      cards: html,
+      city_coords: @city_coords,
+      map_box_limit: @map_box_limit
     }
   end
 end
