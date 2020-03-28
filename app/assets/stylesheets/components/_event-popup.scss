@@ -1,8 +1,36 @@
 .popup-marker {
-    width: 320px;
+    min-width: 320px;
+    font-family: $body-font;
+
     h3 {
         font-size: 1.2rem;
         font-weight: bold;
+        color: $dark-purple;
+    }
+
+    p,
+    div {
+        margin: 4px 0;
+        font-size: 0.9rem;
+    }
+
+    i {
+        color: $dark-purple;
+    }
+
+    .description {
+        max-width: 500px;
+        text-align: justify;
+    }
+
+    .date {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        i {
+            margin-right: 4px;
+        }
     }
 }
 
