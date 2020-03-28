@@ -20,8 +20,9 @@
 
     <div class="event-infos">
       <div class="i-event-host">
-        <%= link_to profile_path(event.user.profile.id) do %>
-          Host : <%= event.user.first_name %>
+        <%= link_to profile_path(event.user.profile.id), title: "Hosted by #{event.user.full_name}" do %>
+          <i class="fas fa-address-card"></i>
+          <%= event.user.first_name %>
         <% end %>
       </div>
       <div class="event-style">
@@ -48,7 +49,7 @@
         </span>
       </div>
       <div>
-        <%= link_to 'more details', event_path(event), target: '_blank', class: 'more-details' %>
+        <%= link_to 'more details', event_path(event), target: '_blank', class: 'more-details', title: "See more details about #{event.title}" %>
       </div>
     </div>
   </div>
