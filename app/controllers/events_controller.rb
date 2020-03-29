@@ -6,10 +6,12 @@ class EventsController < ApplicationController
                                  .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
                                  .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
 
-    unless current_user.profile.latitude.blank? || current_user.profile.longitude.blank?
-      user_pos = [current_user.profile.latitude, current_user.profile.longitude]
-      @city = Geocoder.search(user_pos).first.city
-      @user_count = Profile.near(user_pos, 30).to_a.count
+    if current_user
+      unless current_user.profile.latitude.blank? || current_user.profile.longitude.blank?
+        user_pos = [current_user.profile.latitude, current_user.profile.longitude]
+        @city = Geocoder.search(user_pos).first.city
+        @user_count = Profile.near(user_pos, 30).joins(:user).where(["last_user_activity >= ?", DateTime.now - 5.minutes]).to_a.count
+      end
     end
   end
 
