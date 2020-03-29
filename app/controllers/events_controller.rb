@@ -11,8 +11,6 @@ class EventsController < ApplicationController
       @city = Geocoder.search(user_pos).first.city
       @user_count = Profile.near(user_pos, 30).to_a.count
     end
-      # city = Geocoder.search([current_user.profile.latitude, current_user.profile.longitude]).first.village
-      # <p><%= pluralize(User.where(["last_user_activity >= ?", DateTime.now - 5.minutes]).count, 'User') %> online around <%= @city %></p>
   end
 
   def new
