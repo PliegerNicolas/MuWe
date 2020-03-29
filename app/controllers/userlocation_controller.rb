@@ -8,6 +8,7 @@ class UserlocationController < ApplicationController
       if (@profile.latitude.blank? && @profile.longitude.blank?) || @profile.distance_from(init_user_pos) >= 10
         @profile.latitude = init_user_pos[0]
         @profile.longitude = init_user_pos[1]
+        authorize @profile
         @profile.save
       end
     end
