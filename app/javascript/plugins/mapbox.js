@@ -9,6 +9,15 @@ let map, initUserPos;
 let mapElement;
 let eventsWrapper = document.getElementById('events-wrapper');
 
+const saveLocation = (initUserPos) => { // Save user pos temp
+  console.log(initUserPos)
+  const request = axios.get('/location', {
+    params: {
+      init_user_pos: [initUserPos.lat, initUserPos.lng]
+    }
+  });
+}
+
 const fitBound = () => {
   let latitudes = events.filter(event => {
     return event.latitude
@@ -81,7 +90,7 @@ const bouncedMarkers = debounce(() => {
       eventsWrapper.innerHTML = cards;
 
       events.forEach((marker) => {
-        console.log(marker);
+        // console.log(marker);
         let htmlPopup = new HTMLPopup(marker);
 
         let popup = new mapboxgl.Popup({
@@ -137,6 +146,8 @@ const initMap = () => {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
+
+      saveLocation(initUserPos); // Save user position tempo
       console.log("initial user\'s position :", initUserPos); // We've got the initial user position here
 
       if (sPage == '') {
