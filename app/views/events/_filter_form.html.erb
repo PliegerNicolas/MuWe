@@ -1,5 +1,9 @@
 <span class="btn-filter-close"><i class="fas fa-times-circle fa-2x"></i></span>
-  <p><%= pluralize(User.where(["last_user_activity >= ?", DateTime.now - 5.minutes]).count, 'User') %> online around <%= @city %></p>
+  <p>
+    <% if current_user %>
+      <%= pluralize(@user_count, 'User') %> around <%= @city %>
+    <% end %>
+  </p>
   <%= simple_form_for :filter, url: search_path, method: :get, remote: true do |f| %>
     <%= f.input :city %>
     <%= f.input :periode, collection: ['Yesterday','Today', 'Tomorrow', '7 days from now', '14 days from now'], selected: 'Today' %>
