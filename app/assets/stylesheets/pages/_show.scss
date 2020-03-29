@@ -132,8 +132,9 @@
   }
 }
 
-<<<<<<< HEAD
-.about-btn, {
+
+.about-btn,
+.chat-btn {
   display: flex;
   height: 30px;
   width: 100px;
@@ -153,27 +154,6 @@
 .active {
   color: red;
 }
-
-
-
-.about-btn,
-.chat-btn {
-  display: flex;
-  height: 30px;
-  width: 100px;
-  justify-content: center;
-  color: #555555;
-  font-weight: regular;
-  vertical-align: middle;
-  cursor: pointer;
-
-  &:hover {
-    border-bottom: 2px solid #555555;
-    color: #555555;
-  }
-}
-
-
 
 
 .going-to-play-btn {
@@ -559,6 +539,7 @@ a:hover {
   background-color: $light-purple;
   border: none;
 }
+
 
 .chat-conversation {
   padding: 20px;
