@@ -5,6 +5,11 @@ class EventsController < ApplicationController
     @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
                                  .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
                                  .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
+    if Geocoder.search([current_user.profile.latitude, current_user.profile.longitude]).first
+      @city = Geocoder.search([current_user.profile.latitude, current_user.profile.longitude]).first.village
+    else
+      @city = "City not found"
+    end
   end
 
   def new
