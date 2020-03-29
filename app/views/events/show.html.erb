@@ -1,5 +1,5 @@
 <div class="container" style="position:relative;">
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="height: 1350px">
     <div class="header-button-back d-none">
       <%= link_to events_path do %>
         <span><i class="fas fa-chevron-left"></i> Back</span>
@@ -36,7 +36,7 @@
             <% user_events = current_user.event_participations %>
 
             <% if current_user == @event.user %>
-              <%= link_to 'Participants', event_participants_path(@event.id), class: "going-to-play-btn" %>
+              <%= link_to 'Participants', dashboard_path(@event.id), class: "going-to-play-btn" %>
               <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
             <% else %>
               <% if user_events.include?(@event) == false %>
@@ -64,7 +64,7 @@
     <div class="below-content position-relative">
       <div class="teste2">
         <div class="switch-buttons">
-          <div class="about-btn active">About</div>
+          <div class="about-btn">About</div>
           <div class="chat-btn">Chat</div>
         </div>
         <div class="left-below-card">
@@ -127,6 +127,7 @@
               <br>
           </div>
 
+           <div class="chat-title"><h4><strong>Event Chat</strong></h4></div>
           <div id="chat" style="display:none">
             <div class="row mt-5">
               <div class="col-12">
@@ -187,24 +188,6 @@
               <% else %>
                 <p>Be the first to join!</p>
               <% end %>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col-12">
-      <p> Pending:
-        <% @event.participants.each do |participant| %>
-        <% if participant.status == 'postulating' %>
-        <%= link_to profile_path(participant.user.id) do %>
-        <%= participant.user.first_name %>
-        <% end %>
-        <% end %>
-        <% end %>
-      </p>
-    </div>
-    <div class="col-12">
-      <p> Declined:
-        <%= @event.participants.where(status: 'declined').count %>
-      </p>
     </div>
   </div>
 

@@ -1,0 +1,17 @@
+.current_user {
+  color: red;
+}
+
+.other_user {}
+
+.user-name {}
+
+.message-text {}
+
+.chat-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 2px 1px 6px rgba($gray-600, 0.6);
+  border: 1px solid $gray-200;
+}
