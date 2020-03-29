@@ -10,7 +10,7 @@ let mapElement;
 let eventsWrapper = document.getElementById('events-wrapper');
 
 const saveLocation = (initUserPos) => { // Save user pos temp
-  console.log(initUserPos)
+  // console.log(initUserPos)
   const request = axios.get('/location', {
     params: {
       init_user_pos: [initUserPos.lat, initUserPos.lng]
