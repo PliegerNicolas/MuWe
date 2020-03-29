@@ -12,5 +12,6 @@ class UserlocationsController < ApplicationController
         @profile.save
       end
     end
+    redirect_to root_path
   end
 end
