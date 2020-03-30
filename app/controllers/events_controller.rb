@@ -13,6 +13,10 @@ class EventsController < ApplicationController
         @user_count = Profile.near(user_pos, 30).joins(:user).where(["last_user_activity >= ?", DateTime.now - 5.minutes]).to_a.count
       end
     end
+
+    if user_pos # get posts
+      @posts = Profile.near(user_pos, 30).joins(user: :posts).order("posts.created_at desc").limit(20).map { |profile| profile.user.posts }.flatten
+    end
   end
 
   def new
