@@ -41,16 +41,15 @@ class SearchController < ApplicationController
       @events = @events.filter_by_status(filter_params[:status].downcase!)
     end
 
-    @events.order(start_time: :desc)
-
-    unless params[:city].blank?
+    if params[:city].blank?
+      @city_coords = []
+    else
       results = Geocoder.search(params[:city])
       @city_coords = results.first.coordinates
-    else
-      @city_coords = []
     end
 
     @map_box_limit = [@max_lat, @min_lat, @max_lng, @min_lng]
+    @events.order(start_time: :desc)
 
     html = render_to_string @events
 

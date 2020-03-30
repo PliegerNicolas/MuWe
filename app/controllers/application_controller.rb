@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^search$)|(^errors$)/
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^search$)|(^errors$)|(^location$)/
   end
 
   def configure_permitted_parameters
@@ -46,6 +46,6 @@ class ApplicationController < ActionController::Base
   end
 
   def store_user_location!
-    store_location_for(:user, request.fullpath) unless request.fullpath =~ /\/search/
+    store_location_for(:user, request.fullpath) unless request.fullpath =~ %r{\/search|\/location}
   end
 end
