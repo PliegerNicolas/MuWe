@@ -143,10 +143,10 @@
                     <% @event.messages.each do |message| %>
                       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
                     <% end %>
+                  <% end %>
                 </div>
 
                   <%= render 'messages/form', event: @event, message: @message %>
-                <% end %>
                 <!-- Tchat end -->
               </div>
             </div>
