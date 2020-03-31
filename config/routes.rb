@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :profiles do
     patch 'posts/:id/update', to: 'posts#update', as: :update_post
     resources :posts, only: [:create, :destroy, :edit]
+    resources :instruments, only: %w(create destroy)
   end
 
   get 'search', to: 'search#index'
