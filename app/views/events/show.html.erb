@@ -36,7 +36,7 @@
             <% user_events = current_user.event_participations %>
 
             <% if current_user == @event.user %>
-              <%= link_to 'Participants', dashboard_path(@event.id), class: "going-to-play-btn" %>
+              <%= link_to 'Participants', dashboard_path, class: "going-to-play-btn" %>
               <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
             <% else %>
               <% if user_events.include?(@event) == false %>
