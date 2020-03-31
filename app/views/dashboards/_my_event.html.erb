@@ -7,61 +7,41 @@
   <div class="dashboard-participants">
     <% unless event.status == 'finished' %>
       <div class="dashboard-event-info">
-        <div><strong>Status : </strong><p><%= event.status.capitalize unless event.address.nil? %></p></div>
-        <div><strong>Address : </strong><p><%= event.address.capitalize unless event.address.nil? %></p></div>
-        <hr>
+        <div><strong><p><%= event.status.capitalize unless event.address.nil? %></p></strong></div>
+        <div><p><%= event.address.capitalize unless event.address.nil? %></p></div>
       </div>
 
-      <strong>Postulating participants</strong>
+      <strong>Participants</strong>
       <div class="postulating-users">
-        <% event.participants.where(status: 'postulating').each do |participant| %>
-          <div class="postulating-user">
+        <% event.participants.order(status: :asc).each do |participant| %>
+          <div class="postulating-user pb-1">
+            <div>
             <%= link_to profile_path(participant.user) do %>
-                <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
+                <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
                 <%= participant.user.full_name %>
               <% end %>
-              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "action-button" %>
-              <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "action-button" %>
+              <%= participant.status.capitalize %>
+            </div>
+            <div class="mt-2">
+              <% if participant.status == 'postulating' %>
+                <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "btn btn-success" %>
+                <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "btn btn-danger" %>
+              <% elsif participant.status == 'accepted' %>
+                <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "btn btn-danger" %>
+              <% elsif participant.status == 'declined' %>
+                <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "btn btn-success" %>
+              <% end %>
+            </div>
           </div>
-        <% end %>
-      </div>
-
-      <strong>Accepted participants</strong>
-      <div class="accepted-users">
-        <% event.participants.where(status: 'accepted').each do |participant| %>
-          <div class="accepted-user">
-            <% unless event.participants.where(user_id: event.user_id).include?(participant) %> <!-- Check if host -->
-              <%= link_to profile_path(participant.user) do %> <!-- Host section -->
-                <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-                <%= participant.user.full_name %>
-                <%= link_to "Decline", event_decline_user_path(event.id, participant.id), method: :delete, class: "action-button" %>
-              <% end %>
-            <% else %>
-              <%= link_to profile_path(participant.user) do %> <!-- Host section -->
-                <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-                <%= participant.user.full_name %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-      <strong>Declined participants</strong>
-      <div class="declined-users">
-        <% event.participants.where(status: 'declined').each do |participant| %>
-          <div class="declined-user">
-            <%= link_to profile_path(participant.user) do %>
-                <%= image_tag participant.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-                <%= participant.user.full_name %>
-              <% end %>
-              <%= link_to "Accept", event_accept_user_path(event.id, participant.id), method: :post, class: "action-button" %>
-          </div>
+          <hr>
         <% end %>
       </div>
 
       <div class="archive-section">
         <hr>
-        <%= link_to "Archive", event_path(event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } %>
+        <%= link_to event_path(event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
       </div>
     <% else %>
       <div class="dashboard-event-info">
