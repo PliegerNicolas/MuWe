@@ -1,12 +1,16 @@
 input {
     border: none;
     border-bottom: 1px solid #000000;
-    padding: 2px 5px;
+    padding: 2px 0px;
 }
 
 
+.photo-upload {
+  display: flex;
+}
+
 .date-time .add-photo .start-time .end-time .music_styles .music-players {
-  flex: 1;
+  flex-grow: 1;
 }
 
 .no-border {
@@ -49,4 +53,12 @@ border-bottom: solid 1px;
   left: 0px;
   margin-right: auto;
   margin-left: auto;
+}
+
+
+.event-form {
+  background-color: white;
+  position: relative;
+  padding: 40px;
+  border-radius: 10px;
 }
