@@ -127,7 +127,6 @@
               <br>
           </div>
 
-           <div class="chat-title"><h4><strong>Event Chat</strong></h4></div>
           <div id="chat" style="display:none">
             <div class="row mt-5">
               <div class="col-12">
@@ -139,10 +138,10 @@
                     <% @event.messages.each do |message| %>
                       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
                     <% end %>
+                  <% end %>
                 </div>
 
                   <%= render 'messages/form', event: @event, message: @message %>
-                <% end %>
                 <!-- Tchat end -->
               </div>
             </div>
