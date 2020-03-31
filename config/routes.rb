@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   get 'location', to: 'userlocations#save_location', as: :save_location # Set location in user profile
 
-  get 'profile/edit', to: 'profiles#edit', as: :edit_profile
-  patch 'profile/:id', to: 'profiles#update', as: :update_profile
-  get 'profile/:id', to: 'profiles#profile', as: :profile # current_user profile page
+  # get 'profile/edit', to: 'profiles#edit', as: :edit_profile
+  # patch 'profile/:id', to: 'profiles#update', as: :update_profile
+  # get 'profile/:id', to: 'profiles#profile', as: :profile # current_user profile page
 
   get 'dashboard', to: 'dashboards#dashboard', as: :dashboard # Dashboard
 
