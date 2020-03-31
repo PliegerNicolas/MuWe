@@ -133,7 +133,7 @@ print ' { '
     country: Faker::Address.country,
     city: Faker::Address.city,
     address: Faker::Address.street_name,
-    description: Faker::Lorem.sentence(word_count: 12),
+    description: Faker::Hipster.sentence(word_count: 12),
     max_players: Faker::Number.within(range: 2..8),
     music_style_id: MusicStyle.order('RANDOM()').first.id,
     status: Faker::Number.within(range: 0..2),
