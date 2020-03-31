@@ -59,6 +59,6 @@ class Event < ApplicationRecord
     image_path = random_event_image.sample
     file = URI.open(image_path)
     filename = File.basename(URI.parse(image_path).path)
-    self.location_photo.attach(io: file, filename: filename)
+    self.location_photo.attach(io: file, filename: filename) unless self.location_photo.attachment
   end
 end
