@@ -132,6 +132,7 @@
   }
 }
 
+<<<<<<< HEAD
 .about-btn, {
   display: flex;
   height: 30px;
@@ -154,6 +155,8 @@
 }
 
 
+
+.about-btn,
 .chat-btn {
   display: flex;
   height: 30px;
@@ -378,7 +381,7 @@
   }
 }
 
-ul {
+ul:not(.select2-results__options) {
   display: flex;
   list-style-type: none;
   margin: 0;
