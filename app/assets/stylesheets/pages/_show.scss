@@ -132,7 +132,8 @@
   }
 }
 
-.about-btn, .chat-btn {
+.about-btn,
+.chat-btn {
   display: flex;
   height: 30px;
   width: 100px;
@@ -353,7 +354,7 @@
   }
 }
 
-ul {
+ul:not(.select2-results__options) {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -533,4 +534,3 @@ a:hover {
   background-color: $light-purple;
   border: none;
 }
-
