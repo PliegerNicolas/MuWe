@@ -21,9 +21,10 @@
       <% elsif event.participants.where(user_id: event.user_id).include?(participant) %>
         <div class="host">
           <%= link_to profile_path(participant.user.profile.id) do %>
-            <%= participant.user.full_name  %>
+            <%= image_tag participant.user.profile.profile_photo, height: '75px', width: '75px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
+            <div><%= participant.user.full_name  %></div>
           <% end %>
-          (Host)
+          <div>(Host)</div>
         </div>
       <% elsif participant.status == 'accepted' %> <!-- Other accepted participants -->
         <div class="participant">
