@@ -2,6 +2,9 @@
     <% instruments.each do |instrument| %>
         <li class="list-group-item">
             <%= instrument.name %>
+            <%= link_to profile_instrument_user_path(current_user.profile, instrument.id), remote: true, method: :delete, class: 'float-right' do %>
+                <i class="fas fa-times"></i>
+            <% end %>
         </li>
     <% end %>
 </ul>
