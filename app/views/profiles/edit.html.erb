@@ -3,16 +3,16 @@
     <div class="col-12 bg-white">
       <h2>pick the instruments you play</h2>
 
-      <div class="instruments-list">
+      <div class="instruments-list" data-controller="profiles">
         <%= render 'instrument_users/instruments', instruments: @profile.instruments %>
       </div>
 
-      <div class="instrument-wrapper">
-        <%= form_tag profile_instrument_users_path(@profile), remote: true, class: 'form-inline' do %>
-          <div id="instruments-list" data-list="<%= Instrument.all.pluck(:id, :name).to_json %>">
-            <%= select_tag :instrument_id, options_from_collection_for_select(Instrument.all, "id", "name"), { include_blank: true, multiple: false , class: 'select2' } %>
-            <%= submit_tag 'Add instrument', class: 'btn btn-sm btn-primary' %>
-          </div>
+      <div class="instrument-wrapper" data-controller="profiles">
+        <%= form_tag profile_instrument_users_path(@profile), remote: true, class: 'form-inline', data: { action: 'ajax:success->profiles#create_instrument_users', target: 'profiles.form' } do %>
+          <div id="instruments-list" data-list="<%= Instrument.all.pluck(:id, :name).to_json %>"></div>
+          <%= select_tag :instrument_id, options_from_collection_for_select(Instrument.all, "id", "name"), {
+            include_blank: true, multiple: false , class: 'select2', data: { target: 'profiles.testing' } } %>
+          <%= submit_tag 'Add instrument', class: 'btn btn-sm btn-primary' %>
         <% end %>
       </div>
     </div>

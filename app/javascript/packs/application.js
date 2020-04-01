@@ -1,3 +1,10 @@
+import {
+  Application
+} from 'stimulus';
+import {
+  definitionsFromContext
+} from 'stimulus/webpack-helpers';
+
 import "bootstrap";
 import Swiper from 'swiper';
 import Noty from 'noty';
@@ -28,6 +35,10 @@ import {
   map_filter,
   city_filter
 } from '../plugins/map_filter';
+
+const application = Application.start();
+const context = require.context("./controllers", true, /\.js$/);
+application.load(definitionsFromContext(context));
 
 initCards();
 initSelect2();
@@ -110,4 +121,10 @@ if (chatButton) {
 
 $('.pick-instrument').select2({
   data: document.getElementById('instruments-list').dataset.dataList
+});
+
+document.querySelectorAll('.remove-instrument').forEach((el) => {
+  el.addEventListener('click', () => {
+    console.log('hel');
+  });
 });

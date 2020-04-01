@@ -1,8 +1,11 @@
 <ul class="list-group">
     <% instruments.each do |instrument| %>
-        <li class="list-group-item">
+        <li class="list-group-item" data-target="profiles.instrument">
             <%= instrument.name %>
-            <%= link_to profile_instrument_user_path(current_user.profile, instrument.id), remote: true, method: :delete, class: 'float-right' do %>
+            <%= link_to profile_instrument_user_path(current_user.profile, instrument.id),
+                remote: true, method: :delete,
+                class: 'float-right remove-instrument',
+                data: { action: 'profiles#destroy_instrument_users', name: instrument.name } do %>
                 <i class="fas fa-times"></i>
             <% end %>
         </li>
