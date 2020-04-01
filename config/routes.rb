@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   get 'location', to: 'userlocations#save_location', as: :save_location # Set location in user profile
 
-  get 'profile/edit', to: 'profiles#edit', as: :edit_profile
-  patch 'profile/:id', to: 'profiles#update', as: :update_profile
-  get 'profile/:id', to: 'profiles#profile', as: :profile # current_user profile page
+  # get 'profile/edit', to: 'profiles#edit', as: :edit_profile
+  # patch 'profile/:id', to: 'profiles#update', as: :update_profile
+  # get 'profile/:id', to: 'profiles#profile', as: :profile # current_user profile page
 
   get 'dashboard', to: 'dashboards#dashboard', as: :dashboard # Dashboard
 
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :profiles do
     patch 'posts/:id/update', to: 'posts#update', as: :update_post
     resources :posts, only: [:create, :destroy, :edit]
+    resources :instrument_users, only: %w(create destroy)
   end
 
   get 'search', to: 'search#index'

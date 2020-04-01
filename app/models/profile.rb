@@ -3,9 +3,11 @@ class Profile < ApplicationRecord
   after_validation :geocode
 
   belongs_to :user
-  has_many :instrument_users
+  has_many :instrument_users, foreign_key: 'user_id'
   has_many :posts
   has_one_attached :profile_photo
+
+  has_many :instruments, through: :instrument_users
 
   reverse_geocoded_by :latitude, :longitude
 

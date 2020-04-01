@@ -5,4 +5,6 @@ const initSelect2 = () => {
   $('.select2').select2(); // (~ document.querySelectorAll)
 };
 
-export { initSelect2 };
+export {
+  initSelect2
+};

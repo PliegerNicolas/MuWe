@@ -33,7 +33,7 @@
 
       <div class="profile-photo-container">
         <% if user_signed_in? %>
-          <%= link_to edit_profile_path(current_user.id) do %>
+          <%= link_to edit_profile_path(current_user.profile.id) do %>
             <% if current_user.profile.profile_photo.attachment %>
               <%= image_tag (current_user.profile.profile_photo), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true, class: "muwe-avatar" %>
             <% else %>
