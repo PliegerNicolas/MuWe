@@ -1,1 +1,6 @@
 document.querySelector('.instruments-list').innerHTML = '<%= j render 'instrument_users/instruments', instruments: current_user.profile.instruments %>';
+
+window.noty.show();
+window.noty.setText('You have successfully added the instrument.');
+window.noty.setType('success');
+window.noty.setTimeout(1500);

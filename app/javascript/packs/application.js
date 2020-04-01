@@ -1,5 +1,6 @@
 import "bootstrap";
 import Swiper from 'swiper';
+import Noty from 'noty';
 
 import {
   initMap
@@ -42,6 +43,8 @@ initMap();
 window.initMap = initMap;
 map_filter();
 city_filter();
+
+window.noty = new Noty;
 
 let mapSwiper = new Swiper('.swiper-container', {
   direction: 'horizontal',
