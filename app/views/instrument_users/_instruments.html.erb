@@ -1,5 +1,5 @@
 <ul class="list-group">
-    <% instruments.each do |instrument| %>
+    <% instruments.order_by_name.each do |instrument| %>
         <li class="list-group-item" data-target="profiles.instrument">
             <%= instrument.name %>
             <%= link_to profile_instrument_user_path(current_user.profile, instrument.id),

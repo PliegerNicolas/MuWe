@@ -1,25 +1,4 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 bg-white">
-      <h2>pick the instruments you play</h2>
-
-      <div class="instruments-list" data-controller="profiles">
-        <%= render 'instrument_users/instruments', instruments: @profile.instruments %>
-      </div>
-
-      <div class="instrument-wrapper" data-controller="profiles">
-        <%= form_tag profile_instrument_users_path(@profile), remote: true, class: 'form-inline', data: { action: 'ajax:success->profiles#create_instrument_users', target: 'profiles.form' } do %>
-          <div id="instruments-list" data-list="<%= Instrument.all.pluck(:id, :name).to_json %>"></div>
-          <%= select_tag :instrument_id, options_from_collection_for_select(Instrument.all, "id", "name"), {
-            include_blank: true, multiple: false , class: 'select2', data: { target: 'profiles.testing' } } %>
-          <%= submit_tag 'Add instrument', class: 'btn btn-sm btn-primary' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
   <div class="content-wrapper">
     <div class="row">
       <div class="col-12">
@@ -55,11 +34,37 @@
           </div>
         <% end %>
       </div>
-      <div class="col-3 offset-3">
-        <h4>Cancel my account</h4>
-        <p class="text-justify">Unhappy? Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus dolorem ab animi doloremque corrupti quidem architecto dicta, magnam alias consequatur facere nihil consequuntur distinctio aut nemo natus doloribus quam ratione. Dignissimos provident error in veniam libero quam officiis nisi nihil!</p>
-        <p>&nbsp;</p>
-        <p><%= link_to "Cancel my account", registration_path(User), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-outline-danger' %></p>
+      <div class="col-5 offset-1">
+        <div class="row">
+          <div class="col-12">
+            <h3>Add your instruments</h3>
+
+            <div class="instruments-list" data-controller="profiles">
+              <%= render 'instrument_users/instruments', instruments: @profile.instruments %>
+            </div>
+
+            <div class="instrument-wrapper" data-controller="profiles">
+              <%= form_tag profile_instrument_users_path(@profile), remote: true, class: 'form-inline', data: { action: 'ajax:success->profiles#create_instrument_users', target: 'profiles.form' } do %>
+                <div id="instruments-list" data-list="<%= Instrument.all.pluck(:id, :name).to_json %>"></div>
+                <%= select_tag :instrument_id, options_from_collection_for_select(Instrument.all, "id", "name"), {
+                  include_blank: true, multiple: false, class: 'select2 instrument-select', data: { target: 'profiles.testing' } } %>
+                <%= submit_tag 'Add instrument', class: 'btn btn-sm btn-primary' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-12">
+            <div class="mt-5">
+              <h4>Cancel my account</h4>
+              <p class="text-justify">Unhappy with our website ? We couldn't help you solve your pain ?</p>
+              <p>&nbsp;</p>
+              <p><%= link_to "Cancel my account", registration_path(User), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-outline-danger' %></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
