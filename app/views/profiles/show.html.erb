@@ -60,10 +60,12 @@
 
         <div class="profile-instruments shadow">
           <h3>Instruments</h3>
-          <div class="tag-list">
-            <div class="tag-item">Piano</div>
-            <div class="tag-item">Clarinet</div>
-            <div class="tag-item">Saxophone</div>
+          <div class="list-inline">
+            <% @profile.instruments.order_by_name.each do |i| %>
+              <div class="tag-item list-inline-item">
+                <%= i.name %>
+              </div>
+            <% end %>
           </div>
         </div>
 

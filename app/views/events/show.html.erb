@@ -111,11 +111,9 @@
                 </td>
                 <td>
                   <div class="host-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    <% Random.rand(1...5).times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
                   </div>
                 </td>
               </tr>
