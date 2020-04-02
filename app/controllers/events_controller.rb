@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       unless current_user.profile.latitude.blank? || current_user.profile.longitude.blank?
         user_pos = [current_user.profile.latitude, current_user.profile.longitude]
         @city = Geocoder.search(user_pos).first.city
-        @user_count = Profile.near(user_pos, 30).joins(:user).where(["last_user_activity >= ?", DateTime.now - 5.minutes]).to_a.count
+        @user_count = Profile.near(user_pos, 100).joins(:user).where(["last_user_activity >= ?", DateTime.now - 5.minutes]).to_a.count
       end
     end
 
