@@ -58,7 +58,7 @@ class SearchController < ApplicationController
       end
     end
 
-    @posts = Profile.near([@lat, @lng], 100).joins(user: :posts).order("posts.created_at desc").limit(20).map { |profile| profile.user.posts }.flatten # Get all close posts
+    @posts = Profile.near([@lat, @lng], 30).joins(user: :posts).order("posts.created_at desc").limit(20).map { |profile| profile.user.posts }.flatten # Get all close posts
 
     posts_html = render_to_string @posts
     cards_html = render_to_string @events
