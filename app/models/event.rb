@@ -28,7 +28,7 @@ class Event < ApplicationRecord
   end
 
   def self_participate
-    self.participants.create!(user_id: self.user_id, status: 1)
+    self.participants.create!(user_id: self.user_id, status: 1, instrument_id: Instrument.first.id)
   end
 
   def attach_default_event_image

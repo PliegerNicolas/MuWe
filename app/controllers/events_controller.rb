@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     authorize @event
+    raise
     if @event.save
       redirect_to event_path(@event.id)
     else
