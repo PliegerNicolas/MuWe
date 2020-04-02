@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_011600) do
+ActiveRecord::Schema.define(version: 2020_04_02_182507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,7 +114,9 @@ ActiveRecord::Schema.define(version: 2020_03_29_011600) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "instrument_id"
     t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["instrument_id"], name: "index_participants_on_instrument_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_011600) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reference"
     t.text "references", default: [], array: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -176,6 +179,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_011600) do
   add_foreign_key "messages", "events"
   add_foreign_key "messages", "users"
   add_foreign_key "participants", "events"
+  add_foreign_key "participants", "instruments"
   add_foreign_key "participants", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"

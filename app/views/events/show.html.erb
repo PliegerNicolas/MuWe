@@ -40,7 +40,7 @@
               <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
             <% else %>
               <% if user_events.include?(@event) == false %>
-                <%= link_to 'Join event', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
+                <%= link_to 'Join event', 'javascript:;', class: 'going-to-play-btn', data: { controller: 'events', action: 'events#join'} %>
               <% else %>
                 <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
                 <% if participants.first.status == 'declined' %>
@@ -103,8 +103,10 @@
                   </div>
                 </td>
                 <td>
-                  <% unless @event.user.instrument_users.empty? %>
-                    <%= @event.user.instrument_users.first.instrument.name %>
+                  <% if participant.instrument.nil? %>
+                    &nbsp;
+                  <% else %>
+                    <%= participant.instrument.name %>
                   <% end %>
                 </td>
                 <td>
@@ -194,10 +196,39 @@
               <% end %>
     </div>
   </div>
-
-
 </div>
 </div>
+
+<!-- Modal -->
+<% if signed_in? %>
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="joinModalCenterTitle">Join Event « <%= @event.title %> »</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <%= form_with url: event_add_participant_path(@event.id), method: :post, local: true do |f| %>
+      <div class="modal-body">
+        <p class="font-weight-bold">Which instrument do you want to use on this event ?</p>
+          <%= hidden_field_tag :instrument_id, 0 %>
+          <div class="list-groupm mt-2" data-controller="events">
+            <% current_user.profile.instruments.order_by_name.each do |instrument| %>
+              <button type="button" class="list-group-item list-group-item-action" data-action="click->events#setInstrument" data-instrument="<%= instrument.id %>"><%= instrument.name %></button>
+            <% end %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary disabled" disabled id="join-btn">Join</button>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
 
 <% content_for :after_js do %>
   <script>
