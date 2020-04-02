@@ -53,6 +53,7 @@ const fetchMarkers = async () => {
   return {
     events: res.data.events,
     cards: res.data.cards,
+    posts: res.data.posts
   }
 }
 
@@ -71,14 +72,14 @@ const bouncedMarkers = debounce(() => {
       const {
         events,
         cards,
-        city_coords, // City filter
-        map_box_limit // City filter
+        posts
       } = response;
 
       clearMarkers();
       let markersLoaded = {}
 
       eventsWrapper.innerHTML = cards;
+      // Add posts here !!!!!!
 
       events.forEach((marker) => {
         console.log(marker);

@@ -52,7 +52,16 @@ class SearchController < ApplicationController
 
     @map_box_limit = [@max_lat, @min_lat, @max_lng, @min_lng]
 
-    html = render_to_string @events
+    if current_user
+      unless current_user.profile.latitude.blank? || current_user.profile.longitude.blank?
+        user_pos = [current_user.profile.latitude, current_user.profile.longitude]
+      end
+    end
+
+    @posts = Profile.near([@lat, @lng], 30).joins(user: :posts).order("posts.created_at desc").limit(20).map { |profile| profile.user.posts }.flatten # Get all close posts
+
+    posts_html = render_to_string @posts
+    cards_html = render_to_string @events
 
     render json: {
       events: @events,
@@ -62,7 +71,8 @@ class SearchController < ApplicationController
       min_lat: @min_lat,
       max_lng: @max_lng,
       min_lng: @min_lng,
-      cards: html,
+      cards: cards_html,
+      posts: posts_html,
       city_coords: @city_coords,
       map_box_limit: @map_box_limit
     }
