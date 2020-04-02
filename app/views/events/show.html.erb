@@ -167,7 +167,11 @@
           </div>
         </div>
         <div class="event-sub-titles"> <h4><strong>Event Location</strong></h4> </div>
-        <div class="right-below-card" style="background-image: url(https://onepagelove.imgix.net/gravity_forms/1-e6fef9602ee538adb7069defe12f9dc0/2013/02/Dellarosa_big.jpg)"></div>
+        <% unless @event.longitude.nil? || @event.latitude.nil? %>
+          <div class="right-below-card">
+            <img src="<%= "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+6b2a9e(#{@event.longitude},#{@event.latitude})/#{@event.longitude},#{@event.latitude},16,0/350x300?access_token=#{ENV['MAPBOX_API_KEY']}" %>" alt="Event location">
+          </div>
+        <% end %>
         <div class="event-address-under-map"><%= @event.address %>, <%= @event.city %></div>
         <div class="event-address-under-map"><h4><strong> Go and meet new friends</strong></h4> </div>
 
