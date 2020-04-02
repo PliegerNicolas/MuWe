@@ -132,19 +132,26 @@
   }
 }
 
-.about-btn, .chat-btn {
+.about-btn,
+.chat-btn {
   display: flex;
   height: 30px;
   width: 100px;
   justify-content: center;
-  color: #555555;
+  color: $muwe-green;
   font-weight: regular;
   vertical-align: middle;
   cursor: pointer;
+  border-bottom: 2px solid $muwe-green;
 
   &:hover {
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid #555555;
+    color: #555555;
   }
+}
+
+.active {
+  color: red;
 }
 
 
@@ -238,6 +245,8 @@
 .teste2 {
   flex: 1;
   margin-right: 20px;
+  max-height: 520px;
+
 }
 
 
@@ -351,7 +360,7 @@
   }
 }
 
-ul {
+ul:not(.select2-results__options) {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -417,7 +426,7 @@ tr {
 }
 
 a:hover {
-  color: $muwe-green;
+  color: gray;
   text-decoration: none;
   cursor: pointer;
 }
@@ -479,4 +488,61 @@ a:hover {
 
 .fa-music {
   margin-right: 12px;
+}
+
+.teste3 {
+  max-height: 520px;
+}
+
+.message {
+  margin-bottom: 20px;
+}
+
+.chat-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: 2px 1px 6px rgba($gray-600, 0.6);
+  border: 1px solid $gray-200;
+  margin-right: 10px;
+}
+
+
+.message-input {
+  border-radius: 10px;
+}
+
+#chat {
+  min-height: 400px;
+  margin-top: 30px;
+}
+
+#messages {
+  min-height: 200px;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  color: #9f9fa0;
+  font-size: 14px;
+  font-style: bold !important;
+  margin-bottom: 5px;
+}
+
+.chat-title {
+  padding-left: 20px;
+}
+
+.send {
+  border-radius: 10px;
+  background-color: $light-purple;
+  border: none;
+}
+
+
+.chat-conversation {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  margin-top: 10px;
 }

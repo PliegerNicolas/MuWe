@@ -60,10 +60,12 @@
 
         <div class="profile-instruments shadow">
           <h3>Instruments</h3>
-          <div class="tag-list">
-            <div class="tag-item">Piano</div>
-            <div class="tag-item">Clarinet</div>
-            <div class="tag-item">Saxophone</div>
+          <div class="list-inline">
+            <% @profile.instruments.order_by_name.each do |i| %>
+              <div class="tag-item list-inline-item">
+                <%= i.name %>
+              </div>
+            <% end %>
           </div>
         </div>
 
@@ -87,24 +89,19 @@
           </div>
 
           <div class="profile-tab-content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quos nam ipsam alias ea architecto saepe. Molestiae accusamus qui itaque similique, facilis dolore commodi animi? Quam voluptas recusandae reprehenderit quibusdam? Sapiente corporis repellat aut eum officiis ipsam nihil animi adipisci sit accusamus ullam assumenda repudiandae, vero exercitationem minus dolor velit, maiores voluptas explicabo. Iusto tenetur eveniet consectetur veniam magnam natus, laborum excepturi reprehenderit ad vitae debitis quasi optio! Reprehenderit officiis est hic deserunt veritatis reiciendis ab sint eius tempora debitis, pariatur consequuntur id doloribus culpa necessitatibus! Fugiat quia in eius, omnis quasi commodi doloribus rem, sequi suscipit praesentium reiciendis itaque repellat. Dolore incidunt facere rem. Necessitatibus quibusdam totam natus, asperiores vero expedita magni qui eius quidem tempora aliquam ipsa itaque, eligendi hic quaerat ut deleniti odio delectus consectetur suscipit harum ea ex. Eaque tempore eius neque modi culpa maiores asperiores perspiciatis qui sed quo iste et cum dolor eveniet ab, optio assumenda recusandae laudantium, suscipit perferendis nulla laborum sapiente animi maxime? Magnam cumque reprehenderit nisi laboriosam nam totam tempore libero eaque velit voluptate quae dolor laudantium recusandae excepturi optio perferendis similique distinctio doloribus animi repellat, quisquam voluptas quaerat cupiditate facere. Tenetur et, eum veniam modi nam ad. Aspernatur, nostrum. Quas.</p>
+            <%= render 'posts/form', profile: @profile, post: Post.new %>
+            <div id="posts" class="mt-5">
+              <% if @profile.user.posts.blank? %>
+                <p><%= @profile.user.full_name %> has made no posts yet.</p>
+              <% else %>
+                <% @profile.user.posts.order(created_at: :desc).each do |post| %>
+                  <%= render 'posts/show', post: post %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
 
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div id="posts" class="mt-5">
-          <% if @profile.user.posts.blank? %>
-            <p><%= @profile.user.full_name %> has made no posts yet.</p>
-          <% else %>
-            <% @profile.user.posts.each do |post| %>
-              <%= render 'posts/show', post: post %>
-            <% end %>
-          <% end %>
-        </div>
-        <%= render 'posts/form', profile: @profile, post: Post.new %>
       </div>
     </div>
   </div>

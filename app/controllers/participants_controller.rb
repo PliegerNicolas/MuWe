@@ -9,7 +9,7 @@ class ParticipantsController < ApplicationController
 
   def create
     set_event
-    @participant = Participant.new(user_id: current_user.id, event_id: params[:event_id])
+    @participant = Participant.new(user_id: current_user.id, event_id: params[:event_id], instrument_id: params[:instrument_id])
     authorize @participant
     if Participant.where(user_id: current_user, event_id: @event.id).empty?
       @participant.save

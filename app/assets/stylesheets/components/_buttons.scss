@@ -1,4 +1,4 @@
-.btn-muwe {
+.btn-muwe, .btn-primary {
     color: $white;
     background-color: $dark-purple;
 
@@ -6,4 +6,8 @@
         color: $white;
         background-color: $light-purple;
     }
+}
+
+.btn-success {
+  color: $muwe-white;
 }

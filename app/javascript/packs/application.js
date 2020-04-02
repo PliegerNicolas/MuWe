@@ -1,37 +1,50 @@
+import {
+  Application
+} from 'stimulus';
+import {
+  definitionsFromContext
+} from 'stimulus/webpack-helpers';
+
 import "bootstrap";
 import Swiper from 'swiper';
+import Noty from 'noty';
 
 import {
-    initMap
+  initMap
 } from '../plugins/mapbox';
 
 import {
-    initCards
+  initCards
 } from '../plugins/cards';
 
 import {
-    initSelect2
+  initSelect2
 } from '../plugins/init_select2';
 
 import "../plugins/flatpickr"
 
 import {
-    addressAutocomplete
+  addressAutocomplete
 } from "../plugins/address_autocomplete";
 
 import {
-    readURL
+  readURL
 } from '../plugins/file_upload';
 
 import {
-  map_filter, city_filter
+  map_filter,
+  city_filter
 } from '../plugins/map_filter';
+
+const application = Application.start();
+const context = require.context("./controllers", true, /\.js$/);
+application.load(definitionsFromContext(context));
 
 initCards();
 initSelect2();
 
 $('.select2').select2({
-    width: '100%'
+  width: '100%'
 });
 addressAutocomplete();
 
@@ -42,19 +55,21 @@ window.initMap = initMap;
 map_filter();
 city_filter();
 
+window.noty = new Noty;
+
 let mapSwiper = new Swiper('.swiper-container', {
-    direction: 'horizontal',
-    slidesPerView: 'auto',
-    grabCursor: true,
-    freeMode: true,
-    scrollbar: {
-        el: '.swiper-scrollbar',
-        hide: false,
-    },
-    navigation: {
-        prevEl: '.swiper-button-prev',
-        nextEl: '.swiper-button-next',
-    }
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  grabCursor: true,
+  freeMode: true,
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    hide: false,
+  },
+  navigation: {
+    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next',
+  }
 });
 
 const filterBtn = document.querySelector('.btn-filter');
@@ -63,24 +78,24 @@ const filterWrapper = document.querySelector('.filter-wrapper');
 
 if (filterWrapper) {
   filterBtn.addEventListener('click', () => {
-      filterWrapper.classList.toggle('open');
+    filterWrapper.classList.toggle('open');
   });
 }
 
 if (filterBtnClose) {
   filterBtnClose.addEventListener('click', () => {
-      filterWrapper.classList.toggle('open');
+    filterWrapper.classList.toggle('open');
   });
 }
 
 const navbar = document.querySelector('.navbar-container');
 window.addEventListener('scroll', (e) => {
-    const offset = navbar.offsetTop;
-    if (window.pageYOffset > offset) {
-        navbar.classList.add('fixed');
-    } else {
-        navbar.classList.remove('fixed');
-    }
+  const offset = navbar.offsetTop;
+  if (window.pageYOffset > offset) {
+    navbar.classList.add('fixed');
+  } else {
+    navbar.classList.remove('fixed');
+  }
 });
 
 
@@ -103,3 +118,13 @@ if (chatButton) {
     document.querySelector('.about-btn').classList.toggle('active');
   });
 }
+
+$('.pick-instrument').select2({
+  data: document.getElementById('instruments-list').dataset.dataList
+});
+
+document.querySelectorAll('.remove-instrument').forEach((el) => {
+  el.addEventListener('click', () => {
+    console.log('hel');
+  });
+});

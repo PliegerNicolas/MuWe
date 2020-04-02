@@ -1,5 +1,5 @@
 <div class="container" style="position:relative;">
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="height: 1350px">
     <div class="header-button-back d-none">
       <%= link_to events_path do %>
         <span><i class="fas fa-chevron-left"></i> Back</span>
@@ -36,11 +36,11 @@
             <% user_events = current_user.event_participations %>
 
             <% if current_user == @event.user %>
-              <%= link_to 'Participants', event_participants_path(@event.id), class: "going-to-play-btn" %>
+              <%= link_to 'Participants', dashboard_path, class: "going-to-play-btn" %>
               <%= link_to "Archive", event_path(@event.id), method: :delete, data: { confirm: 'Are you sure ? It can\'t be undone' }, class: "going-to-play-btn" %>
             <% else %>
               <% if user_events.include?(@event) == false %>
-                <%= link_to 'Join event', event_add_participant_path(@event.id), method: :post, class: "going-to-play-btn" %>
+                <%= link_to 'Join event', 'javascript:;', class: 'going-to-play-btn', data: { controller: 'events', action: 'events#join'} %>
               <% else %>
                 <% participants = Participant.where(user_id: current_user.id, event_id: @event.id) %>
                 <% if participants.first.status == 'declined' %>
@@ -64,7 +64,7 @@
     <div class="below-content position-relative">
       <div class="teste2">
         <div class="switch-buttons">
-          <div class="about-btn active">About</div>
+          <div class="about-btn">About</div>
           <div class="chat-btn">Chat</div>
         </div>
         <div class="left-below-card">
@@ -103,13 +103,17 @@
                   </div>
                 </td>
                 <td>
-                  <% unless @event.user.instrument_users.empty? %>
-                    <%= @event.user.instrument_users.first.instrument.name %>
+                  <% if participant.instrument.nil? %>
+                    &nbsp;
+                  <% else %>
+                    <%= participant.instrument.name %>
                   <% end %>
                 </td>
                 <td>
                   <div class="host-rating">
-                    <i class="fas fa-star"></i>
+                    <% Random.rand(1...5).times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
                   </div>
                 </td>
               </tr>
@@ -128,7 +132,8 @@
           </div>
 
           <div id="chat" style="display:none">
-            <div class="row mt-5">
+           <div class="chat-title"><h4><strong>Event Chat</strong></h4></div>
+            <div class="row chat-conversation">
               <div class="col-12">
                 <!-- Tchat start -->
                 <div id="messages">
@@ -138,10 +143,10 @@
                     <% @event.messages.each do |message| %>
                       <%= render "messages/message", message: message, user_is_message_author: message.user == current_user %>
                     <% end %>
+                  <% end %>
                 </div>
 
                   <%= render 'messages/form', event: @event, message: @message %>
-                <% end %>
                 <!-- Tchat end -->
               </div>
             </div>
@@ -189,28 +194,39 @@
               <% end %>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col-12">
-      <p> Pending:
-        <% @event.participants.each do |participant| %>
-        <% if participant.status == 'postulating' %>
-        <%= link_to profile_path(participant.user.id) do %>
-        <%= participant.user.first_name %>
+</div>
+</div>
+
+<!-- Modal -->
+<% if signed_in? %>
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="joinModalCenterTitle">Join Event « <%= @event.title %> »</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <%= form_with url: event_add_participant_path(@event.id), method: :post, local: true do |f| %>
+      <div class="modal-body">
+        <p class="font-weight-bold">Which instrument do you want to use on this event ?</p>
+          <%= hidden_field_tag :instrument_id, 0 %>
+          <div class="list-groupm mt-2" data-controller="events">
+            <% current_user.profile.instruments.order_by_name.each do |instrument| %>
+              <button type="button" class="list-group-item list-group-item-action" data-action="click->events#setInstrument" data-instrument="<%= instrument.id %>"><%= instrument.name %></button>
+            <% end %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary disabled" disabled id="join-btn">Join</button>
+      </div>
         <% end %>
-        <% end %>
-        <% end %>
-      </p>
-    </div>
-    <div class="col-12">
-      <p> Declined:
-        <%= @event.participants.where(status: 'declined').count %>
-      </p>
     </div>
   </div>
-
-
 </div>
-</div>
+<% end %>
 
 <% content_for :after_js do %>
   <script>

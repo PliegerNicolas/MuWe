@@ -1,56 +1,92 @@
 <div class="container">
+  <div class="event-form">
   <%= simple_form_for @event do |f| %>
   <div class="row">
-    <div class="col-sm-8 title">
-      <%= f.input :title, input_html:{ class: "no-border"} %>
-    </div>
-
-      <div class="col-sm-4 upload-btn-wrapper">
-      <%= f.input :location_photo, name: 'filePhoto', label: false, as: :file, input_html:{ class: 'required borrowerImageFile', id: 'filePhoto', onchange: 'readURL(this);' } %>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <img id="previewHolder" src="http://placehold.it/180" alt="Uploaded Image Preview Holder" width="250px" height="250px"/>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-8 description">
-      <%= f.input :description, input_html:{ class: "no-border"} %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-4 date-time">
-      <div id='flat-booking-dates'>
-        <%= f.input :start_date, as: :string, required: false, input_html: { placeholder: 'Choose the day of your event', class: "datepicker"} %>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-12 title">
+          <%= f.input :title, input_html:{ placeholder: 'Pick a creative title for your event', class: "no-border"} %>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-2 start-time">
-      <%= f.input :start_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
-    </div>
-    <div class="col-sm-2 end-time">
-      <%= f.input :end_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8 address">
-      <div class="address">
-        <%= f.input :address, input_html: { placeholder: 'Include a place or address', class: "no-border" } %>
+      <div class="row">
+        <div class="col-sm-12 description">
+          <%= f.input :description, input_html:{ placeholder: 'Create an amazing description for your event', class: "no-border"} %>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-6" id='flat-booking-dates'>
+          <%= f.input :start_date, as: :string, required: false, input_html: { placeholder: 'Choose the day of your event', class: "datepicker"} %>
+        </div>
+        <div class="col-3 start-time">
+          <%= f.input :start_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
+        </div>
+        <div class="col-3 end-time">
+          <%= f.input :end_time, collection: time_array, default: Time.parse('18:00'), input_html: { placeholder: '00:00', class: "no-border select2" } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 address">
+          <%= f.input :address, input_html: { placeholder: 'Include a place or address', class: "no-border" } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 music-style">
+          <%= f.association :music_style, input_html: { placeholder: 'pick a music style', class: "no-border select2"}, selected: 1 %>
+        </div>
+        <div class="col-sm-6 max-players">
+          <%= f.input :max_players, collection: 2..16, selected: Date.today, input_html: { class: "no-border select2" } %>
+        </div>
+      </div>
+      <%= f.button :submit, "Create" , class: "btn btn-primary submit" %>
     </div>
+
+    <div class="col-4">
+      <div class="row">
+
+       <!-- beggining of photo upload -->
+       <div class="col-sm-12 upload-btn-wrapper photo-upload">
+        <%= f.input :location_photo, name: 'filePhoto', label: false, as: :file, input_html:{ class: 'required borrowerImageFile', id: 'filePhoto', onchange: 'readURL(this);' } %>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+        <img id="previewHolder" src="http://placehold.it/180" alt="Uploaded Image Preview Holder" width="250px" height="250px"/>
+        </div>
+      </div>
+    <!-- ending of photo upload -->
   </div>
-  <div class="row">
-    <div class="col-sm-4 music-style">
-      <%= f.association :music_style, input_html: { placeholder: 'pick a music style', class: "no-border select2"}, selected: 1 %>
-    </div>
-    <div class="col-sm-4 max-players">
-      <%= f.input :max_players, collection: 2..16, selected: Date.today, input_html: { class: "no-border select2" } %>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <%= f.button :submit, "Create" , class: "btn btn-primary submit" %>
 </div>
 <% end %>
 </div>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <!--   <div class="event-form">
+
+
+      <div class="row">
+        <div class="col-sm-12 date-time">
+
+
+
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 address">
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+-->
 

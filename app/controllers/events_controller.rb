@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @events = policy_scope(Event).where.not(latitude: nil, longitude: nil)
                                  .where('longitude >= :min AND longitude <= :max', min: @min_lng, max: @max_lng)
                                  .where('latitude >= :min AND latitude <= :max', min: @min_lat, max: @max_lat)
-
+    
     if current_user
       unless current_user.profile.latitude.blank? || current_user.profile.longitude.blank?
         user_pos = [current_user.profile.latitude, current_user.profile.longitude]

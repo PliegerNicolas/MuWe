@@ -1,5 +1,5 @@
 <div class="message <%= user_is_message_author ? "current_user" : "other_user" %>">
-  <p class="user-name"><%= message.user.full_name %> :</p>
+  <p class="user-name"><%= image_tag message.user.profile.profile_photo, crop: "scale", gravity: "faces", format: "png", class: "chat-avatar" %><%= message.user.full_name %> :</p>
   <div class= "message-text"><%= message.message %></div>
 </div>
 

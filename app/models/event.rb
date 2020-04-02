@@ -28,7 +28,7 @@ class Event < ApplicationRecord
   end
 
   def self_participate
-    self.participants.create!(user_id: self.user_id, status: 1)
+    self.participants.create!(user_id: self.user_id, status: 1, instrument_id: Instrument.first.id)
   end
 
   def attach_default_event_image
@@ -59,6 +59,6 @@ class Event < ApplicationRecord
     image_path = random_event_image.sample
     file = URI.open(image_path)
     filename = File.basename(URI.parse(image_path).path)
-    self.location_photo.attach(io: file, filename: filename)
+    self.location_photo.attach(io: file, filename: filename) unless self.location_photo.attachment
   end
 end
