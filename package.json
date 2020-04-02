@@ -9,8 +9,10 @@
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "mapbox-gl": "^1.8.1",
+    "noty": "^3.2.0-beta",
     "popper.js": "^1.16.1",
     "select2": "^4.0.13",
+    "stimulus": "^1.1.1",
     "swiper": "^5.3.6"
   },
   "devDependencies": {

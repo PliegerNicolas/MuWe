@@ -132,19 +132,26 @@
   }
 }
 
-.about-btn, .chat-btn {
+.about-btn,
+.chat-btn {
   display: flex;
   height: 30px;
   width: 100px;
   justify-content: center;
-  color: #555555;
+  color: $muwe-green;
   font-weight: regular;
   vertical-align: middle;
   cursor: pointer;
+  border-bottom: 2px solid $muwe-green;
 
   &:hover {
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid #555555;
+    color: #555555;
   }
+}
+
+.active {
+  color: red;
 }
 
 
@@ -353,7 +360,7 @@
   }
 }
 
-ul {
+ul:not(.select2-results__options) {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -507,9 +514,7 @@ a:hover {
 
 #chat {
   min-height: 400px;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 10px;
+  margin-top: 30px;
 }
 
 #messages {
@@ -534,3 +539,10 @@ a:hover {
   border: none;
 }
 
+
+.chat-conversation {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  margin-top: 10px;
+}
