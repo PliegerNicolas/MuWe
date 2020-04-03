@@ -118,13 +118,3 @@ if (chatButton) {
     document.querySelector('.about-btn').classList.toggle('active');
   });
 }
-
-$('.pick-instrument').select2({
-  data: document.getElementById('instruments-list').dataset.dataList
-});
-
-document.querySelectorAll('.remove-instrument').forEach((el) => {
-  el.addEventListener('click', () => {
-    console.log('hel');
-  });
-});
