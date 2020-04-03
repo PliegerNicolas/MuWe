@@ -528,7 +528,7 @@ a:hover {
       border-color: $green-300;
 
       .user-name {
-        text-align: right;
+        justify-content: flex-end;
       }
 
       .chat-avatar {
@@ -540,8 +540,9 @@ a:hover {
     .user-name {
       display: flex;
       align-self: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
       position: relative;
+      width: 100%;
       color: $gray-700;
       font-size: 14px;
       font-weight: 700 !important;

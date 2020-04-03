@@ -68,7 +68,7 @@
           <div class="chat-btn">Chat</div>
         </div>
         <div class="left-below-card">
-          <div class="players-card" style="display:none;">
+          <div class="players-card">
             <h4><strong>Players</strong></h4>
             <p><div class="warning-players">There are still <%= @event.max_players - @event.participants.where(status: 'accepted').count %> spots left out of <%= @event.max_players %>!</div></p> <!-- It would be nice if we could have the number for X! -->
             <table style="width:100%">
@@ -131,7 +131,7 @@
               <br>
           </div>
 
-          <div id="chat" style="display:initial;">
+          <div id="chat" style="display:none;">
            <div class="chat-title"><h4><strong>Event Chat</strong></h4></div>
             <div class="row chat-conversation">
               <div class="col-12">
