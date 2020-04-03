@@ -138,6 +138,38 @@ const bouncedMarkers = debounce(() => {
 }, 400);
 
 const initMap = () => {
+  mapElement = document.getElementById('map'); // Get info about map in HTML
+
+  if (mapElement) { // Initalise first view of mapbox map
+    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+
+    map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [-7.8536599, 39.557191],
+      zoom: 7
+    })
+
+    const geolocate = new mapboxgl.GeolocateControl({ // Geolocation settings
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true,
+      showAccuracyCircle: false,
+    });
+
+    map.addControl(geolocate); // Start geolocating
+    map.on('load', () => { // Trigger geolocation client side on load
+      geolocate.trigger();
+    })
+
+    map.on('render', () => {
+      // console.log(map.getBounds());
+      bouncedMarkers();
+    });
+  }
+
+  /*
   let sPath = window.location.pathname;
   let sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
@@ -206,6 +238,7 @@ const initMap = () => {
         }
     }
   );
+  */
 }
 
 export {
