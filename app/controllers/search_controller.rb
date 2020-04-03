@@ -64,7 +64,7 @@ class SearchController < ApplicationController
     cards_html = render_to_string @events
 
     render json: {
-      events: @events,
+      events: @events.as_json( include: [ :user, :music_style ] ),
       a: @lat,
       b: @lng,
       max_lat: @max_lat,
