@@ -1,4 +1,6 @@
-<%= simple_form_for([ profile, post ], remote: true) do |f| %>
-  <%= f.input :description, as: :text, label: false %>
-  <%= f.button :submit, class: 'btn btn-sm btn-muwe' %>
+<% if current_user == profile.user %>
+  <%= simple_form_for([ profile, post ], remote: true) do |f| %>
+    <%= f.input :description, as: :text, label: false, placeholder: 'Share how you feel or post a video...' %>
+    <%= f.button :submit, class: 'btn btn-sm btn-muwe' %>
+  <% end %>
 <% end %>
