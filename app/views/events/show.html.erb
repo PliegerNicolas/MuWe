@@ -162,8 +162,11 @@
           <div class="buttons-list">
             <ul>
               <li><div class="like-btn"><span class="fas fa-heart"></span>Interested</div></li>
-              <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li>
+              <%# <li><div class="share-btn"><span class="fas fa-share-alt"></span></div></li> %>
             </ul>
+          </div>
+          <div class="share-wrapper">
+            <%= render_shareable buttons: ['twitter', 'facebook', 'linkedin'] %>
           </div>
         </div>
         <div class="event-sub-titles"> <h4><strong>Event Location</strong></h4> </div>
