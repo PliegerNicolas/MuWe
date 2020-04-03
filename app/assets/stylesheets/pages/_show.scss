@@ -333,6 +333,32 @@
   margin-right: 12px;
 }
 
+.share-wrapper {
+  display: flex;
+
+  nav.share {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 230px;
+    height: 50px;
+
+    iframe {
+      border: 0;
+      margin-top: 0;
+      padding-top: 0;
+
+      &.twitter-share-button {
+        margin-top: 10px;
+      }
+    }
+
+    .fb_iframe_widget span {
+      vertical-align: top;
+    }
+  }
+}
+
 .share-btn {
   display: flex;
   background: #d6d6d6;
