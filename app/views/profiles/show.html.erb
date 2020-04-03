@@ -78,22 +78,36 @@
               <div class="title">Activity</div>
 
             </div>
+
+            <!--
             <div class="profile-tab">
               <div class="title">Timeline</div>
-
             </div>
             <div class="profile-tab">
               <div class="title">More</div>
-
             </div>
+            -->
+
           </div>
 
           <div class="profile-tab-content">
-            <%= render 'posts/form', profile: @profile, post: Post.new %>
-            <div id="posts" class="mt-5">
+
+            <% if @profile.user == current_user %>
+              <p class="h5">
+                Hi <%= @profile.user.first_name %>, say hi to the community!
+              </p>
+            <% else %>
               <% if @profile.user.posts.blank? %>
-                <p><%= @profile.user.full_name %> has made no posts yet.</p>
+                <p class="h5">Nothing yet published by <%= @profile.user.full_name %> :(</p>
               <% else %>
+                <p class="h5">Last activity by <%= @profile.user.full_name %></p>
+              <% end %>
+            <% end %>
+
+            <%= render 'posts/form', profile: @profile, post: Post.new %>
+
+            <div id="posts" class="mt-2">
+              <% unless @profile.user.posts.blank? %>
                 <% @profile.user.posts.order(created_at: :desc).each do |post| %>
                   <%= render 'posts/show', post: post %>
                 <% end %>
