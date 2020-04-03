@@ -1,11 +1,12 @@
-.btn-muwe, .btn-primary {
-    color: $white;
-    background-color: $dark-purple;
+.btn-muwe,
+.btn-primary {
+  color: $white !important;
+  background-color: $dark-purple;
 
-    &:hover {
-        color: $white;
-        background-color: $light-purple;
-    }
+  &:hover {
+    color: $white;
+    background-color: $light-purple;
+  }
 }
 
 .btn-success {
