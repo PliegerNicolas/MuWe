@@ -241,14 +241,10 @@
   margin-left: 70px;
 }
 
-
 .teste2 {
   flex: 1;
   margin-right: 20px;
-  max-height: 520px;
-
 }
-
 
 .left-below-card {
   background-color: transparent;
@@ -498,14 +494,6 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.chat-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  box-shadow: 2px 1px 6px rgba($gray-600, 0.6);
-  border: 1px solid $gray-200;
-  margin-right: 10px;
-}
 
 
 .message-input {
@@ -518,23 +506,78 @@ a:hover {
 }
 
 #messages {
+  display: flex;
+  flex-direction: column;
   min-height: 200px;
   margin-bottom: 10px;
+
+  .message {
+    position: relative;
+    align-self: flex-start;
+    max-width: 80%;
+    padding: 6px 10px 4px 20px;
+    background-color: $gray-200;
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+
+    &.host {
+      align-self: flex-end;
+      padding-right: 20px;
+      padding-left: 10px;
+      background-color: $green-200;
+      border-color: $green-300;
+
+      .user-name {
+        text-align: right;
+      }
+
+      .chat-avatar {
+        right: -20px;
+        left: auto;
+      }
+    }
+
+    .user-name {
+      display: flex;
+      align-self: center;
+      justify-content: flex-end;
+      position: relative;
+      color: $gray-700;
+      font-size: 14px;
+      font-weight: 700 !important;
+
+      span {
+        margin-left: 20px;
+        font-weight: normal;
+        font-style: italic;
+        color: $gray-500;
+      }
+    }
+
+    .chat-avatar {
+      position: absolute;
+      top: -15px;
+      left: -20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      box-shadow: 2px 1px 6px rgba($gray-600, 0.6);
+      border: 1px solid $gray-200;
+    }
+
+    .message-text {
+      width: 100%;
+    }
+  }
 }
 
-.user-name {
-  color: #9f9fa0;
-  font-size: 14px;
-  font-style: bold !important;
-  margin-bottom: 5px;
-}
 
 .chat-title {
   padding-left: 20px;
 }
 
 .send {
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: $light-purple;
   border: none;
 }

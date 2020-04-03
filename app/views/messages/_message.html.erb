@@ -1,12 +1,12 @@
-<div class="message <%= user_is_message_author ? "current_user" : "other_user" %>">
-  <p class="user-name"><%= image_tag message.user.profile.profile_photo, crop: "scale", gravity: "faces", format: "png", class: "chat-avatar" %><%= message.user.full_name %> :</p>
+<div class="message <%= user_is_message_author ? "host" : "" %>">
+  <%= image_tag message.user.profile.profile_photo, crop: "scale", gravity: "faces", format: "png", class: "chat-avatar" %>
   <div class= "message-text"><%= message.message %></div>
+  <p class="user-name">
+    <em>
+      <%= message.user.full_name %>
+    </em>
+    <span>
+      <%= time_ago_in_words(message.created_at) %>
+    </span>
+  </p>
 </div>
-
-<!--
-  <%# if message.user.profile.profile_photo.attachment %>
-    <%#= image_tag message.user.profile.profile_photo, height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-  <%# else %>
-    <%#= image_tag (cl_image_path 'default_instrument_image'), height: '45px', width: '45px', crop: "scale", gravity: "faces", format: "png", secure: true %>
-  <%# end %>
--->
