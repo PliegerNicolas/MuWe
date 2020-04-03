@@ -123,7 +123,7 @@
               <h4><strong>Details</strong></h4>
               <div class="participants"><span class="fas fa-guitar"></span> <%= @event.participants.count %> players responded to the event</div>
               <div class="music-style"><span class="fas fa-music"></span>Music style: <%= @event.music_style.style %></div>
-              <div class="event-time-detail"><span class="fas fa-clock"></span> <%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
+              <div class="event-time-detail"><span class="fas fa-clock"></span><%= @event.start_date.strftime("%A, %d %B") if @event.start_date %> from <%= @event.start_time.to_s(:time) %> to <%= @event.start_time.to_s(:time) %> </div>
               <div class="event-address-detail"><span class="fas fa-map-marker-alt"></span><%= @event.address %>, <%= @event.city %></div>
               <div class="event-description"><%= simple_format @event.description %></div>
               </div>
