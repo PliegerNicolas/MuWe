@@ -21,6 +21,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @participant = Participant.new
     authorize @event
   end
 
@@ -29,6 +30,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     authorize @event
     if @event.save
+      add_participant
       redirect_to event_path(@event.id)
     else
       render :new
@@ -68,7 +70,8 @@ class EventsController < ApplicationController
       :title, :description,
       :max_players, :status,
       :start_date, :start_time, :end_time,
-      :location_photo
+      :location_photo,
+      participants_attributes: [:instrument_id]
     )
   end
 
@@ -76,5 +79,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize @event
     events = Event.near([params[:latitude], params[:longitude]])
+  end
+
+  def add_participant
+    participant = Participant.new user: current_user, status: 1, event: @event
+    participant.instrument_id = params['event'][:participants][:instrument_id]
+    participant.save
   end
 end
