@@ -60,10 +60,6 @@ class SearchController < ApplicationController
 
     @posts = Profile.near([@lat, @lng], 30).joins(user: :posts).order("posts.created_at desc").limit(20).map { |profile| profile.user.posts }.flatten # Get all close posts
 
-    # a = @events.as_json( include: :user )
-    # a = @events.joins([ :user, :music_style, :participants ])
-    # render json: { a: a }
-
     posts_html = render_to_string @posts
     cards_html = render_to_string @events
 

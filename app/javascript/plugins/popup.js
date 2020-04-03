@@ -11,6 +11,7 @@ class HTMLPopup {
             <p>Hosted by <a href="/profiles/${this.marker.user.id}" target="_blank">${this.marker.user.first_name}</a></p>
             <p>Status: ${this.marker.status}</p>
             <p>Music style: ${this.marker.music_style.style}</p>
+            <p><i class="fa fa-map-marker-alt"></i> ${this.marker.address}</p>
             <div class="date">
                 <div>
                     <i class="far fa-calendar-alt"></i> <span>${this.marker.start_date}</span>

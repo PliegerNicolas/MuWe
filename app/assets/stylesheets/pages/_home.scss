@@ -243,6 +243,10 @@ input:focus {
   border-radius: 8px;
   background-color: $gray-100;
 
+  &.active {
+    background-color: $gray-300;
+  }
+
   .event-photo {
     position: relative;
     margin-bottom: 4px;
