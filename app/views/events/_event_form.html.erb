@@ -37,6 +37,13 @@
           <%= f.input :max_players, collection: 2..16, selected: Date.today, input_html: { class: "no-border select2" } %>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12">
+          <%= f.simple_fields_for :participants do |p| %>
+            <%= p.input :instrument_id, collection: current_user.profile.instruments, label: 'Which instrument are you going to play ?' %>
+          <% end %>
+        </div>
+      </div>
       <%= f.button :submit, "Create" , class: "btn btn-primary submit" %>
     </div>
 
@@ -61,32 +68,3 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-  <!--   <div class="event-form">
-
-
-      <div class="row">
-        <div class="col-sm-12 date-time">
-
-
-
-        </div>
-
-
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12 address">
-
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-</div>
--->
-
