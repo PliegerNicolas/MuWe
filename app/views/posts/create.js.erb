@@ -1,11 +1,13 @@
 function refreshForm(emptyFormHTML) {
+  const textarea = document.getElementById('post_description');
+  textarea.value = '';
   const oldPostForm = document.getElementById('new_post');
   oldPostForm.innerHTML = emptyFormHTML;
 }
 
 function addPost(postHTML) {
   const posts = document.getElementById('posts');
-  posts.insertAdjacentHTML('beforeend', postHTML);
+  posts.insertAdjacentHTML('afterbegin', postHTML);
 }
 
 function scrollToLastPost() {
@@ -19,7 +21,7 @@ function scrollToLastPost() {
 <% if @post.valid? %>
   addPost('<%= j render "posts/show", post: @post %>');
   refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
-  scrollToLastPost();
+  //scrollToLastPost();
 <% else %>
   refreshForm('<%= j render "posts/form", profile: @profile, post: Post.new %>');
 <% end %>

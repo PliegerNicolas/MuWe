@@ -99,12 +99,14 @@
             <% else %>
               <% if @profile.user.posts.blank? %>
                 <p class="h5">Nothing yet published by <%= @profile.user.full_name %> :(</p>
+              <% else %>
+                <p class="h5">Last activity by <%= @profile.user.full_name %></p>
               <% end %>
             <% end %>
 
             <%= render 'posts/form', profile: @profile, post: Post.new %>
 
-            <div id="posts" class="mt-5">
+            <div id="posts" class="mt-2">
               <% unless @profile.user.posts.blank? %>
                 <% @profile.user.posts.order(created_at: :desc).each do |post| %>
                   <%= render 'posts/show', post: post %>

@@ -1,6 +1,16 @@
 <div class="post" id="<%= post.id %>">
   <%= embed_link(post)  %>
   <p class="description"><%= post.description %></p>
-  <%= link_to "Edit", edit_profile_post_path(post.user.profile, post.id) %>
-  <%= link_to "Delete", profile_post_path(post.user.profile, post.id), method: :delete, remote: true %>
+
+  <p class="time_ago">
+    <%= time_ago_in_words post.created_at %> ago
+  </p>
+
+  <% if post.user == current_user %>
+    <div class="post-actions">
+      <%= link_to "Edit", edit_profile_post_path(post.user.profile, post.id), class: 'btn btn-sm btn-muwe' %>
+      <%= link_to "Delete", profile_post_path(post.user.profile, post.id), method: :delete, remote: true, class: 'btn btn-sm btn-muwe' %>
+    </div>
+  <% end %>
+
 </div>
