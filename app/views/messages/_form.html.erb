@@ -1,9 +1,9 @@
 <div class="chat-form">
-<%= simple_form_for([@event, Message.new], remote: true) do |f| %>
-  <%= f.input :message, label: false, input_html: {class: "message-input border-10"} %>
+  <%= simple_form_for([@event, Message.new], remote: true) do |f| %>
+    <%= f.input :message, label: false, input_html: {class: "", placeholder: 'Send a message to the participants...'} %>
+    <%= f.submit "Send", class: "btn btn-primary send" %>
+  <% end %>
 </div>
-  <%= f.submit "Send", class: "btn btn-primary send" %>
-<% end %>
 
 
 
